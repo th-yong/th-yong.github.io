@@ -31,10 +31,20 @@ export default function AdminModal({ onClose }: AdminModalProps) {
   const availableCategories = ['Agent', 'Cloud', 'LLM', 'Vision']
   
   // 환경 변수에서 가져오기 (빌드 타임에 주입됨)
-  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || ''
-  const githubOwner = process.env.NEXT_PUBLIC_REPO_OWNER || 'th-yong'
-  const githubRepo = process.env.NEXT_PUBLIC_REPO_NAME || 'th-yong.github.io'
-  const githubBranch = process.env.NEXT_PUBLIC_REPO_BRANCH || 'main'
+  // Next.js는 빌드 타임에 NEXT_PUBLIC_* 환경 변수를 코드에 직접 주입합니다
+  // 정적 빌드에서는 process.env가 없을 수 있으므로 안전하게 접근
+  const getEnv = (key: string, defaultValue: string = '') => {
+    if (typeof process !== 'undefined' && process.env) {
+      return process.env[key] || defaultValue
+    }
+    // 빌드 타임에 주입된 값 사용 (Next.js가 코드에 직접 주입)
+    return defaultValue
+  }
+  
+  const adminPassword = getEnv('NEXT_PUBLIC_ADMIN_PASSWORD', '')
+  const githubOwner = getEnv('NEXT_PUBLIC_REPO_OWNER', 'th-yong')
+  const githubRepo = getEnv('NEXT_PUBLIC_REPO_NAME', 'th-yong.github.io')
+  const githubBranch = getEnv('NEXT_PUBLIC_REPO_BRANCH', 'main')
 
   const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -42,13 +52,9 @@ export default function AdminModal({ onClose }: AdminModalProps) {
     setError('')
 
     try {
-      // 디버깅: 환경 변수가 제대로 로드되었는지 확인
-      console.log('Admin password env loaded:', adminPassword ? 'Yes (length: ' + adminPassword.length + ')' : 'No')
-      
       // 클라이언트에서 직접 패스워드 검증
       if (!adminPassword) {
         setError('Admin password not configured. Please check GitHub Secrets and rebuild.')
-        console.error('ADMIN_PASSWORD environment variable is not set')
         return
       }
       
@@ -56,7 +62,6 @@ export default function AdminModal({ onClose }: AdminModalProps) {
         setIsAuthenticated(true)
       } else {
         setError('Invalid password')
-        console.log('Password mismatch. Expected length:', adminPassword.length, 'Input length:', password.length)
       }
     } catch (err) {
       setError('An error occurred')
