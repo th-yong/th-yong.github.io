@@ -1,14 +1,6 @@
 import { Octokit } from '@octokit/rest'
 import { escapeYamlString } from './validation'
 
-const octokit = new Octokit({
-  auth: process.env.REPO_TOKEN,
-})
-
-const owner = process.env.REPO_OWNER || 'th-yong'
-const repo = process.env.REPO_NAME || 'th-yong.github.io'
-const branch = process.env.REPO_BRANCH || 'main'
-
 export interface CreatePostParams {
   title: string
   content: string
@@ -18,9 +10,19 @@ export interface CreatePostParams {
   date?: string
 }
 
-export async function createPostOnGitHub(params: CreatePostParams): Promise<boolean> {
+export async function createPostOnGitHubClient(
+  params: CreatePostParams,
+  token: string,
+  owner: string,
+  repo: string,
+  branch: string = 'main'
+): Promise<boolean> {
   try {
     const { title, content, tags, categories, slug, date } = params
+    
+    const octokit = new Octokit({
+      auth: token,
+    })
     
     // YAML 안전하게 이스케이프
     const safeTitle = escapeYamlString(title)
@@ -59,7 +61,8 @@ ${content}`
       }
     }
 
-    const contentBase64 = Buffer.from(frontmatter).toString('base64')
+    // 브라우저에서 base64 인코딩
+    const contentBase64 = btoa(unescape(encodeURIComponent(frontmatter)))
     const message = sha ? `Update post: ${title}` : `Create post: ${title}`
 
     await octokit.repos.createOrUpdateFileContents({
@@ -76,6 +79,43 @@ ${content}`
   } catch (error) {
     console.error('Error creating post on GitHub:', error)
     return false
+  }
+}
+
+export async function getPostFromGitHubClient(
+  slug: string,
+  token: string,
+  owner: string,
+  repo: string,
+  branch: string = 'main'
+): Promise<any> {
+  try {
+    const octokit = new Octokit({
+      auth: token,
+    })
+
+    const filePath = `content/posts/${slug}.md`
+
+    const { data } = await octokit.repos.getContent({
+      owner,
+      repo,
+      path: filePath,
+      ref: branch,
+    })
+
+    if ('content' in data && data.content) {
+      // 브라우저에서 base64 디코딩
+      const content = decodeURIComponent(escape(atob(data.content.replace(/\s/g, ''))))
+      return { success: true, content }
+    }
+
+    return { success: false, error: 'File not found' }
+  } catch (error: any) {
+    if (error.status === 404) {
+      return { success: false, error: 'Post not found' }
+    }
+    console.error('Error loading post from GitHub:', error)
+    return { success: false, error: 'An error occurred' }
   }
 }
 

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import MarkdownViewer from './MarkdownViewer'
+import { createPostOnGitHubClient, getPostFromGitHubClient } from '@/lib/client-github'
 
 interface AdminModalProps {
   onClose: () => void
@@ -10,6 +11,7 @@ interface AdminModalProps {
 
 export default function AdminModal({ onClose }: AdminModalProps) {
   const [password, setPassword] = useState('')
+  const [githubToken, setGithubToken] = useState('')
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -27,6 +29,12 @@ export default function AdminModal({ onClose }: AdminModalProps) {
   const [isEditMode, setIsEditMode] = useState(false)
 
   const availableCategories = ['Agent', 'Cloud', 'LLM', 'Vision']
+  
+  // 환경 변수에서 가져오기 (빌드 타임에 주입됨)
+  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || ''
+  const githubOwner = process.env.NEXT_PUBLIC_REPO_OWNER || 'th-yong'
+  const githubRepo = process.env.NEXT_PUBLIC_REPO_NAME || 'th-yong.github.io'
+  const githubBranch = process.env.NEXT_PUBLIC_REPO_BRANCH || 'main'
 
   const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -34,17 +42,8 @@ export default function AdminModal({ onClose }: AdminModalProps) {
     setError('')
 
     try {
-      const response = await fetch('/api/admin/verify', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password }),
-      })
-
-      const data = await response.json()
-
-      if (data.valid) {
+      // 클라이언트에서 직접 패스워드 검증
+      if (password === adminPassword) {
         setIsAuthenticated(true)
       } else {
         setError('Invalid password')
@@ -62,28 +61,33 @@ export default function AdminModal({ onClose }: AdminModalProps) {
     setError('')
     setSubmitSuccess(false)
 
+    if (!githubToken) {
+      setError('GitHub Token is required')
+      setSubmitLoading(false)
+      return
+    }
+
     try {
       const tagArray = tags.split(',').map((t: string) => t.trim()).filter((t: string) => t)
+      const finalSlug = slug || title.toLowerCase().replace(/\s+/g, '-')
 
-      const response = await fetch('/api/admin/create-post', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          password,
+      // 클라이언트에서 직접 GitHub API 호출
+      const success = await createPostOnGitHubClient(
+        {
           title,
-          slug: slug || title.toLowerCase().replace(/\s+/g, '-'),
+          slug: finalSlug,
           date: date || undefined,
           tags: tagArray,
           categories: categories,
           content,
-        }),
-      })
+        },
+        githubToken,
+        githubOwner,
+        githubRepo,
+        githubBranch
+      )
 
-      const data = await response.json()
-
-      if (response.ok && data.success) {
+      if (success) {
         setSubmitSuccess(true)
         setIsEditMode(false)
         // 폼 초기화
@@ -97,10 +101,10 @@ export default function AdminModal({ onClose }: AdminModalProps) {
           setSubmitSuccess(false)
         }, 3000)
       } else {
-        setError(data.error || 'Failed to create post')
+        setError('Failed to create post. Please check your GitHub Token.')
       }
-    } catch (err) {
-      setError('An error occurred')
+    } catch (err: any) {
+      setError(err.message || 'An error occurred')
     } finally {
       setSubmitLoading(false)
     }
@@ -151,6 +155,23 @@ export default function AdminModal({ onClose }: AdminModalProps) {
             <form onSubmit={handlePostSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  GitHub Personal Access Token *
+                </label>
+                <input
+                  type="password"
+                  value={githubToken}
+                  onChange={(e) => setGithubToken(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  placeholder="ghp_..."
+                  required
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  GitHub Personal Access Token with repo permissions is required to create/update posts.
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Title *
                 </label>
                 <input
@@ -183,36 +204,56 @@ export default function AdminModal({ onClose }: AdminModalProps) {
                         setError('Please enter a slug to load post')
                         return
                       }
+                      if (!githubToken) {
+                        setError('GitHub Token is required to load post')
+                        return
+                      }
                       setLoadLoading(true)
                       setError('')
                       try {
-                        const response = await fetch('/api/admin/load-post', {
-                          method: 'POST',
-                          headers: {
-                            'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify({ password, slug }),
-                        })
-                        const data = await response.json()
-                        if (response.ok && data.success) {
-                          setTitle(data.post.title)
-                          setSlug(data.post.slug)
-                          setDate(data.post.date || new Date().toISOString().split('T')[0])
-                          setTags(data.post.tags)
-                          setCategories(data.post.categories)
-                          setContent(data.post.content)
-                          setIsEditMode(true)
-                          setError('')
+                        // GitHub에서 가져오기
+                        const result = await getPostFromGitHubClient(
+                          slug,
+                          githubToken,
+                          githubOwner,
+                          githubRepo,
+                          githubBranch
+                        )
+                        
+                        if (result.success && result.content) {
+                          // 마크다운 파싱 (간단한 버전)
+                          const content = result.content
+                          const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+                          if (frontmatterMatch) {
+                            const frontmatter = frontmatterMatch[1]
+                            const body = frontmatterMatch[2]
+                            
+                            // 간단한 파싱
+                            const titleMatch = frontmatter.match(/title:\s*(.+)/)
+                            const dateMatch = frontmatter.match(/date:\s*(.+)/)
+                            const tagsMatch = frontmatter.match(/tags:\s*\[(.*?)\]/)
+                            const categoriesMatch = frontmatter.match(/categories:\s*\[(.*?)\]/)
+                            
+                            setTitle(titleMatch ? titleMatch[1].trim().replace(/^["']|["']$/g, '') : slug)
+                            setDate(dateMatch ? dateMatch[1].trim().split('T')[0] : new Date().toISOString().split('T')[0])
+                            setTags(tagsMatch ? tagsMatch[1].split(',').map((t: string) => t.trim().replace(/^["']|["']$/g, '')).join(', ') : '')
+                            setCategories(categoriesMatch ? categoriesMatch[1].split(',').map((c: string) => c.trim().replace(/^["']|["']$/g, '')) : [])
+                            setContent(body)
+                            setIsEditMode(true)
+                            setError('')
+                          } else {
+                            setError('Failed to parse post content')
+                          }
                         } else {
-                          setError(data.error || 'Failed to load post')
+                          setError(result.error || 'Failed to load post')
                         }
-                      } catch (err) {
-                        setError('An error occurred')
+                      } catch (err: any) {
+                        setError(err.message || 'An error occurred')
                       } finally {
                         setLoadLoading(false)
                       }
                     }}
-                    disabled={loadLoading || !slug}
+                    disabled={loadLoading || !slug || !githubToken}
                     className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm whitespace-nowrap"
                   >
                     {loadLoading ? 'Loading...' : 'Load Post'}

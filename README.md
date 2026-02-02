@@ -18,18 +18,20 @@ npm install
 
 ```env
 ADMIN_PASSWORD=your-admin-password-here
-GITHUB_TOKEN=your-github-personal-access-token
-GITHUB_OWNER=thyong
-GITHUB_REPO=my-tech-blog
-GITHUB_BRANCH=main
+REPO_OWNER=th-yong
+REPO_NAME=th-yong.github.io
+REPO_BRANCH=main
 ```
 
 **환경 변수 설명:**
 - `ADMIN_PASSWORD`: Admin 패널 접근을 위한 패스워드
-- `GITHUB_TOKEN`: GitHub Personal Access Token (repo 권한 필요)
-- `GITHUB_OWNER`: GitHub 사용자명 또는 조직명
-- `GITHUB_REPO`: GitHub 리포지토리 이름
-- `GITHUB_BRANCH`: 기본 브랜치 (보통 `main`)
+- `REPO_OWNER`: GitHub 사용자명 또는 조직명
+- `REPO_NAME`: GitHub 리포지토리 이름
+- `REPO_BRANCH`: 기본 브랜치 (보통 `main`)
+
+**참고:** 
+- `GITHUB_` 접두사는 GitHub Actions에서 예약어이므로 `REPO_` 접두사를 사용합니다.
+- GitHub Token은 보안상 클라이언트에 노출하지 않으므로, Admin 패널에서 사용자가 직접 입력하도록 합니다.
 
 ### 개발 서버 실행
 

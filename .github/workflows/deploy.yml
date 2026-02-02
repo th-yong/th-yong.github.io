@@ -46,6 +46,12 @@ jobs:
           NODE_ENV: production
           # 사용자 페이지 (th-yong.github.io)이므로 BASE_PATH는 빈 문자열
           BASE_PATH: ''
+          # Admin 기능을 위한 환경 변수 (GitHub Secrets에서 가져옴)
+          # GITHUB_ 접두사는 예약어이므로 사용 불가
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          REPO_OWNER: ${{ secrets.REPO_OWNER }}
+          REPO_NAME: ${{ secrets.REPO_NAME }}
+          REPO_BRANCH: ${{ secrets.REPO_BRANCH }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
