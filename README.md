@@ -1,6 +1,4 @@
-# Tae-Hoon's Blog
-
-용태훈(Tae-Hoon Yong)의 개인 기술 블로그입니다.
+개인 기술 블로그입니다.
 
 ## 소개
 
