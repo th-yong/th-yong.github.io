@@ -33,6 +33,19 @@ REPO_BRANCH=main
 - `GITHUB_` 접두사는 GitHub Actions에서 예약어이므로 `REPO_` 접두사를 사용합니다.
 - GitHub Token은 보안상 클라이언트에 노출하지 않으므로, Admin 패널에서 사용자가 직접 입력하도록 합니다.
 
+### GitHub Actions 배포 설정
+
+GitHub Pages 자동 배포를 사용하는 경우, 다음 Secrets를 설정해야 합니다:
+
+1. Repository Settings > Secrets and variables > Actions로 이동
+2. 다음 Secrets를 추가:
+   - `ADMIN_PASSWORD`: Admin 패널 접근 패스워드
+   - `REPO_OWNER`: GitHub 사용자명 또는 조직명 (예: `th-yong`)
+   - `REPO_NAME`: GitHub 리포지토리 이름 (예: `th-yong.github.io`)
+   - `REPO_BRANCH`: 기본 브랜치 (예: `main`)
+
+**중요:** Secrets를 설정한 후에는 반드시 워크플로우를 다시 실행해야 합니다 (Actions 탭에서 "Re-run jobs" 또는 새로운 커밋 푸시).
+
 ### 개발 서버 실행
 
 ```bash

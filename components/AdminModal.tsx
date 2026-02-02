@@ -54,7 +54,7 @@ export default function AdminModal({ onClose }: AdminModalProps) {
     try {
       // 클라이언트에서 직접 패스워드 검증
       if (!adminPassword) {
-        setError('Admin password not configured. Please check GitHub Secrets and rebuild.')
+        setError('Admin password not configured. Please check GitHub Secrets (ADMIN_PASSWORD) and rebuild. See README.md for setup instructions.')
         return
       }
       
