@@ -23,7 +23,7 @@ export default function SocialLinks() {
         <FaGithub size={28} />
       </a>
       <a
-        href="/cv.pdf"
+        href="/thyong_cv.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors"
