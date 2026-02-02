@@ -31,20 +31,13 @@ export default function AdminModal({ onClose }: AdminModalProps) {
   const availableCategories = ['Agent', 'Cloud', 'LLM', 'Vision']
   
   // 환경 변수에서 가져오기 (빌드 타임에 주입됨)
-  // Next.js는 빌드 타임에 NEXT_PUBLIC_* 환경 변수를 코드에 직접 주입합니다
-  // 정적 빌드에서는 process.env가 없을 수 있으므로 안전하게 접근
-  const getEnv = (key: string, defaultValue: string = '') => {
-    if (typeof process !== 'undefined' && process.env) {
-      return process.env[key] || defaultValue
-    }
-    // 빌드 타임에 주입된 값 사용 (Next.js가 코드에 직접 주입)
-    return defaultValue
-  }
-  
-  const adminPassword = getEnv('NEXT_PUBLIC_ADMIN_PASSWORD', '')
-  const githubOwner = getEnv('NEXT_PUBLIC_REPO_OWNER', 'th-yong')
-  const githubRepo = getEnv('NEXT_PUBLIC_REPO_NAME', 'th-yong.github.io')
-  const githubBranch = getEnv('NEXT_PUBLIC_REPO_BRANCH', 'main')
+  // Next.js는 빌드 타임에 NEXT_PUBLIC_* 환경 변수를 코드에 직접 리터럴 값으로 주입합니다
+  // next.config.js의 env 섹션에서 ADMIN_PASSWORD가 NEXT_PUBLIC_ADMIN_PASSWORD로 변환됩니다
+  // 정적 빌드 후에는 이 값들이 리터럴로 대체되므로 직접 사용 가능
+  const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || ''
+  const githubOwner = process.env.NEXT_PUBLIC_REPO_OWNER || 'th-yong'
+  const githubRepo = process.env.NEXT_PUBLIC_REPO_NAME || 'th-yong.github.io'
+  const githubBranch = process.env.NEXT_PUBLIC_REPO_BRANCH || 'main'
 
   const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
