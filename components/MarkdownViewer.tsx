@@ -49,6 +49,7 @@ export default function MarkdownViewer({ content }: MarkdownViewerProps) {
           img({ src, alt }: any) {
             return (
               <span className="block my-8">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={src}
                   alt={alt}

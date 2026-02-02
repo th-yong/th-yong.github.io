@@ -39,7 +39,7 @@ export default function Navigation() {
               onClick={handleLogoClick}
               className="text-xl font-bold text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
             >
-              Tae-Hoon's blog
+              Tae-Hoon&apos;s blog
             </Link>
             <div className="flex space-x-8">
               {navItems.map((item) => (

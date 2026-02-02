@@ -122,6 +122,6 @@ export function validateCategories(categories: string[]): string[] {
   }
   
   // 중복 제거
-  return [...new Set(validCategories)]
+  return Array.from(new Set(validCategories))
 }
 
