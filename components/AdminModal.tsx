@@ -42,11 +42,21 @@ export default function AdminModal({ onClose }: AdminModalProps) {
     setError('')
 
     try {
+      // 디버깅: 환경 변수가 제대로 로드되었는지 확인
+      console.log('Admin password env loaded:', adminPassword ? 'Yes (length: ' + adminPassword.length + ')' : 'No')
+      
       // 클라이언트에서 직접 패스워드 검증
+      if (!adminPassword) {
+        setError('Admin password not configured. Please check GitHub Secrets and rebuild.')
+        console.error('ADMIN_PASSWORD environment variable is not set')
+        return
+      }
+      
       if (password === adminPassword) {
         setIsAuthenticated(true)
       } else {
         setError('Invalid password')
+        console.log('Password mismatch. Expected length:', adminPassword.length, 'Input length:', password.length)
       }
     } catch (err) {
       setError('An error occurred')
