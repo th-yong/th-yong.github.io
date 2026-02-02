@@ -95,33 +95,3 @@ my-tech-blog/
     └── projects.md        # Projects 내용
 ```
 
-## 배포
-
-### GitHub Pages
-
-GitHub Actions를 통해 자동으로 배포됩니다.
-
-1. GitHub 리포지토리 생성
-2. 코드 푸시
-3. GitHub Pages 설정에서 Actions 사용 활성화
-4. `next.config.js`의 `basePath`를 리포지토리 이름에 맞게 수정
-5. `main` 브랜치에 푸시하면 자동으로 빌드 및 배포
-
-### 빌드
-
-```bash
-npm run build
-```
-
-빌드 결과물은 `out/` 디렉토리에 생성됩니다.
-
-## 라이선스
-
-MIT
-
-## 연락처
-
-- 이메일: yongtaehoon@gmail.com
-- LinkedIn: [taehoon-yong](https://linkedin.com/in/taehoon-yong)
-- GitHub: [th-yong](https://github.com/th-yong)
-
