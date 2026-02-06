@@ -18,6 +18,10 @@ const nextConfig = {
     NEXT_PUBLIC_REPO_NAME: process.env.REPO_NAME || 'th-yong.github.io',
     NEXT_PUBLIC_REPO_BRANCH: process.env.REPO_BRANCH || 'main',
     NEXT_PUBLIC_REPO_TOKEN: process.env.REPO_TOKEN || '',
+    NEXT_PUBLIC_AZURE_OPENAI_ENDPOINT: process.env.AZURE_OPENAI_ENDPOINT || '',
+    NEXT_PUBLIC_AZURE_OPENAI_API_KEY: process.env.AZURE_OPENAI_API_KEY || '',
+    NEXT_PUBLIC_AZURE_OPENAI_DEPLOYMENT: process.env.AZURE_OPENAI_DEPLOYMENT || '',
+    NEXT_PUBLIC_AZURE_OPENAI_API_VERSION: process.env.AZURE_OPENAI_API_VERSION || '',
   },
 }
 

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import MarkdownViewer from './MarkdownViewer'
 import { createPostOnGitHubClient, getPostFromGitHubClient } from '@/lib/client-github'
+import { generateBlogPost, type AzureOpenAIConfig } from '@/lib/azure-openai'
 
 interface AdminModalProps {
   onClose: () => void
@@ -31,7 +32,24 @@ export default function AdminModal({ onClose }: AdminModalProps) {
   const [isEditMode, setIsEditMode] = useState(false)
   const [skipCi, setSkipCi] = useState(false)
 
+  const [aiGenerateMode, setAiGenerateMode] = useState(false)
+  const [techName, setTechName] = useState('')
+  const [techDescription, setTechDescription] = useState('')
+  const [techAdditionalContext, setTechAdditionalContext] = useState('')
+  const [aiLoading, setAiLoading] = useState(false)
+
   const availableCategories = ['Agent', 'Cloud', 'LLM', 'Vision']
+
+  const azureOpenAIConfig: AzureOpenAIConfig = {
+    endpoint: process.env.NEXT_PUBLIC_AZURE_OPENAI_ENDPOINT || '',
+    apiKey: process.env.NEXT_PUBLIC_AZURE_OPENAI_API_KEY || '',
+    deployment: process.env.NEXT_PUBLIC_AZURE_OPENAI_DEPLOYMENT || '',
+    apiVersion: process.env.NEXT_PUBLIC_AZURE_OPENAI_API_VERSION || '2024-02-15-preview',
+  }
+  const hasAzureOpenAIConfig =
+    !!azureOpenAIConfig.endpoint?.trim() &&
+    !!azureOpenAIConfig.apiKey?.trim() &&
+    !!azureOpenAIConfig.deployment?.trim()
   
   // 환경 변수에서 가져오기 (빌드 타임에 주입됨)
   // Next.js는 빌드 타임에 NEXT_PUBLIC_* 환경 변수를 코드에 직접 리터럴 값으로 주입합니다
@@ -119,6 +137,65 @@ export default function AdminModal({ onClose }: AdminModalProps) {
       setError(err.message || 'An error occurred')
     } finally {
       setSubmitLoading(false)
+    }
+  }
+
+  function parseGeneratedPost(fullMarkdown: string): void {
+    const frontmatterMatch = fullMarkdown.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+    if (frontmatterMatch) {
+      const frontmatter = frontmatterMatch[1]
+      const body = frontmatterMatch[2].trim()
+      const titleMatch = frontmatter.match(/title:\s*(.+)/)
+      const slugMatch = frontmatter.match(/slug:\s*(.+)/)
+      const dateMatch = frontmatter.match(/date:\s*(.+)/)
+      const tagsMatch = frontmatter.match(/tags:\s*\[(.*?)\]/)
+      const categoriesMatch = frontmatter.match(/categories:\s*\[(.*?)\]/)
+      if (titleMatch) setTitle(titleMatch[1].trim().replace(/^["']|["']$/g, ''))
+      if (slugMatch) setSlug(slugMatch[1].trim().replace(/^["']|["']$/g, ''))
+      if (dateMatch) {
+        const d = dateMatch[1].trim().replace(/^["']|["']$/g, '').split('T')[0]
+        if (d) setDate(d)
+      }
+      if (tagsMatch) {
+        const tagList = tagsMatch[1].split(',').map((t: string) => t.trim().replace(/^["']|["']$/g, ''))
+        setTags(tagList.join(', '))
+      }
+      if (categoriesMatch) {
+        const catList = categoriesMatch[1].split(',').map((c: string) => c.trim().replace(/^["']|["']$/g, ''))
+        setCategories(catList.filter((c) => availableCategories.includes(c)))
+      }
+      setContent(body)
+    } else {
+      setContent(fullMarkdown.trim())
+    }
+  }
+
+  const handleAiGenerate = async () => {
+    if (!techName.trim() || !techDescription.trim()) {
+      setError('기술명과 핵심 설명을 입력해주세요.')
+      return
+    }
+    setAiLoading(true)
+    setError('')
+    try {
+      const result = await generateBlogPost(
+        {
+          techName: techName.trim(),
+          description: techDescription.trim(),
+          additionalContext: techAdditionalContext.trim() || undefined,
+        },
+        azureOpenAIConfig
+      )
+      if (result.success) {
+        parseGeneratedPost(result.content)
+        setError('')
+      } else {
+        setError(result.error || '글 생성에 실패했습니다.')
+      }
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred')
+    } finally {
+      setAiLoading(false)
     }
   }
 
@@ -329,6 +406,75 @@ export default function AdminModal({ onClose }: AdminModalProps) {
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                   placeholder="react, nextjs, typescript"
                 />
+              </div>
+
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <button
+                    type="button"
+                    onClick={() => setAiGenerateMode(!aiGenerateMode)}
+                    className={`px-3 py-1.5 text-sm rounded transition-colors ${
+                      aiGenerateMode
+                        ? 'bg-emerald-600 text-white'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    AI로 생성
+                  </button>
+                  {!hasAzureOpenAIConfig && (
+                    <span className="text-xs text-amber-600 dark:text-amber-400">
+                      Azure OpenAI 환경변수가 없으면 AI 생성이 비활성화됩니다.
+                    </span>
+                  )}
+                </div>
+                {aiGenerateMode && (
+                  <div className="mb-4 p-4 border border-gray-200 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700/50 space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        기술명 *
+                      </label>
+                      <input
+                        type="text"
+                        value={techName}
+                        onChange={(e) => setTechName(e.target.value)}
+                        placeholder="예: Agent-Lightning"
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        핵심 설명/정보 *
+                      </label>
+                      <textarea
+                        value={techDescription}
+                        onChange={(e) => setTechDescription(e.target.value)}
+                        rows={4}
+                        placeholder="기술의 목적, 개발 주체, 핵심 특징, 참고 링크 등을 간단히 입력하세요."
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        추가 컨텍스트 (선택)
+                      </label>
+                      <textarea
+                        value={techAdditionalContext}
+                        onChange={(e) => setTechAdditionalContext(e.target.value)}
+                        rows={2}
+                        placeholder="추가로 참고할 문서, 요구사항 등"
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleAiGenerate}
+                      disabled={aiLoading || !hasAzureOpenAIConfig || !techName.trim() || !techDescription.trim()}
+                      className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                    >
+                      {aiLoading ? '생성 중...' : '글 생성'}
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div>
