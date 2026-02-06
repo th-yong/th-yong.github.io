@@ -16,6 +16,10 @@ npm install
 
 ```env
 ADMIN_PASSWORD=your-admin-password-here
+
+# GitHub Personal Access Token (repo 권한). 설정 시 Admin 패널에 자동 입력됨. 비워두면 패널에서 수동 입력.
+REPO_TOKEN=
+
 REPO_OWNER=th-yong
 REPO_NAME=th-yong.github.io
 REPO_BRANCH=main
@@ -23,13 +27,14 @@ REPO_BRANCH=main
 
 **환경 변수 설명:**
 - `ADMIN_PASSWORD`: Admin 패널 접근을 위한 패스워드
+- `REPO_TOKEN`: GitHub Personal Access Token (repo 권한). 설정하면 Admin 패널에 자동 입력되며, 비워두면 패널에서 직접 입력
 - `REPO_OWNER`: GitHub 사용자명 또는 조직명
 - `REPO_NAME`: GitHub 리포지토리 이름
 - `REPO_BRANCH`: 기본 브랜치 (보통 `main`)
 
 **참고:** 
 - `GITHUB_` 접두사는 GitHub Actions에서 예약어이므로 `REPO_` 접두사를 사용합니다.
-- GitHub Token은 보안상 클라이언트에 노출하지 않으므로, Admin 패널에서 사용자가 직접 입력하도록 합니다.
+- 토큰 생성: GitHub Settings > Developer settings > Personal access tokens > Tokens (classic)
 
 ### GitHub Actions 배포 설정
 
@@ -38,6 +43,7 @@ GitHub Pages 자동 배포를 사용하는 경우, 다음 Secrets를 설정해�
 1. Repository Settings > Secrets and variables > Actions로 이동
 2. 다음 Secrets를 추가:
    - `ADMIN_PASSWORD`: Admin 패널 접근 패스워드
+   - `REPO_TOKEN`: (선택) GitHub Personal Access Token. 설정 시 빌드 시점에 Admin 패널 기본값으로 사용
    - `REPO_OWNER`: GitHub 사용자명 또는 조직명 (예: `th-yong`)
    - `REPO_NAME`: GitHub 리포지토리 이름 (예: `th-yong.github.io`)
    - `REPO_BRANCH`: 기본 브랜치 (예: `main`)
