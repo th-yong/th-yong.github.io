@@ -8,6 +8,7 @@ export interface CreatePostParams {
   categories: string[]
   slug: string
   date?: string
+  skipCi?: boolean
 }
 
 export async function createPostOnGitHubClient(
@@ -18,7 +19,7 @@ export async function createPostOnGitHubClient(
   branch: string = 'main'
 ): Promise<boolean> {
   try {
-    const { title, content, tags, categories, slug, date } = params
+    const { title, content, tags, categories, slug, date, skipCi } = params
     
     const octokit = new Octokit({
       auth: token,
@@ -63,7 +64,8 @@ ${content}`
 
     // 브라우저에서 base64 인코딩
     const contentBase64 = btoa(unescape(encodeURIComponent(frontmatter)))
-    const message = sha ? `Update post: ${title}` : `Create post: ${title}`
+    const ciSuffix = skipCi ? ' [skip ci]' : ''
+    const message = sha ? `Update post: ${title}${ciSuffix}` : `Create post: ${title}${ciSuffix}`
 
     await octokit.repos.createOrUpdateFileContents({
       owner,

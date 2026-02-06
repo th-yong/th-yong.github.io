@@ -29,6 +29,7 @@ export default function AdminModal({ onClose }: AdminModalProps) {
   const [viewMode, setViewMode] = useState<'write' | 'preview'>('write')
   const [loadLoading, setLoadLoading] = useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
+  const [skipCi, setSkipCi] = useState(false)
 
   const availableCategories = ['Agent', 'Cloud', 'LLM', 'Vision']
   
@@ -90,6 +91,7 @@ export default function AdminModal({ onClose }: AdminModalProps) {
           tags: tagArray,
           categories: categories,
           content,
+          skipCi,
         },
         githubToken,
         githubOwner,
@@ -390,6 +392,19 @@ export default function AdminModal({ onClose }: AdminModalProps) {
                   Post created successfully!
                 </p>
               )}
+
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="skipCi"
+                  checked={skipCi}
+                  onChange={(e) => setSkipCi(e.target.checked)}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <label htmlFor="skipCi" className="text-sm text-gray-700 dark:text-gray-300">
+                  Skip CI (GitHub Actions 실행 안 함)
+                </label>
+              </div>
 
               <button
                 type="submit"
