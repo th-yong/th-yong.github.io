@@ -47,13 +47,13 @@ jobs:
           # 사용자 페이지 (th-yong.github.io)이므로 BASE_PATH는 빈 문자열
           BASE_PATH: ''
           # Admin 기능을 위한 환경 변수 (GitHub Secrets에서 가져옴)
-          # 필수: Repository Settings > Secrets and variables > Actions에서 다음 Secrets를 설정해야 합니다:
-          # - ADMIN_PASSWORD: Admin 패널 접근 패스워드
-          # - REPO_OWNER: GitHub 사용자명 또는 조직명 (예: th-yong)
-          # - REPO_NAME: GitHub 리포지토리 이름 (예: th-yong.github.io)
-          # - REPO_BRANCH: 기본 브랜치 (예: main)
+          # Repository Settings > Secrets and variables > Actions에서 다음 Secrets 설정:
+          # - ADMIN_PASSWORD: Admin 패널 접근 패스워드 (필수)
+          # - REPO_TOKEN: (선택) GitHub Personal Access Token, 설정 시 Admin 패널에 자동 입력
+          # - REPO_OWNER, REPO_NAME, REPO_BRANCH: 리포지토리 정보 (미설정 시 기본값 사용)
           # GITHUB_ 접두사는 예약어이므로 사용 불가
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           REPO_OWNER: ${{ secrets.REPO_OWNER }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
           REPO_BRANCH: ${{ secrets.REPO_BRANCH }}
