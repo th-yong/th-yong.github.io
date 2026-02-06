@@ -57,6 +57,11 @@ jobs:
           REPO_OWNER: ${{ secrets.REPO_OWNER }}
           REPO_NAME: ${{ secrets.REPO_NAME }}
           REPO_BRANCH: ${{ secrets.REPO_BRANCH }}
+          # Azure OpenAI 설정 (Admin 패널 AI 글 생성용)
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_DEPLOYMENT: ${{ secrets.AZURE_OPENAI_DEPLOYMENT }}
+          AZURE_OPENAI_API_VERSION: ${{ secrets.AZURE_OPENAI_API_VERSION }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
