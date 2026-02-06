@@ -11,7 +11,9 @@ interface AdminModalProps {
 
 export default function AdminModal({ onClose }: AdminModalProps) {
   const [password, setPassword] = useState('')
-  const [githubToken, setGithubToken] = useState('')
+  const [githubToken, setGithubToken] = useState(
+    process.env.NEXT_PUBLIC_REPO_TOKEN || ''
+  )
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
