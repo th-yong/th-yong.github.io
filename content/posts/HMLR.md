@@ -2,8 +2,9 @@
 title: "HMLR: Agentic AI를 위한 장기 기억 시스템"
 date: 2026-01-26
 categories: [Agent]
-tags: ["\"Memory\"", "\"RAG\"", "\"LLM\"", "\"Agent\"", "\"Long-term-Memory\"", "\"Multi-hop-Reasoning\""]
+tags: [Memory, RAG, LLM, Agent, Long-term-Memory, Multi-hop-Reasoning]
 ---
+
 
 HMLR(Hierarchical Memory Lookup & Routing)은 AI 에이전트를 위한 상태 인식 장기 기억 시스템이다. 기존의 단순 벡터 RAG 방식이 처리하지 못하는 시간적 충돌, 다중 홉 추론, 교차 토픽 기억 문제를 해결하기 위해 설계되었다.
 
