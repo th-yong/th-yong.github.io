@@ -26,7 +26,6 @@ export default function Navigation() {
     { href: '/about', label: 'About' },
     { href: '/tech', label: 'Tech' },
     { href: '/tags', label: 'Tags' },
-    { href: '/projects', label: 'Projects' },
   ]
 
   return (
@@ -63,4 +62,3 @@ export default function Navigation() {
     </>
   )
 }
-
