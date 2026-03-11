@@ -6,7 +6,7 @@ export default function TagsPage() {
   const allPosts = getAllPosts()
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 page-transition">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold mb-8 text-gray-900 dark:text-white">
           Tags
@@ -22,4 +22,3 @@ export default function TagsPage() {
     </div>
   )
 }
-

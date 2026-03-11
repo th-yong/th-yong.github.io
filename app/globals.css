@@ -20,6 +20,82 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* 카테고리 전환 애니메이션 */
+@keyframes categoryFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.category-transition {
+  animation: categoryFadeSlideIn 220ms ease-out;
+}
+
+@keyframes categoryItemPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.category-item {
+  animation: categoryItemPopIn 260ms ease-out both;
+}
+
+@keyframes tagItemPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tag-item {
+  animation: tagItemPopIn 240ms ease-out both;
+}
+
+@keyframes pageFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: pageFadeInUp 280ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-transition {
+    animation: none;
+  }
+  .category-item {
+    animation: none;
+  }
+  .tag-item {
+    animation: none;
+  }
+  .page-transition {
+    animation: none;
+  }
+}
+
 /* Markdown 스타일링 */
 .markdown-content {
   @apply max-w-none text-gray-800 dark:text-gray-200;
@@ -199,4 +275,3 @@ body {
 .markdown-content th code {
   @apply mx-0.5;
 }
-

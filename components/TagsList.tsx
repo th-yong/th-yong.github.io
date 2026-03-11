@@ -18,7 +18,8 @@ export default function TagsList({ tags, allPosts }: TagsListProps) {
 
   return (
     <>
-      {selectedTag ? (
+      <div key={selectedTag ?? 'all'} className="category-transition">
+        {selectedTag ? (
         <>
           <div className="flex items-center gap-4 mb-6">
             <button
@@ -37,11 +38,12 @@ export default function TagsList({ tags, allPosts }: TagsListProps) {
             </p>
           ) : (
             <div className="space-y-3">
-              {postsByTag.map((post) => (
+              {postsByTag.map((post, index) => (
                 <Link
                   key={post.slug}
                   href={`/tech/${post.slug}`}
-                  className="block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
+                  className="tag-item block p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
+                  style={{ animationDelay: `${Math.min(index * 50, 300)}ms` }}
                 >
                   <h3 className="text-xl font-medium mb-1 text-gray-900 dark:text-white">
                     {post.title}
@@ -54,23 +56,24 @@ export default function TagsList({ tags, allPosts }: TagsListProps) {
             </div>
           )}
         </>
-      ) : (
+        ) : (
         <div className="flex flex-wrap gap-3">
-          {tags.map((tag) => {
+          {tags.map((tag, index) => {
             const postCount = allPosts.filter((post) => post.tags?.includes(tag)).length
             return (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors text-sm font-medium"
+                className="tag-item px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors text-sm font-medium"
+                style={{ animationDelay: `${Math.min(index * 40, 320)}ms` }}
               >
                 #{tag} ({postCount})
               </button>
             )
           })}
         </div>
-      )}
+        )}
+      </div>
     </>
   )
 }
-

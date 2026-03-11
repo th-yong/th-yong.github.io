@@ -47,57 +47,59 @@ export default function TechPostList({ posts }: TechPostListProps) {
         ))}
       </div>
 
-      {filteredPosts.length === 0 ? (
-        <p className="text-gray-600 dark:text-gray-400">
-          {selectedCategory === 'all' 
-            ? 'No posts yet. Check back soon!'
-            : `${CATEGORIES.find(c => c.id === selectedCategory)?.display} 카테고리에 포스트가 없습니다.`}
-        </p>
-      ) : (
-        <div className="space-y-6">
-          {filteredPosts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/tech/${post.slug}`}
-              className="block p-6 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
-            >
-              <div className="flex items-start justify-between mb-2">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  {post.title}
-                </h2>
-                {post.categories && post.categories.length > 0 && (
-                  <div className="flex flex-wrap gap-2 ml-4">
-                    {post.categories.map((category) => (
+      <div key={selectedCategory} className="category-transition">
+        {filteredPosts.length === 0 ? (
+          <p className="text-gray-600 dark:text-gray-400">
+            {selectedCategory === 'all' 
+              ? 'No posts yet. Check back soon!'
+              : `${CATEGORIES.find(c => c.id === selectedCategory)?.display} 카테고리에 포스트가 없습니다.`}
+          </p>
+        ) : (
+          <div className="space-y-6">
+            {filteredPosts.map((post, index) => (
+              <Link
+                key={post.slug}
+                href={`/tech/${post.slug}`}
+                className="category-item block p-6 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-500 dark:hover:border-blue-400 transition-colors"
+                style={{ animationDelay: `${Math.min(index * 60, 360)}ms` }}
+              >
+                <div className="flex items-start justify-between mb-2">
+                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+                    {post.title}
+                  </h2>
+                  {post.categories && post.categories.length > 0 && (
+                    <div className="flex flex-wrap gap-2 ml-4">
+                      {post.categories.map((category) => (
+                        <span
+                          key={category}
+                          className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded font-medium"
+                        >
+                          {category}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  {post.date}
+                </p>
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {post.tags.map((tag) => (
                       <span
-                        key={category}
-                        className="px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded font-medium"
+                        key={tag}
+                        className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded"
                       >
-                        {category}
+                        {tag}
                       </span>
                     ))}
                   </div>
                 )}
-              </div>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                {post.date}
-              </p>
-              {post.tags && post.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </Link>
-          ))}
-        </div>
-      )}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
     </>
   )
 }
-
