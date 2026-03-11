@@ -1,6 +1,6 @@
 ---
 title: "Terraform이란: 코드로 인프라를 구축·운영하는 IaC 도구"
-date: 2026-03-11
+date: 2026-02-24
 categories: [Cloud]
 tags: [Terraform, IaC, HashiCorp, HCL, State, Azure, Multi-Cloud, DevOps]
 ---
