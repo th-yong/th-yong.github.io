@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>2026 유럽 여행</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pt-accent: #C1603A; --pt-light: #FDF0EB; --pt-mid: #E8886A;
+      --es-accent: #1B3A5C; --es-light: #EAF0F8; --es-mid: #3D6491;
+      --me-accent: #2D6A4F; --me-light: #E8F5EE; --me-mid: #52B788;
+      --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+      --gray-400: #9CA3AF; --gray-600: #4B5563; --gray-800: #1F2937;
+      --radius: 12px; --shadow-sm: 0 1px 2px rgba(0,0,0,.06);
+    }
+    body {
+      font-family: 'Noto Sans KR', 'Inter', system-ui, sans-serif;
+      background: var(--gray-50); color: var(--gray-800);
+      line-height: 1.6; padding: 0 16px 60px;
+    }
+
+    /* 헤더 */
+    .site-header { max-width: 760px; margin: 0 auto; padding: 48px 0 28px; text-align: center; }
+    .site-header h1 {
+      font-family: 'Inter', sans-serif; font-size: 2rem; font-weight: 600;
+      letter-spacing: -0.5px; color: var(--gray-800);
+    }
+    .site-header .subtitle { margin-top: 6px; font-size: 0.92rem; color: var(--gray-400); }
+
+    /* 뷰 토글 */
+    .view-toggle {
+      display: flex; gap: 6px; justify-content: center;
+      max-width: 760px; margin: 0 auto 32px;
+      background: var(--gray-100); border-radius: 40px;
+      padding: 4px; width: fit-content;
+    }
+    .toggle-btn {
+      padding: 7px 20px; border-radius: 36px; font-size: 0.85rem;
+      font-weight: 500; border: none; background: transparent;
+      color: var(--gray-400); cursor: pointer; transition: all .18s;
+    }
+    .toggle-btn.active { background: #fff; color: var(--gray-800); box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+    .toggle-btn[data-view="me"].active      { color: var(--me-accent); }
+    .toggle-btn[data-view="parents"].active { color: var(--es-accent); }
+
+    /* 섹션 표시/숨김 */
+    .trip-section { max-width: 760px; margin: 0 auto 20px; }
+    .trip-section[data-audience="me"]      { display: none; }
+    .trip-section[data-audience="parents"] { display: none; }
+    body[data-view="all"] .trip-section { display: block; }
+    body[data-view="me"]  .trip-section[data-audience="all"],
+    body[data-view="me"]  .trip-section[data-audience="me"]       { display: block; }
+    body[data-view="parents"] .trip-section[data-audience="all"],
+    body[data-view="parents"] .trip-section[data-audience="parents"] { display: block; }
+
+    /* 섹션 헤더 */
+    .section-header {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 24px; border-radius: var(--radius) var(--radius) 0 0; margin-bottom: 2px;
+    }
+    .section-portugal .section-header { background: var(--pt-accent); color: #fff; }
+    .section-spain    .section-header { background: var(--es-accent); color: #fff; }
+    .section-me       .section-header { background: var(--me-accent); color: #fff; }
+    .section-flag { font-size: 1.8rem; line-height: 1; }
+    .section-name { font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
+    .section-period { font-size: 0.8rem; opacity: .75; margin-top: 3px; }
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; padding: 2px 9px;
+      border-radius: 20px; background: rgba(255,255,255,.25); color: #fff;
+    }
+
+    /* 날짜 카드 */
+    .days-list { display: flex; flex-direction: column; gap: 2px; }
+    .day-card { background: #fff; box-shadow: var(--shadow-sm); overflow: hidden; }
+    .day-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+    .day-card.day-tbd { background: var(--gray-100); opacity: .6; }
+    .day-header { padding: 13px 24px 10px; border-bottom: 1px solid var(--gray-100); }
+    .section-portugal .day-header { border-left: 3px solid var(--pt-mid); }
+    .section-spain    .day-header { border-left: 3px solid var(--es-mid); }
+    .section-me       .day-header { border-left: 3px solid var(--me-mid); }
+    .day-tbd .day-header          { border-left-color: var(--gray-200); }
+    .day-header { display: flex; align-items: center; justify-content: space-between; }
+    .day-date { display: flex; align-items: baseline; gap: 6px; }
+    .date-main { font-size: 0.92rem; font-weight: 600; }
+    .date-day  { font-size: 0.76rem; color: var(--gray-400); }
+    .day-city {
+      font-size: 0.72rem; font-weight: 500;
+      padding: 2px 10px; border-radius: 20px;
+      background: var(--gray-100); color: var(--gray-600);
+    }
+    .section-portugal .day-city { background: var(--pt-light); color: var(--pt-accent); }
+    .section-spain    .day-city { background: var(--es-light); color: var(--es-accent); }
+    .section-me       .day-city { background: var(--me-light); color: var(--me-accent); }
+    .day-body { padding: 11px 24px 15px; display: flex; flex-direction: column; gap: 8px; }
+
+    /* 아이템 */
+    .item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.87rem; }
+    .item-icon { font-size: 1rem; line-height: 1.55; flex-shrink: 0; }
+    .item-text { color: var(--gray-600); line-height: 1.55; flex: 1; }
+    .item-flight .item-text, .item-place .item-text { color: var(--gray-800); font-weight: 500; }
+    .item-tbd    .item-text { color: var(--gray-400); font-style: italic; }
+    .badge {
+      flex-shrink: 0; align-self: center; font-size: 0.7rem; font-weight: 600;
+      padding: 2px 8px; border-radius: 20px; margin-left: 4px;
+    }
+    .section-portugal .badge { background: var(--pt-light); color: var(--pt-accent); }
+    .section-spain    .badge { background: var(--es-light); color: var(--es-accent); }
+    .section-me       .badge { background: var(--me-light); color: var(--me-accent); }
+
+    /* 푸터 */
+    .site-footer {
+      max-width: 760px; margin: 48px auto 0;
+      padding: 24px 0;
+      border-top: 1px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .site-footer .copyright {
+      font-size: 0.78rem; color: var(--gray-400);
+      font-family: 'Inter', sans-serif;
+    }
+    .site-footer .contact {
+      font-size: 0.78rem; color: var(--gray-400);
+    }
+    .site-footer .contact a {
+      color: var(--gray-400); text-decoration: none;
+      border-bottom: 1px solid var(--gray-200);
+      transition: color .15s, border-color .15s;
+    }
+    .site-footer .contact a:hover {
+      color: var(--gray-600); border-color: var(--gray-400);
+    }
+
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 1.5rem; }
+      .section-header { padding: 14px 18px; }
+      .day-header, .day-body { padding-left: 18px; padding-right: 18px; }
+    }
+  </style>
+</head>
+<body data-view="all">
+
+  <header class="site-header">
+    <h1>2026 유럽 여행</h1>
+    <p class="subtitle">Spain × Portugal</p>
+  </header>
+
+  <div class="view-toggle">
+    <button class="toggle-btn active" data-view="all">전체</button>
+    <button class="toggle-btn" data-view="me">🐥승주</button>
+    <button class="toggle-btn" data-view="parents">👫부모님</button>
+  </div>
+
+  
+  <section class="trip-section section-spain"
+           id="section-0" data-audience="all">
+    <div class="section-header">
+      <div class="section-flag">🇪🇸</div>
+      <div class="section-info">
+        <h2 class="section-name">스페인 · 마드리드 경유</h2>
+        <p class="section-period">4월 28일(화)</p>
+      </div>
+    </div>
+    <div class="days-list">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">4월 28일</span>
+          <span class='date-day'>(화)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">인천공항 출발 09:55 → 마드리드 도착 18:00</span></div>
+<div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">대한항공 KE913편 · 제2터미널</span></div></div>
+    </div></div>
+  </section>
+
+  <section class="trip-section section-portugal"
+           id="section-1" data-audience="all">
+    <div class="section-header">
+      <div class="section-flag">🇵🇹</div>
+      <div class="section-info">
+        <h2 class="section-name">포르투갈</h2>
+        <p class="section-period">4월 29일(수) – 5월 5일(화)</p>
+      </div>
+    </div>
+    <div class="days-list">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">4월 29일</span>
+          <span class='date-day'>(수)</span>
+        </div>
+        <span class="day-city">리스본</span>
+      </div>
+      <div class="day-body"><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 14:55 → 리스본 도착 15:15</span></div>
+<div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">Air Europa UX1155</span></div></div>
+    </div>
+
+    <div class="day-card day-tbd">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">4월 30일 – 5월 1일</span>
+          <span class='date-day'>(목–금)</span>
+        </div>
+        <span class="day-city">리스본</span>
+      </div>
+      <div class="day-body"><div class="item item-tbd"><span class="item-icon">📋</span><span class="item-text">포르투갈 현지 일정 미확정</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 2일</span>
+          <span class='date-day'>(토)</span>
+        </div>
+        <span class="day-city">리스본 → 포르투</span>
+      </div>
+      <div class="day-body"><div class="item item-transport"><span class="item-icon">🚌</span><span class="item-text">리스본 오리엔테 출발 13:30 → 포르투 캄파냐 도착 16:45</span></div>
+<div class="item item-transport"><span class="item-icon">🚌</span><span class="item-text">Bus 1000</span></div></div>
+    </div>
+
+    <div class="day-card day-tbd">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 3일 – 5월 4일</span>
+          <span class='date-day'>(일–월)</span>
+        </div>
+        <span class="day-city">포르투</span>
+      </div>
+      <div class="day-body"><div class="item item-tbd"><span class="item-icon">📋</span><span class="item-text">포르투갈 현지 일정 미확정</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 5일</span>
+          <span class='date-day'>(화)</span>
+        </div>
+        <span class="day-city">포르투</span>
+      </div>
+      <div class="day-body"><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">포르투 출발 16:05 → 마드리드 도착 18:15</span></div>
+<div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">Air Europa UX1140</span></div></div>
+    </div></div>
+  </section>
+
+  <section class="trip-section section-me"
+           id="section-2" data-audience="me">
+    <div class="section-header">
+      <div class="section-flag">🐥</div>
+      <div class="section-info">
+        <h2 class="section-name">승주의 마드리드<span class="section-label label-me">🐥승주</span></h2>
+        <p class="section-period">5월 5일(화) – 5월 7일(목)</p>
+      </div>
+    </div>
+    <div class="days-list">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 5일</span>
+          <span class='date-day'>(화)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Hard Rock Hotel Madrid 체크인</span><span class="badge">2박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 6일</span>
+          <span class='date-day'>(수)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-activity"><span class="item-icon">🎸</span><span class="item-text">마드리드 자유 일정</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 7일</span>
+          <span class='date-day'>(목)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00 (터미널 1 · MAD)</span></div>
+<div class="item item-flight"><span class="item-icon">🛬</span><span class="item-text">서울/인천 도착 16:00 +1일 (터미널 2 · ICN)</span></div></div>
+    </div></div>
+  </section>
+
+  <section class="trip-section section-spain"
+           id="section-3" data-audience="parents">
+    <div class="section-header">
+      <div class="section-flag">🇪🇸</div>
+      <div class="section-info">
+        <h2 class="section-name">스페인 북부<span class="section-label label-parents">👫부모님</span></h2>
+        <p class="section-period">5월 5일(화) – 5월 13일(수)</p>
+      </div>
+    </div>
+    <div class="days-list">
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 5일</span>
+          <span class='date-day'>(화)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 호텔</span><span class="badge">1박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 6일</span>
+          <span class='date-day'>(수)</span>
+        </div>
+        <span class="day-city">산세바스티안</span>
+      </div>
+      <div class="day-body"><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">마드리드 출발 10:00 · 렌터카 렌탈</span></div>
+<div class="item item-food"><span class="item-icon">🍷</span><span class="item-text">라 리오하 관광 — 보데가스 이시오스 (와인 박물관)</span></div>
+<div class="item item-place"><span class="item-icon">📍</span><span class="item-text">산세바스티안 도착 17:00</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁: 구시가지 핀초바 탐방</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Aranzazu</span><span class="badge">2박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 7일</span>
+          <span class='date-day'>(목)</span>
+        </div>
+        <span class="day-city">산세바스티안</span>
+      </div>
+      <div class="day-body"><div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">라 콘차 해변 · 전망대 관광</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심: Bar Sport — 우니, 푸아그라 핀초</span></div>
+<div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">신·구 성당이 마주보는 거리 · 대성당 관광</span></div>
+<div class="item item-food"><span class="item-icon">🥘</span><span class="item-text">저녁: 빠에야</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 8일</span>
+          <span class='date-day'>(금)</span>
+        </div>
+        <span class="day-city">빌바오</span>
+      </div>
+      <div class="day-body"><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">산세바스티안 출발 10:00</span></div>
+<div class="item item-transport"><span class="item-icon">🚡</span><span class="item-text">푸니쿨라 · 곤돌라 이용</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">빌바오 — 옥상공원 · 구겐하임 박물관</span></div>
+<div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">비즈카야 다리 · 카스트로우르디알레스</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Gran Hotel (호텔 도착 17:00)</span><span class="badge">1박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 9일</span>
+          <span class='date-day'>(토)</span>
+        </div>
+        <span class="day-city">오비에도</span>
+      </div>
+      <div class="day-body"><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">빌바오 출발 10:00</span></div>
+<div class="item item-activity"><span class="item-icon">🏝️</span><span class="item-text">야네스 섬 관광</span></div>
+<div class="item item-activity"><span class="item-icon">⛰️</span><span class="item-text">피코스 데 유로파 국립공원 — 케이블카 (나란호 데 불네스)</span></div>
+<div class="item item-place"><span class="item-icon">📍</span><span class="item-text">오비에도 도착 17:00</span></div>
+<div class="item item-activity"><span class="item-icon">🗿</span><span class="item-text">거리 조각상 · 산살바도르 성당 · 재래시장</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Rialto 초코렛 쿠키</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁: 카초포 · 파바다</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel · 깨끗한 도시 · 시드라 거리</span><span class="badge">1박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 10일</span>
+          <span class='date-day'>(일)</span>
+        </div>
+        <span class="day-city">산티아고 데 콤포스텔라</span>
+      </div>
+      <div class="day-body"><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">오비에도 출발 10:00</span></div>
+<div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">리바데오 관광 — 대성당 해변</span></div>
+<div class="item item-place"><span class="item-icon">📍</span><span class="item-text">산티아고 데 콤포스텔라 도착 17:00</span></div>
+<div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">콤포스텔라 대성당</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection</span><span class="badge">1박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 11일</span>
+          <span class='date-day'>(월)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">산티아고 출발 10:00</span></div>
+<div class="item item-place"><span class="item-icon">📍</span><span class="item-text">마드리드 도착 17:00 · 렌터카 반납</span></div>
+<div class="item item-food"><span class="item-icon">🍄</span><span class="item-text">저녁: 마요르 광장 버섯 맛집</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Clement Hotel (Barajas)</span><span class="badge">1박</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 12일</span>
+          <span class='date-day'>(화)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-activity"><span class="item-icon">🛍️</span><span class="item-text">마드리드 관광 10:00 – 17:00</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심: 산 미구엘 시장</span></div>
+<div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터</span></div></div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">5월 12일 – 13일</span>
+          <span class='date-day'>(화–수)</span>
+        </div>
+        <span class="day-city">마드리드</span>
+      </div>
+      <div class="day-body"><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00</span></div>
+<div class="item item-flight"><span class="item-icon">🛬</span><span class="item-text">인천공항 도착 16:00 (5월 13일)</span></div>
+<div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">대한항공 KE914편</span></div></div>
+    </div></div>
+  </section>
+
+  <footer class="site-footer">
+    <span class="copyright">© 2026 Yong Taehoon. All rights reserved.</span>
+    <span class="contact"><a href="mailto:yongtaehoon@gmail.com">yongtaehoon@gmail.com</a></span>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.body.dataset.view = btn.dataset.view;
+      });
+    });
+  </script>
+</body>
+</html>
