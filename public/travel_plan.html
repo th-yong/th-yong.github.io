@@ -216,6 +216,17 @@
     .modal-body .item { font-size: .92rem; }
     .modal-body .item-restaurant { margin: 2px -8px; }
 
+    /* ── 모달 시간 배지 ── */
+    .item-time {
+      display: inline-block;
+      font-size: .72rem; font-weight: 600; font-family: 'Inter', monospace;
+      padding: 1px 6px; border-radius: 5px;
+      margin-right: 3px; vertical-align: middle; white-space: nowrap;
+    }
+    .modal-overlay.theme-portugal .item-time { color: var(--pt-accent); background: var(--pt-light); }
+    .modal-overlay.theme-spain    .item-time { color: var(--es-accent); background: var(--es-light); }
+    .modal-overlay.theme-me       .item-time { color: var(--me-accent); background: var(--me-light); }
+
     /* ── 섹션 구분선 (모달 내부) ── */
     .modal-section-label {
       font-size: .72rem; font-weight: 600; color: var(--gray-400);
@@ -489,12 +500,12 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인</span><span class="badge">1박</span></div>
+        <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인 (18:30)</span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">후안 카를로스 1세 공원 산책 (19:00)</span></div>
         <div class="day-more">🍴 맛집 추천 1곳</div>
-        <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인</span><span class="badge">1박</span></div>
+        <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인 (18:30)</span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">후안 카를로스 1세 공원 산책 (19:00)</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La CoZina — 현대적 스페인 요리 · 공항 인근 최고 평점</span></div></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La CoZina — 현대적 스페인 요리 · 공항 인근 최고 평점 (20:15)</span></div></div>
       </div>
     </div>
 
@@ -513,17 +524,17 @@
         <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">렌터카 픽업 후 출발 (09:30) · 호텔 근처 영업소</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">라구아르디아(Laguardia) 중세 마을 경유 (13:00) — 성벽 안 골목 산책</span></div>
 <div class="item item-food"><span class="item-icon">🍷</span><span class="item-text">보데가스 이시오스 와이너리 경유 (15:00) — 칼라뜨라바 건축물 감상</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection San Sebastian Aranzazu 체크인 · 호텔 주차</span><span class="badge">2박</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection San Sebastian Aranzazu 체크인 · 호텔 주차 (18:30)</span><span class="badge">2박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">해변 산책로 도보 5분 거리</span></div>
-<div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 (저녁) — 의자 있는 바 위주</span></div>
+<div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 (19:30) — 의자 있는 바 위주</span></div>
         <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">렌터카 픽업 후 출발 (09:30) · 호텔 근처 영업소</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">라구아르디아(Laguardia) 중세 마을 경유 (13:00) — 성벽 안 골목 산책</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Hospedería de los Parajes — 리오하 와인 곁들인 전통 런치</span></div>
 <div class="item item-food"><span class="item-icon">🍷</span><span class="item-text">보데가스 이시오스 와이너리 경유 (15:00) — 칼라뜨라바 건축물 감상</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection San Sebastian Aranzazu 체크인 · 호텔 주차</span><span class="badge">2박</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection San Sebastian Aranzazu 체크인 · 호텔 주차 (18:30)</span><span class="badge">2박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">해변 산책로 도보 5분 거리</span></div>
-<div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 (저녁) — 의자 있는 바 위주</span></div>
+<div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 (19:30) — 의자 있는 바 위주</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Bernardo Etxea — 전통 해산물 전문점 · 신선도 최상</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">렌터카 수령 시 본인 명의 신용카드 필수 (체크카드 불가)</span></div></div>
       </div>
@@ -568,18 +579,18 @@
       <div class="day-body">
         <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">산세바스티안 출발 (10:30) — 게타리아 해안 절벽 드라이브</span></div>
 <div class="item item-activity"><span class="item-icon">🐟</span><span class="item-text">게타리아(Getaria) 어촌 마을 런치 경유 (12:30)</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Gran Hotel Domine Bilbao 체크인 · 호텔 주차</span><span class="badge">1박</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Gran Hotel Domine Bilbao 체크인 · 호텔 주차 (16:00)</span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">구겐하임 미술관까지 도보 1분 (호텔 바로 옆)</span></div>
-<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각</span></div>
-<div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각 (16:30)</span></div>
+<div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책 (18:00)</span></div>
         <div class="day-more">🍴 맛집 추천 2곳</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">산세바스티안 출발 (10:30) — 게타리아 해안 절벽 드라이브</span></div>
 <div class="item item-activity"><span class="item-icon">🐟</span><span class="item-text">게타리아(Getaria) 어촌 마을 런치 경유 (12:30)</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Kaia Kaipe — 숯불 통생선구이(Rodaballo) 끝판왕 · 예약 필수</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Gran Hotel Domine Bilbao 체크인 · 호텔 주차</span><span class="badge">1박</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Gran Hotel Domine Bilbao 체크인 · 호텔 주차 (16:00)</span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">구겐하임 미술관까지 도보 1분 (호텔 바로 옆)</span></div>
-<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각</span></div>
-<div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각 (16:30)</span></div>
+<div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책 (18:00)</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Asador El Segoviano — 고즈넉한 분위기의 정통 고기 구이</span></div></div>
       </div>
     </div>
@@ -599,15 +610,15 @@
         <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">빌바오 출발 (10:30)</span></div>
 <div class="item item-activity"><span class="item-icon">⛰️</span><span class="item-text">피코스 데 에우로파 국립공원 경유 (13:00) — 렌터카로만 가능한 절경</span></div>
 <div class="item item-transport"><span class="item-icon">🚡</span><span class="item-text">푸엔테 데(Fuente Dé) 케이블카 — 4분 만에 해발 1,800m</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차</span><span class="badge">1박</span></div>
-<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차 (18:00)</span><span class="badge">1박</span></div>
+<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책 (19:00)</span></div>
         <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">빌바오 출발 (10:30)</span></div>
 <div class="item item-activity"><span class="item-icon">⛰️</span><span class="item-text">피코스 데 에우로파 국립공원 경유 (13:00) — 렌터카로만 가능한 절경</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Mesón del Oso — 지역 전통 스튜(Cocido) 추천</span></div>
 <div class="item item-transport"><span class="item-icon">🚡</span><span class="item-text">푸엔테 데(Fuente Dé) 케이블카 — 4분 만에 해발 1,800m</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차</span><span class="badge">1박</span></div>
-<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차 (18:00)</span><span class="badge">1박</span></div>
+<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책 (19:00)</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">El Ferroviario — 스페인식 돈가스(Cachopo) + 시드라</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">피코스 지역 데이터 불안정 — 구글맵 오프라인 저장 필수</span></div></div>
       </div>
@@ -626,18 +637,18 @@
       </div>
       <div class="day-body">
         <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">오비에도 출발 (10:00)</span></div>
-<div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">대성당 해변 (Playa de las Catedrales) 경유 — 물때(썰물) 맞춰 방문</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차</span><span class="badge">1박</span></div>
+<div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">대성당 해변 (Playa de las Catedrales) 경유 (11:30) — 물때(썰물) 맞춰 방문</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차 (18:00)</span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">대성당 광장까지 도보 이동</span></div>
-<div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람</span></div>
+<div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람 (18:30)</span></div>
         <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">오비에도 출발 (10:00)</span></div>
-<div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">대성당 해변 (Playa de las Catedrales) 경유 — 물때(썰물) 맞춰 방문</span></div>
+<div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">대성당 해변 (Playa de las Catedrales) 경유 (11:30) — 물때(썰물) 맞춰 방문</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">사전 입장 예약 필수 (환경 보호 입장 인원 제한)</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">A Cofradía 리바데오 — 항구 앞 인생 문어 요리(Pulpo)</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차</span><span class="badge">1박</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">A Cofradía 리바데오 — 항구 앞 인생 문어 요리(Pulpo) (14:00)</span></div>
+<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차 (18:00)</span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">대성당 광장까지 도보 이동</span></div>
-<div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람</span></div>
+<div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람 (18:30)</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">O Curro da Parra — 갈리시아 재료 현대적 재해석 · 평점 4.7</span></div></div>
       </div>
     </div>
@@ -790,6 +801,12 @@
           }
           html += el.outerHTML;
         });
+
+        // 시간 패턴 (HH:MM) 을 배지로 변환
+        html = html.replace(
+          /\((\d{1,2}:\d{2})\)/g,
+          '<span class="item-time">$1</span>'
+        );
         modal.querySelector('.modal-body').innerHTML = html;
       }
 
