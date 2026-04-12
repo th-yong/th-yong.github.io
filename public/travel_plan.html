@@ -274,6 +274,59 @@
     }
     .modal-section-label:first-child { border-top: none; padding-top: 0; }
 
+    /* ── 퀵 버튼 ── */
+    .quick-btns {
+      max-width: 760px; margin: 0 auto 28px;
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+    }
+    .quick-btn {
+      padding: 9px 20px; border-radius: 24px; border: none;
+      font-size: .85rem; font-weight: 500; cursor: pointer;
+      transition: transform .12s, box-shadow .12s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .quick-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
+    .quick-btn-food { background: #FFF7ED; color: #C2410C; border: 1.5px solid #FDBA74; }
+    .quick-btn-cl   { background: #F0FDF4; color: #15803D; border: 1.5px solid #86EFAC; }
+
+    /* ── 먹거리 모달 ── */
+    .food-modal-body { padding-top: 4px; }
+    .food-country {
+      font-size: .95rem; font-weight: 700; margin: 16px 0 8px;
+      padding-bottom: 6px; border-bottom: 2px solid var(--gray-200);
+    }
+    .food-country:first-child { margin-top: 0; }
+    .food-cat-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+      color: #C2410C; text-transform: uppercase; margin: 12px 0 6px;
+    }
+    .food-item {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: .87rem; color: var(--gray-600); line-height: 1.5;
+      padding: 5px 0; border-bottom: 1px solid var(--gray-100);
+    }
+    .food-item:last-child { border-bottom: none; }
+    .food-emoji { font-size: 1.1rem; flex-shrink: 0; width: 22px; text-align: center; }
+    .food-item strong { color: var(--gray-800); }
+
+    /* ── 준비물 체크리스트 모달 ── */
+    .cl-modal-body { padding-top: 4px; }
+    .cl-cat-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+      color: #15803D; text-transform: uppercase;
+      padding: 14px 0 5px; border-top: 1px solid #DCFCE7; margin-top: 4px;
+    }
+    .cl-cat-label:first-child { border-top: none; padding-top: 0; }
+    .cl-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 7px 4px; border-bottom: 1px solid var(--gray-100);
+      cursor: pointer; font-size: .88rem; color: var(--gray-700);
+      transition: color .12s;
+    }
+    .cl-item:last-of-type { border-bottom: none; }
+    .cl-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #22C55E; flex-shrink: 0; cursor: pointer; }
+    .cl-item.checked { color: var(--gray-400); text-decoration: line-through; }
+
     /* ── 푸터 ── */
     .site-footer {
       max-width: 760px; margin: 48px auto 0; padding: 24px 0;
@@ -302,6 +355,11 @@
     <h1>2026 유럽 여행</h1>
     <p class="subtitle">Spain × Portugal</p>
   </header>
+
+  <div class="quick-btns">
+    <button class="quick-btn quick-btn-food" onclick="openFoodModal()">🍽️ 먹거리 리스트</button>
+    <button class="quick-btn quick-btn-cl"   onclick="openCLModal()">🎒 준비물 체크리스트</button>
+  </div>
 
   <div class="view-toggle-wrap">
     <div class="view-toggle">
@@ -825,6 +883,82 @@
 <div class="item item-tip"><span class="item-icon">🗺️</span><span class="item-text">해안도로 Scenic Route 표지판 추천 (바스크·아스투리아스 구간)</span></div></div></div></div>
     </div>
   </div>
+  
+  <div id="food-modal" class="modal-overlay" onclick="if(event.target===this)closeFoodModal()">
+    <div class="modal-box">
+      <div class="modal-head" style="background:#FFF7ED;border-bottom-color:#FB923C;">
+        <div class="modal-date-block">
+          <div class="modal-date-row">
+            <span class="modal-date-main">🍽️ 먹거리 리스트</span>
+          </div>
+          <div class="modal-meta-row" style="color:#C2410C;font-size:.8rem;margin-top:4px;">꼭 먹어봐야 할 음식 & 디저트</div>
+        </div>
+        <button class="modal-close" onclick="closeFoodModal()">×</button>
+      </div>
+      <div class="modal-body food-modal-body">
+        <div class="food-country">🇵🇹 포르투갈</div>
+
+        <div class="food-cat-label">메인 요리</div>
+        <div class="food-item"><span class="food-emoji">🐟</span><div><strong>바칼랴우 아 브라스</strong> (Bacalhau à Brás) — 대구살·감자채·달걀 볶음. 포르투갈 국민 음식</div></div>
+        <div class="food-item"><span class="food-emoji">🥪</span><div><strong>프랑세시냐</strong> (Francesinha) — 포르투 명물 토스트 샌드위치, 진한 소스에 치즈 듬뿍</div></div>
+        <div class="food-item"><span class="food-emoji">🦞</span><div><strong>아로즈 드 마리스쿠</strong> (Arroz de Marisco) — 해산물 리조또식 밥 요리</div></div>
+        <div class="food-item"><span class="food-emoji">🦪</span><div><strong>카타플라나</strong> (Cataplana) — 조개·새우 스튜. 구리 냄비째 나옴</div></div>
+        <div class="food-item"><span class="food-emoji">🥩</span><div><strong>비파나</strong> (Bifana) — 돼지고기 마리네이드 샌드위치. 간식으로 딱</div></div>
+
+        <div class="food-cat-label">디저트 & 간식</div>
+        <div class="food-item"><span class="food-emoji">🥧</span><div><strong>파스텔 드 나타</strong> (Pastel de Nata) — 에그 타르트의 원조. 시나몬+설탕 뿌려서</div></div>
+        <div class="food-item"><span class="food-emoji">🍮</span><div><strong>아로즈 도스</strong> (Arroz Doce) — 시나몬 뿌린 달콤한 쌀 푸딩</div></div>
+        <div class="food-item"><span class="food-emoji">🥐</span><div><strong>트라베세이루</strong> (Travesseiro) — 아몬드 크림 채운 퍼프 페이스트리 (신트라 명물)</div></div>
+
+        <div class="food-cat-label">음료</div>
+        <div class="food-item"><span class="food-emoji">🍷</span><div><strong>포트 와인</strong> (Vinho do Porto) — 포르투 도우루 강변 와이너리에서 시음</div></div>
+        <div class="food-item"><span class="food-emoji">🍶</span><div><strong>빈요 베르드</strong> (Vinho Verde) — 청포도 화이트 와인, 청량감 있음</div></div>
+        <div class="food-item"><span class="food-emoji">☕</span><div><strong>갈량</strong> (Galão) — 포르투갈식 라떼. 에스프레소+우유 거품</div></div>
+
+        <div class="food-country" style="margin-top:20px;">🇪🇸 스페인 북부</div>
+
+        <div class="food-cat-label">산 세바스티안 · 바스크</div>
+        <div class="food-item"><span class="food-emoji">🥖</span><div><strong>핀초스</strong> (Pintxos) — 바게트 위 토핑 타파스. 바 홉핑하며 한 잔씩</div></div>
+        <div class="food-item"><span class="food-emoji">🦐</span><div><strong>감바스 알 아히요</strong> (Gambas al Ajillo) — 올리브오일+마늘 새우 볶음</div></div>
+        <div class="food-item"><span class="food-emoji">🍳</span><div><strong>토르티야 에스파뇰라</strong> (Tortilla Española) — 감자+달걀 스페인 오믈렛</div></div>
+        <div class="food-item"><span class="food-emoji">🐟</span><div><strong>바칼라오 알 필필</strong> (Bacalao al Pil-pil) — 바스크식 대구 젤라틴 소스 요리</div></div>
+
+        <div class="food-cat-label">아스투리아스 · 오비에도</div>
+        <div class="food-item"><span class="food-emoji">🥩</span><div><strong>카초포</strong> (Cachopo) — 치즈+햄 넣은 소고기 튀김 커틀릿. 엄청 큼</div></div>
+        <div class="food-item"><span class="food-emoji">🫘</span><div><strong>파바다 아스투리아나</strong> (Fabada Asturiana) — 흰콩+chorizo+모르시야 스튜</div></div>
+        <div class="food-item"><span class="food-emoji">🍺</span><div><strong>시드라</strong> (Sidra) — 사과 발효주. 높이 따르는 퍼포먼스가 포인트</div></div>
+
+        <div class="food-cat-label">갈리시아 · 산티아고</div>
+        <div class="food-item"><span class="food-emoji">🐙</span><div><strong>풀포 아 페이라</strong> (Pulpo a Feira) — 올리브오일+파프리카 문어 요리. 갈리시아 대표</div></div>
+        <div class="food-item"><span class="food-emoji">🥧</span><div><strong>타르타 드 산티아고</strong> (Tarta de Santiago) — 아몬드 케이크. 성 야고보 십자가 문양</div></div>
+        <div class="food-item"><span class="food-emoji">🍷</span><div><strong>알바리뇨</strong> (Albariño) — 갈리시아 화이트 와인. 해산물에 잘 어울림</div></div>
+
+        <div class="food-cat-label">마드리드</div>
+        <div class="food-item"><span class="food-emoji">🍄</span><div><strong>베르무트 & 버섯 타파스</strong> — 마요르 광장 근처 바에서 마드리드 스타일로</div></div>
+        <div class="food-item"><span class="food-emoji">🫙</span><div><strong>코치니요 아사도</strong> (Cochinillo Asado) — 통새끼돼지 오븐 구이. 마드리드 명물</div></div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="cl-modal" class="modal-overlay" onclick="if(event.target===this)closeCLModal()">
+    <div class="modal-box">
+      <div class="modal-head" style="background:#F0FDF4;border-bottom-color:#4ADE80;">
+        <div class="modal-date-block">
+          <div class="modal-date-row">
+            <span class="modal-date-main">🎒 준비물 체크리스트</span>
+          </div>
+          <div class="modal-meta-row" style="color:#15803D;font-size:.8rem;margin-top:4px;">
+            체크하면 자동 저장됩니다
+            <button onclick="resetCL()" style="margin-left:10px;font-size:.72rem;padding:1px 8px;border-radius:12px;border:1px solid #86EFAC;background:transparent;color:#15803D;cursor:pointer;">초기화</button>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeCLModal()">×</button>
+      </div>
+      <div class="modal-body cl-modal-body">
+        <div class="cl-cat-label">서류 & 결제</div><label class="cl-item"><input type="checkbox" data-key="여권 (유효기간 6개월 이상 확인)" onchange="saveCL(this)"/><span>여권 (유효기간 6개월 이상 확인)</span></label><label class="cl-item"><input type="checkbox" data-key="신용카드 (해외 수수료 없는 카드)" onchange="saveCL(this)"/><span>신용카드 (해외 수수료 없는 카드)</span></label><label class="cl-item"><input type="checkbox" data-key="체크카드 / 현금 (유로)" onchange="saveCL(this)"/><span>체크카드 / 현금 (유로)</span></label><label class="cl-item"><input type="checkbox" data-key="유럽 여행자 보험 증서" onchange="saveCL(this)"/><span>유럽 여행자 보험 증서</span></label><label class="cl-item"><input type="checkbox" data-key="항공권 E-티켓 출력 또는 저장" onchange="saveCL(this)"/><span>항공권 E-티켓 출력 또는 저장</span></label><label class="cl-item"><input type="checkbox" data-key="호텔 예약 확인서" onchange="saveCL(this)"/><span>호텔 예약 확인서</span></label><label class="cl-item"><input type="checkbox" data-key="국제 운전 면허증" onchange="saveCL(this)"/><span>국제 운전 면허증</span></label><label class="cl-item"><input type="checkbox" data-key="렌터카 예약 확인서" onchange="saveCL(this)"/><span>렌터카 예약 확인서</span></label><div class="cl-cat-label">의류 & 신발</div><label class="cl-item"><input type="checkbox" data-key="편한 워킹화 / 운동화" onchange="saveCL(this)"/><span>편한 워킹화 / 운동화</span></label><label class="cl-item"><input type="checkbox" data-key="샌들" onchange="saveCL(this)"/><span>샌들</span></label><label class="cl-item"><input type="checkbox" data-key="가벼운 재킷 / 바람막이" onchange="saveCL(this)"/><span>가벼운 재킷 / 바람막이</span></label><label class="cl-item"><input type="checkbox" data-key="카디건 / 얇은 니트" onchange="saveCL(this)"/><span>카디건 / 얇은 니트</span></label><label class="cl-item"><input type="checkbox" data-key="긴팔 상의" onchange="saveCL(this)"/><span>긴팔 상의</span></label><label class="cl-item"><input type="checkbox" data-key="반팔 상의" onchange="saveCL(this)"/><span>반팔 상의</span></label><label class="cl-item"><input type="checkbox" data-key="바지 / 청바지" onchange="saveCL(this)"/><span>바지 / 청바지</span></label><label class="cl-item"><input type="checkbox" data-key="속옷 (충분히)" onchange="saveCL(this)"/><span>속옷 (충분히)</span></label><label class="cl-item"><input type="checkbox" data-key="양말 (충분히)" onchange="saveCL(this)"/><span>양말 (충분히)</span></label><label class="cl-item"><input type="checkbox" data-key="모자" onchange="saveCL(this)"/><span>모자</span></label><label class="cl-item"><input type="checkbox" data-key="선글라스" onchange="saveCL(this)"/><span>선글라스</span></label><div class="cl-cat-label">건강 & 상비약</div><label class="cl-item"><input type="checkbox" data-key="소화제" onchange="saveCL(this)"/><span>소화제</span></label><label class="cl-item"><input type="checkbox" data-key="지사제" onchange="saveCL(this)"/><span>지사제</span></label><label class="cl-item"><input type="checkbox" data-key="진통제 (타이레놀 / 이부프로펜)" onchange="saveCL(this)"/><span>진통제 (타이레놀 / 이부프로펜)</span></label><label class="cl-item"><input type="checkbox" data-key="알레르기약" onchange="saveCL(this)"/><span>알레르기약</span></label><label class="cl-item"><input type="checkbox" data-key="파스 / 밴드" onchange="saveCL(this)"/><span>파스 / 밴드</span></label><label class="cl-item"><input type="checkbox" data-key="처방약 (필요시 충분히)" onchange="saveCL(this)"/><span>처방약 (필요시 충분히)</span></label><label class="cl-item"><input type="checkbox" data-key="멀미약" onchange="saveCL(this)"/><span>멀미약</span></label><div class="cl-cat-label">전자기기</div><label class="cl-item"><input type="checkbox" data-key="스마트폰 충전기" onchange="saveCL(this)"/><span>스마트폰 충전기</span></label><label class="cl-item"><input type="checkbox" data-key="보조 배터리" onchange="saveCL(this)"/><span>보조 배터리</span></label><label class="cl-item"><input type="checkbox" data-key="유럽 플러그 어댑터 (Type C)" onchange="saveCL(this)"/><span>유럽 플러그 어댑터 (Type C)</span></label><label class="cl-item"><input type="checkbox" data-key="이어폰 / 이어버드" onchange="saveCL(this)"/><span>이어폰 / 이어버드</span></label><label class="cl-item"><input type="checkbox" data-key="카메라 + 메모리카드" onchange="saveCL(this)"/><span>카메라 + 메모리카드</span></label><label class="cl-item"><input type="checkbox" data-key="여행용 멀티탭" onchange="saveCL(this)"/><span>여행용 멀티탭</span></label><label class="cl-item"><input type="checkbox" data-key="노트북 / 태블릿 (필요시)" onchange="saveCL(this)"/><span>노트북 / 태블릿 (필요시)</span></label><div class="cl-cat-label">세면 & 기타</div><label class="cl-item"><input type="checkbox" data-key="선크림 (SPF 50+)" onchange="saveCL(this)"/><span>선크림 (SPF 50+)</span></label><label class="cl-item"><input type="checkbox" data-key="보습 크림 / 립밤" onchange="saveCL(this)"/><span>보습 크림 / 립밤</span></label><label class="cl-item"><input type="checkbox" data-key="칫솔 / 치약" onchange="saveCL(this)"/><span>칫솔 / 치약</span></label><label class="cl-item"><input type="checkbox" data-key="손 세정제" onchange="saveCL(this)"/><span>손 세정제</span></label><label class="cl-item"><input type="checkbox" data-key="마스크" onchange="saveCL(this)"/><span>마스크</span></label><label class="cl-item"><input type="checkbox" data-key="작은 우산 / 우비" onchange="saveCL(this)"/><span>작은 우산 / 우비</span></label><label class="cl-item"><input type="checkbox" data-key="에코백 / 장바구니" onchange="saveCL(this)"/><span>에코백 / 장바구니</span></label><label class="cl-item"><input type="checkbox" data-key="자물쇠 (캐리어용)" onchange="saveCL(this)"/><span>자물쇠 (캐리어용)</span></label><label class="cl-item"><input type="checkbox" data-key="여행용 세탁 세제 (소분)" onchange="saveCL(this)"/><span>여행용 세탁 세제 (소분)</span></label>
+      </div>
+    </div>
+  </div>
 
   <!-- 상세 모달 -->
   <div id="day-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
@@ -913,7 +1047,7 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { closeModal(); closePrepModal(); }
+      if (e.key === 'Escape') { closeModal(); closePrepModal(); closeFoodModal(); closeCLModal(); }
     });
 
     // ── 준비 모달 ──
@@ -923,6 +1057,54 @@
     }
     function closePrepModal() {
       const m = document.getElementById('prep-modal');
+      if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
+    }
+
+    // ── 먹거리 리스트 모달 ──
+    function openFoodModal() {
+      const m = document.getElementById('food-modal');
+      if (m) { m.className = 'modal-overlay open'; document.body.style.overflow = 'hidden'; }
+    }
+    function closeFoodModal() {
+      const m = document.getElementById('food-modal');
+      if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
+    }
+
+    // ── 준비물 체크리스트 모달 ──
+    const CL_KEY = 'travel-checklist-2026';
+
+    function loadCL() {
+      try { return JSON.parse(localStorage.getItem(CL_KEY) || '{}'); } catch { return {}; }
+    }
+    function saveCL(input) {
+      const saved = loadCL();
+      saved[input.dataset.key] = input.checked;
+      localStorage.setItem(CL_KEY, JSON.stringify(saved));
+      input.closest('.cl-item').classList.toggle('checked', input.checked);
+    }
+    function resetCL() {
+      if (!confirm('체크리스트를 초기화할까요?')) return;
+      localStorage.removeItem(CL_KEY);
+      document.querySelectorAll('#cl-modal input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+        cb.closest('.cl-item').classList.remove('checked');
+      });
+    }
+    function openCLModal() {
+      const m = document.getElementById('cl-modal');
+      if (!m) return;
+      // 저장된 상태 복원
+      const saved = loadCL();
+      m.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        const checked = !!saved[cb.dataset.key];
+        cb.checked = checked;
+        cb.closest('.cl-item').classList.toggle('checked', checked);
+      });
+      m.className = 'modal-overlay open';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCLModal() {
+      const m = document.getElementById('cl-modal');
       if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
     }
   </script>
