@@ -82,6 +82,32 @@
       border-radius: 20px; background: rgba(255,255,255,.25); color: #fff;
     }
 
+    /* ── 여행 준비 버튼 ── */
+    .prep-btn {
+      margin-left: auto; padding: 6px 14px; flex-shrink: 0;
+      border-radius: 20px; border: 1.5px solid rgba(255,255,255,.55);
+      background: transparent; color: #fff;
+      font-size: .78rem; font-weight: 500; cursor: pointer;
+      transition: background .15s;
+    }
+    .prep-btn:hover { background: rgba(255,255,255,.2); }
+
+    /* ── 준비 모달 헤더 ── */
+    .modal-head-info { background: var(--info-light); border-bottom-color: var(--info-mid); }
+
+    /* ── 준비 모달 본문 ── */
+    .prep-modal-body { padding-top: 8px; }
+    .prep-category { margin-bottom: 4px; }
+    .prep-cat-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .04em;
+      color: var(--info-accent); text-transform: uppercase;
+      padding: 12px 0 5px; border-top: 1px solid var(--info-light); margin-top: 4px;
+    }
+    .prep-category:first-child .prep-cat-label { border-top: none; padding-top: 0; }
+    .prep-items { display: flex; flex-direction: column; gap: 7px; }
+    .prep-modal-body .item-tip .item-text { color: var(--gray-600); font-style: normal; font-size: .87rem; }
+    .prep-modal-body .item-tip .item-icon { opacity: 1; }
+
     /* ── 날짜 카드 ── */
     .days-list { display: flex; flex-direction: column; gap: 2px; }
     .day-card {
@@ -294,6 +320,7 @@
         <h2 class="section-name">스페인 · 마드리드 경유</h2>
         <p class="section-period">4월 28일(화)</p>
       </div>
+      
     </div>
     <div class="days-list">
     <div class="day-card" data-theme="spain" onclick="openModal(this)">
@@ -327,6 +354,7 @@
         <h2 class="section-name">포르투갈</h2>
         <p class="section-period">4월 29일(수) – 5월 5일(화)</p>
       </div>
+      
     </div>
     <div class="days-list">
     <div class="day-card" data-theme="portugal" onclick="openModal(this)">
@@ -440,6 +468,7 @@
         <h2 class="section-name">승주의 마드리드<span class="section-label label-me">🐥승주</span></h2>
         <p class="section-period">5월 5일(화) – 5월 7일(목)</p>
       </div>
+      
     </div>
     <div class="days-list">
     <div class="day-card" data-theme="me" onclick="openModal(this)">
@@ -499,63 +528,6 @@
     </div></div>
   </section>
 
-  <section class="trip-section section-info"
-           id="section-3" data-audience="parents">
-    <div class="section-header">
-      <div class="section-flag">📋</div>
-      <div class="section-info">
-        <h2 class="section-name">여행 준비</h2>
-        <p class="section-period">출발 전 체크리스트</p>
-      </div>
-    </div>
-    <div class="days-list">
-    <div class="day-card day-info" data-theme="info">
-      <div class="day-header">
-        <div class="day-date">
-          <span class="date-main">필수 예약 및 서류</span>
-        </div>
-      </div>
-      <div class="day-body"><div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">대성당 해변 입장권 사전 예약 필수 — 5월 10일 방문 (인원 제한)</span></div>
-<div class="item item-tip"><span class="item-icon">💳</span><span class="item-text">렌터카 픽업 시 본인 명의 신용카드 필수 (체크카드 불가)</span></div>
-<div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">Ganbara(산세바스티안) · Kaia Kaipe(게타리아) 예약 필수</span></div></div>
-    </div>
-
-    <div class="day-card day-info" data-theme="info">
-      <div class="day-header">
-        <div class="day-date">
-          <span class="date-main">의류 및 준비물</span>
-        </div>
-      </div>
-      <div class="day-body"><div class="item item-tip"><span class="item-icon">🌧️</span><span class="item-text">우비/방수 겉옷 필수 — 그린 스페인은 비·안개가 잦음</span></div>
-<div class="item item-tip"><span class="item-icon">👟</span><span class="item-text">편안한 워킹화 권장 — 이미 길들여진 신발로 (하루 최대 2시간 평지 산책)</span></div>
-<div class="item item-tip"><span class="item-icon">🔌</span><span class="item-text">멀티탭 권장 — 220V C/F타입 (한국과 동일, 별도 어댑터 불필요)</span></div></div>
-    </div>
-
-    <div class="day-card day-info" data-theme="info">
-      <div class="day-header">
-        <div class="day-date">
-          <span class="date-main">건강 및 식도락</span>
-        </div>
-      </div>
-      <div class="day-body"><div class="item item-tip"><span class="item-icon">💊</span><span class="item-text">소화제 · 지사제 · 파스 · 비타민 상비</span></div>
-<div class="item item-tip"><span class="item-icon">💬</span><span class="item-text">소금 조절: "Poco sal, por favor" (포코 살 포르 파보르 — 소금 조금만요)</span></div>
-<div class="item item-tip"><span class="item-icon">💬</span><span class="item-text">"Sin sal, por favor" (씬 살 포르 파보르 — 소금 빼주세요)</span></div>
-<div class="item item-tip"><span class="item-icon">🕐</span><span class="item-text">현지 식사 시간: 점심 14:00, 저녁 20:00~21:00 (간식 차에 상비)</span></div>
-<div class="item item-tip"><span class="item-icon">💧</span><span class="item-text">차에 Agua sin gas(가스 없는 물) 대량 구매 후 상비 (석회질 예방)</span></div></div>
-    </div>
-
-    <div class="day-card day-info" data-theme="info">
-      <div class="day-header">
-        <div class="day-date">
-          <span class="date-main">기술 및 내비게이션</span>
-        </div>
-      </div>
-      <div class="day-body"><div class="item item-tip"><span class="item-icon">📱</span><span class="item-text">구글맵 오프라인 저장 필수 — 피코스 데 에우로파 지역 (5/9, 데이터 불안정)</span></div>
-<div class="item item-tip"><span class="item-icon">📶</span><span class="item-text">데이터 충분한 유심/로밍 준비 — 내비게이션 · 음악 스트리밍 · 긴급 연락</span></div>
-<div class="item item-tip"><span class="item-icon">🗺️</span><span class="item-text">해안도로 Scenic Route 표지판 추천 (바스크·아스투리아스 구간)</span></div></div>
-    </div></div>
-  </section>
-
   <section class="trip-section section-spain"
            id="section-4" data-audience="parents">
     <div class="section-header">
@@ -564,6 +536,7 @@
         <h2 class="section-name">스페인 북부<span class="section-label label-parents">👫부모님</span></h2>
         <p class="section-period">5월 5일(화) – 5월 13일(수)</p>
       </div>
+      <button class="prep-btn" onclick="openPrepModal()">📋 여행 준비</button>
     </div>
     <div class="days-list">
     <div class="day-card" data-theme="spain" onclick="openModal(this)">
@@ -824,6 +797,35 @@
     </div></div>
   </section>
 
+  
+  <div id="prep-modal" class="modal-overlay" onclick="if(event.target===this)closePrepModal()">
+    <div class="modal-box">
+      <div class="modal-head modal-head-info">
+        <div class="modal-date-block">
+          <div class="modal-date-row">
+            <span class="modal-date-main">📋 여행 준비</span>
+          </div>
+          <div class="modal-meta-row" style="color:var(--info-accent);font-size:.8rem;margin-top:4px;">출발 전 체크리스트</div>
+        </div>
+        <button class="modal-close" onclick="closePrepModal()">×</button>
+      </div>
+      <div class="modal-body prep-modal-body"><div class="prep-category"><div class="prep-cat-label">필수 예약 및 서류</div><div class="prep-items"><div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">대성당 해변 입장권 사전 예약 필수 — 5월 10일 방문 (인원 제한)</span></div>
+<div class="item item-tip"><span class="item-icon">💳</span><span class="item-text">렌터카 픽업 시 본인 명의 신용카드 필수 (체크카드 불가)</span></div>
+<div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">Ganbara(산세바스티안) · Kaia Kaipe(게타리아) 예약 필수</span></div></div></div>
+<div class="prep-category"><div class="prep-cat-label">의류 및 준비물</div><div class="prep-items"><div class="item item-tip"><span class="item-icon">🌧️</span><span class="item-text">우비/방수 겉옷 필수 — 그린 스페인은 비·안개가 잦음</span></div>
+<div class="item item-tip"><span class="item-icon">👟</span><span class="item-text">편안한 워킹화 권장 — 이미 길들여진 신발로 (하루 최대 2시간 평지 산책)</span></div>
+<div class="item item-tip"><span class="item-icon">🔌</span><span class="item-text">멀티탭 권장 — 220V C/F타입 (한국과 동일, 별도 어댑터 불필요)</span></div></div></div>
+<div class="prep-category"><div class="prep-cat-label">건강 및 식도락</div><div class="prep-items"><div class="item item-tip"><span class="item-icon">💊</span><span class="item-text">소화제 · 지사제 · 파스 · 비타민 상비</span></div>
+<div class="item item-tip"><span class="item-icon">💬</span><span class="item-text">소금 조절: "Poco sal, por favor" (포코 살 포르 파보르 — 소금 조금만요)</span></div>
+<div class="item item-tip"><span class="item-icon">💬</span><span class="item-text">"Sin sal, por favor" (씬 살 포르 파보르 — 소금 빼주세요)</span></div>
+<div class="item item-tip"><span class="item-icon">🕐</span><span class="item-text">현지 식사 시간: 점심 14:00, 저녁 20:00~21:00 (간식 차에 상비)</span></div>
+<div class="item item-tip"><span class="item-icon">💧</span><span class="item-text">차에 Agua sin gas(가스 없는 물) 대량 구매 후 상비 (석회질 예방)</span></div></div></div>
+<div class="prep-category"><div class="prep-cat-label">기술 및 내비게이션</div><div class="prep-items"><div class="item item-tip"><span class="item-icon">📱</span><span class="item-text">구글맵 오프라인 저장 필수 — 피코스 데 에우로파 지역 (5/9, 데이터 불안정)</span></div>
+<div class="item item-tip"><span class="item-icon">📶</span><span class="item-text">데이터 충분한 유심/로밍 준비 — 내비게이션 · 음악 스트리밍 · 긴급 연락</span></div>
+<div class="item item-tip"><span class="item-icon">🗺️</span><span class="item-text">해안도로 Scenic Route 표지판 추천 (바스크·아스투리아스 구간)</span></div></div></div></div>
+    </div>
+  </div>
+
   <!-- 상세 모달 -->
   <div id="day-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
     <div class="modal-box">
@@ -910,7 +912,19 @@
       document.body.style.overflow = '';
     }
 
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { closeModal(); closePrepModal(); }
+    });
+
+    // ── 준비 모달 ──
+    function openPrepModal() {
+      const m = document.getElementById('prep-modal');
+      if (m) { m.className = 'modal-overlay open'; document.body.style.overflow = 'hidden'; }
+    }
+    function closePrepModal() {
+      const m = document.getElementById('prep-modal');
+      if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
+    }
   </script>
 </body>
 </html>
