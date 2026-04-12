@@ -13,6 +13,7 @@
       --pt-accent: #C1603A; --pt-light: #FDF0EB; --pt-mid: #E8886A;
       --es-accent: #1B3A5C; --es-light: #EAF0F8; --es-mid: #3D6491;
       --me-accent: #2D6A4F; --me-light: #E8F5EE; --me-mid: #52B788;
+      --info-accent: #0F766E; --info-light: #F0FDFA; --info-mid: #14B8A6;
       --gray-50:  #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
       --gray-400: #9CA3AF; --gray-500: #6B7280;
       --gray-600: #4B5563; --gray-800: #1F2937;
@@ -69,9 +70,10 @@
       display: flex; align-items: center; gap: 16px;
       padding: 18px 24px; border-radius: var(--radius) var(--radius) 0 0; margin-bottom: 2px;
     }
-    .section-portugal .section-header { background: var(--pt-accent); color: #fff; }
-    .section-spain    .section-header { background: var(--es-accent); color: #fff; }
-    .section-me       .section-header { background: var(--me-accent); color: #fff; }
+    .section-portugal .section-header { background: var(--pt-accent);   color: #fff; }
+    .section-spain    .section-header { background: var(--es-accent);   color: #fff; }
+    .section-me       .section-header { background: var(--me-accent);   color: #fff; }
+    .section-info     .section-header { background: var(--info-accent); color: #fff; }
     .section-flag   { font-size: 1.8rem; line-height: 1; }
     .section-name   { font-size: 1.1rem; font-weight: 600; display: flex; align-items: center; gap: 10px; }
     .section-period { font-size: .8rem; opacity: .75; margin-top: 3px; }
@@ -88,17 +90,20 @@
     }
     .day-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); position: relative; z-index: 1; }
     .day-card:last-child { border-radius: 0 0 var(--radius) var(--radius); }
-    .day-card.day-tbd { background: var(--gray-100); opacity: .65; cursor: default; }
-    .day-card.day-tbd:hover { box-shadow: var(--shadow-sm); }
+    .day-card.day-tbd  { background: var(--gray-100); opacity: .65; cursor: default; }
+    .day-card.day-tbd:hover  { box-shadow: var(--shadow-sm); }
+    .day-card.day-info { cursor: default; }
+    .day-card.day-info:hover { box-shadow: var(--shadow-sm); }
 
     .day-header {
       padding: 13px 24px 10px;
       border-bottom: 1px solid var(--gray-100);
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
     }
-    .section-portugal .day-header { border-left: 3px solid var(--pt-mid); }
-    .section-spain    .day-header { border-left: 3px solid var(--es-mid); }
-    .section-me       .day-header { border-left: 3px solid var(--me-mid); }
+    .section-portugal .day-header { border-left: 3px solid var(--pt-mid);   }
+    .section-spain    .day-header { border-left: 3px solid var(--es-mid);   }
+    .section-me       .day-header { border-left: 3px solid var(--me-mid);   }
+    .section-info     .day-header { border-left: 3px solid var(--info-mid); }
     .day-tbd .day-header { border-left-color: var(--gray-200); }
 
     .day-date { display: flex; align-items: baseline; gap: 6px; }
@@ -111,9 +116,10 @@
       padding: 2px 10px; border-radius: 20px;
       background: var(--gray-100); color: var(--gray-600);
     }
-    .section-portugal .day-city { background: var(--pt-light); color: var(--pt-accent); }
-    .section-spain    .day-city { background: var(--es-light); color: var(--es-accent); }
-    .section-me       .day-city { background: var(--me-light); color: var(--me-accent); }
+    .section-portugal .day-city { background: var(--pt-light);   color: var(--pt-accent);   }
+    .section-spain    .day-city { background: var(--es-light);   color: var(--es-accent);   }
+    .section-me       .day-city { background: var(--me-light);   color: var(--me-accent);   }
+    .section-info     .day-city { background: var(--info-light); color: var(--info-accent); }
 
     .day-dist {
       font-size: .7rem; font-weight: 600;
@@ -144,9 +150,10 @@
       flex-shrink: 0; align-self: center; font-size: .7rem; font-weight: 600;
       padding: 2px 8px; border-radius: 20px; margin-left: 4px;
     }
-    .section-portugal .badge { background: var(--pt-light); color: var(--pt-accent); }
-    .section-spain    .badge { background: var(--es-light); color: var(--es-accent); }
-    .section-me       .badge { background: var(--me-light); color: var(--me-accent); }
+    .section-portugal .badge { background: var(--pt-light);   color: var(--pt-accent);   }
+    .section-spain    .badge { background: var(--es-light);   color: var(--es-accent);   }
+    .section-me       .badge { background: var(--me-light);   color: var(--me-accent);   }
+    .section-info     .badge { background: var(--info-light); color: var(--info-accent); }
 
     /* ── 더보기 힌트 ── */
     .day-more {
@@ -154,9 +161,10 @@
       padding: 5px 0 2px;
       border-top: 1px dashed var(--gray-200); margin-top: 2px;
     }
-    .section-portugal .day-more { border-top-color: var(--pt-light);  color: var(--pt-mid);  }
-    .section-spain    .day-more { border-top-color: var(--es-light);  color: var(--es-mid);  }
-    .section-me       .day-more { border-top-color: var(--me-light);  color: var(--me-mid);  }
+    .section-portugal .day-more { border-top-color: var(--pt-light);   color: var(--pt-mid);   }
+    .section-spain    .day-more { border-top-color: var(--es-light);   color: var(--es-mid);   }
+    .section-me       .day-more { border-top-color: var(--me-light);   color: var(--me-mid);   }
+    .section-info     .day-more { border-top-color: var(--info-light); color: var(--info-mid); }
 
     /* ── 모달 오버레이 ── */
     .modal-overlay {
@@ -491,8 +499,65 @@
     </div></div>
   </section>
 
-  <section class="trip-section section-spain"
+  <section class="trip-section section-info"
            id="section-3" data-audience="parents">
+    <div class="section-header">
+      <div class="section-flag">📋</div>
+      <div class="section-info">
+        <h2 class="section-name">여행 준비</h2>
+        <p class="section-period">출발 전 체크리스트</p>
+      </div>
+    </div>
+    <div class="days-list">
+    <div class="day-card day-info" data-theme="info">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">필수 예약 및 서류</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">대성당 해변 입장권 사전 예약 필수 — 5월 10일 방문 (인원 제한)</span></div>
+<div class="item item-tip"><span class="item-icon">💳</span><span class="item-text">렌터카 픽업 시 본인 명의 신용카드 필수 (체크카드 불가)</span></div>
+<div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">Ganbara(산세바스티안) · Kaia Kaipe(게타리아) 예약 필수</span></div></div>
+    </div>
+
+    <div class="day-card day-info" data-theme="info">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">의류 및 준비물</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="item item-tip"><span class="item-icon">🌧️</span><span class="item-text">우비/방수 겉옷 필수 — 그린 스페인은 비·안개가 잦음</span></div>
+<div class="item item-tip"><span class="item-icon">👟</span><span class="item-text">편안한 워킹화 권장 — 이미 길들여진 신발로 (하루 최대 2시간 평지 산책)</span></div>
+<div class="item item-tip"><span class="item-icon">🔌</span><span class="item-text">멀티탭 권장 — 220V C/F타입 (한국과 동일, 별도 어댑터 불필요)</span></div></div>
+    </div>
+
+    <div class="day-card day-info" data-theme="info">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">건강 및 식도락</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="item item-tip"><span class="item-icon">💊</span><span class="item-text">소화제 · 지사제 · 파스 · 비타민 상비</span></div>
+<div class="item item-tip"><span class="item-icon">💬</span><span class="item-text">소금 조절: "Poco sal, por favor" (포코 살 포르 파보르 — 소금 조금만요)</span></div>
+<div class="item item-tip"><span class="item-icon">💬</span><span class="item-text">"Sin sal, por favor" (씬 살 포르 파보르 — 소금 빼주세요)</span></div>
+<div class="item item-tip"><span class="item-icon">🕐</span><span class="item-text">현지 식사 시간: 점심 14:00, 저녁 20:00~21:00 (간식 차에 상비)</span></div>
+<div class="item item-tip"><span class="item-icon">💧</span><span class="item-text">차에 Agua sin gas(가스 없는 물) 대량 구매 후 상비 (석회질 예방)</span></div></div>
+    </div>
+
+    <div class="day-card day-info" data-theme="info">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">기술 및 내비게이션</span>
+        </div>
+      </div>
+      <div class="day-body"><div class="item item-tip"><span class="item-icon">📱</span><span class="item-text">구글맵 오프라인 저장 필수 — 피코스 데 에우로파 지역 (5/9, 데이터 불안정)</span></div>
+<div class="item item-tip"><span class="item-icon">📶</span><span class="item-text">데이터 충분한 유심/로밍 준비 — 내비게이션 · 음악 스트리밍 · 긴급 연락</span></div>
+<div class="item item-tip"><span class="item-icon">🗺️</span><span class="item-text">해안도로 Scenic Route 표지판 추천 (바스크·아스투리아스 구간)</span></div></div>
+    </div></div>
+  </section>
+
+  <section class="trip-section section-spain"
+           id="section-4" data-audience="parents">
     <div class="section-header">
       <div class="section-flag">🇪🇸</div>
       <div class="section-info">
@@ -515,10 +580,13 @@
       <div class="day-body">
         <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인 <span class="item-time">18:30</span></span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">후안 카를로스 1세 공원 산책 <span class="item-time">19:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 1곳</div>
+        <div class="day-more">🍴 맛집 추천 1곳  ·  💡 팁 3개</div>
         <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인 <span class="item-time">18:30</span></span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">후안 카를로스 1세 공원 산책 <span class="item-time">19:00</span></span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La CoZina — 현대적 스페인 요리 · 공항 인근 최고 평점 <span class="item-time">20:15</span></span></div></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La CoZina — 현대적 스페인 요리 · 공항 인근 최고 평점 <span class="item-time">20:15</span></span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">이동: 공항 셔틀/택시 이용 권장 (짐 많음, 피로 최소화)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">공원 산책: 45분 평지 — 현대 미술 조각상 + 호수</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">저녁 후 <span class="item-time">21:45</span> 호텔 복귀 · 다음 날 렌터카를 위한 충분한 수면</span></div></div>
       </div>
     </div>
 
@@ -540,7 +608,7 @@
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection San Sebastian Aranzazu 체크인 · 호텔 주차 <span class="item-time">18:30</span></span><span class="badge">2박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">해변 산책로 도보 5분 거리</span></div>
 <div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 <span class="item-time">19:30</span> — 의자 있는 바 위주</span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
+        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 3개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">렌터카 픽업 후 출발 <span class="item-time">09:30</span> · 호텔 근처 영업소</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">라구아르디아(Laguardia) 중세 마을 경유 <span class="item-time">13:00</span> — 성벽 안 골목 산책</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Hospedería de los Parajes — 리오하 와인 곁들인 전통 런치</span></div>
@@ -549,7 +617,9 @@
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">해변 산책로 도보 5분 거리</span></div>
 <div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 <span class="item-time">19:30</span> — 의자 있는 바 위주</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Bernardo Etxea — 전통 해산물 전문점 · 신선도 최상</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">렌터카 수령 시 본인 명의 신용카드 필수 (체크카드 불가)</span></div></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">라구아르디아: 1시간 평지 산책 (성벽 안쪽 고즈넉한 골목)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">이시오스 와이너리: 30분 평지 (건축물 주변 걷기)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">산세바스티안 도착 후: 30분 평지 (해변 산책로)</span></div></div>
       </div>
     </div>
 
@@ -568,13 +638,16 @@
         <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔에서 택시로 이동 (차량은 호텔 주차)</span></div>
 <div class="item item-activity"><span class="item-icon">🌊</span><span class="item-text">라콘차 해변 + 몬테 이겔도 전망대 <span class="item-time">11:00</span> — 푸니쿨라 탑승</span></div>
 <div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 <span class="item-time">19:30</span> — 의자 있는 바 위주 2~3곳</span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
+        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 4개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔에서 택시로 이동 (차량은 호텔 주차)</span></div>
 <div class="item item-activity"><span class="item-icon">🌊</span><span class="item-text">라콘차 해변 + 몬테 이겔도 전망대 <span class="item-time">11:00</span> — 푸니쿨라 탑승</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La Rampa — 항구 옆 · 구운 가자미·해산물 플래터 (점심 13:00)</span></div>
 <div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 <span class="item-time">19:30</span> — 의자 있는 바 위주 2~3곳</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Ganbara — 핀초의 정석 · 의자 있어 편안히 즐길 수 있음</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">예약 권장: Ganbara (전 세계 미식가가 몰리는 곳)</span></div></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">예약 권장: Ganbara (전 세계 미식가가 몰리는 곳)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">전망대: 30분 평지 (정상 부근 — 최고의 사진 스팟)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">해변 산책: 1.5시간 평지 (해변 데크 + 차콜리 와인)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">핀초 투어: 1시간 평지 (의자 있는 바 2~3곳 여유롭게)</span></div></div>
       </div>
     </div>
 
@@ -596,7 +669,7 @@
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">구겐하임 미술관까지 도보 1분 (호텔 바로 옆)</span></div>
 <div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각 <span class="item-time">16:30</span></span></div>
 <div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책 <span class="item-time">18:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 2곳</div>
+        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 2개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">산세바스티안 출발 <span class="item-time">10:30</span> — 게타리아 해안 절벽 드라이브</span></div>
 <div class="item item-activity"><span class="item-icon">🐟</span><span class="item-text">게타리아(Getaria) 어촌 마을 런치 경유 <span class="item-time">12:30</span></span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Kaia Kaipe — 숯불 통생선구이(Rodaballo) 끝판왕 · 예약 필수</span></div>
@@ -604,7 +677,9 @@
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">구겐하임 미술관까지 도보 1분 (호텔 바로 옆)</span></div>
 <div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각 <span class="item-time">16:30</span></span></div>
 <div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책 <span class="item-time">18:00</span></span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Asador El Segoviano — 고즈넉한 분위기의 정통 고기 구이</span></div></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Asador El Segoviano — 고즈넉한 분위기의 정통 고기 구이</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">게타리아: 1시간 평지 (항구 + 아기자기한 상점가 산책)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">구겐하임: 1시간 평지 (야외 강아지 조각 + 강변, 내부는 핵심 위주)</span></div></div>
       </div>
     </div>
 
@@ -625,7 +700,7 @@
 <div class="item item-transport"><span class="item-icon">🚡</span><span class="item-text">푸엔테 데(Fuente Dé) 케이블카 — 4분 만에 해발 1,800m</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차 <span class="item-time">18:00</span></span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책 <span class="item-time">19:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
+        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 3개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">빌바오 출발 <span class="item-time">10:30</span></span></div>
 <div class="item item-activity"><span class="item-icon">⛰️</span><span class="item-text">피코스 데 에우로파 국립공원 경유 <span class="item-time">13:00</span> — 렌터카로만 가능한 절경</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Mesón del Oso — 지역 전통 스튜(Cocido) 추천</span></div>
@@ -633,7 +708,9 @@
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차 <span class="item-time">18:00</span></span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책 <span class="item-time">19:00</span></span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">El Ferroviario — 스페인식 돈가스(Cachopo) + 시드라</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">피코스 지역 데이터 불안정 — 구글맵 오프라인 저장 필수</span></div></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">피코스 지역 데이터 불안정 — 구글맵 오프라인 저장 필수</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">케이블카 정상: 45분 평지 (카페에서 여유 있게 휴식)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">오비에도 시드라 거리: 1시간 평지 산책</span></div></div>
       </div>
     </div>
 
@@ -654,7 +731,7 @@
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차 <span class="item-time">18:00</span></span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">대성당 광장까지 도보 이동</span></div>
 <div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람 <span class="item-time">18:30</span></span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 1개</div>
+        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 4개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">오비에도 출발 <span class="item-time">10:00</span></span></div>
 <div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">대성당 해변 (Playa de las Catedrales) 경유 <span class="item-time">11:30</span> — 물때(썰물) 맞춰 방문</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">사전 입장 예약 필수 (환경 보호 입장 인원 제한)</span></div>
@@ -662,7 +739,10 @@
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차 <span class="item-time">18:00</span></span><span class="badge">1박</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">대성당 광장까지 도보 이동</span></div>
 <div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람 <span class="item-time">18:30</span></span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">O Curro da Parra — 갈리시아 재료 현대적 재해석 · 평점 4.7</span></div></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">O Curro da Parra — 갈리시아 재료 현대적 재해석 · 평점 4.7</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">대성당 해변: 1.5시간 평지 (모래사장 + 해식 동굴 사이 산책)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">리바데오: 30분 평지 (마을 중심가 가벼운 산책)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">산티아고: 1시간 평지 (대성당 광장 · 순례자들의 활기 감상)</span></div></div>
       </div>
     </div>
 
@@ -682,14 +762,16 @@
 <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">마드리드 향발 <span class="item-time">13:30</span> — 아스토르가 경유 · 총 약 6시간</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">아스토르가 가우디 궁전 & 카페 중간 휴식</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Clement Barajas 체크인 · 렌터카 반납 <span class="item-time">20:00</span></span><span class="badge">1박</span></div>
-        <div class="day-more">🍴 맛집 추천 3곳</div>
+        <div class="day-more">🍴 맛집 추천 3곳  ·  💡 팁 2개</div>
         <div class="day-full" hidden><div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">산티아고 대성당 내부 관람 + 향로 미사 <span class="item-time">10:00</span> — 호텔에서 도보</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Casa Marcelo — 미쉐린급 퓨전 요리 런치</span></div>
 <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">마드리드 향발 <span class="item-time">13:30</span> — 아스토르가 경유 · 총 약 6시간</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">아스토르가 가우디 궁전 & 카페 중간 휴식</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Las Termas (Astorga) — 정통 아스토르가 요리 추천</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Clement Barajas 체크인 · 렌터카 반납 <span class="item-time">20:00</span></span><span class="badge">1박</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Lola Gastro Bar — 호텔 인근 세련된 타파스</span></div></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Lola Gastro Bar — 호텔 인근 세련된 타파스</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">산티아고 대성당: 1.5시간 평지 (성당 내부 + 향로 미사 가능 시)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">아스토르가 중간 휴식: 1시간 평지 (가우디 궁전 + 카페)</span></div></div>
       </div>
     </div>
 
@@ -709,12 +791,14 @@
 <div class="item item-activity"><span class="item-icon">🛍️</span><span class="item-text">마드리드 시내 미식 탐방 <span class="item-time">11:00</span></span></div>
 <div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터 <span class="item-time">14:00</span> — 게르니카 관람</span></div>
 <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 1곳</div>
+        <div class="day-more">🍴 맛집 추천 1곳  ·  💡 팁 2개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">택시로 시내 이동 (차량 없이 자유롭게)</span></div>
 <div class="item item-activity"><span class="item-icon">🛍️</span><span class="item-text">마드리드 시내 미식 탐방 <span class="item-time">11:00</span></span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">San Miguel Market — 고품격 타파스 시식</span></div>
 <div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터 <span class="item-time">14:00</span> — 게르니카 관람</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">마드리드 시내: 1.5~2시간 평지 (산미구엘 시장 + 솔 광장)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">소피아 왕비: 관람 동선 포함 도보 · 게르니카 후 엘 레티로 공원 산책</span></div></div>
       </div>
     </div>
 
@@ -792,27 +876,27 @@
       modal.querySelector('.modal-meta-row').innerHTML =
         (cityEl ? cityEl.outerHTML : '') + (distEl ? distEl.outerHTML : '');
 
-      // 전체 아이템
+      // 전체 아이템 — 일반 아이템 먼저, 특수 아이템(tip·place·restaurant·detail) 하단에 묶기
       const fullEl = card.querySelector('.day-full');
       if (fullEl) {
-        // 맛집·팁이 있으면 구분선으로 구분
-        const items = fullEl.querySelectorAll('.item');
-        let hasRestaurant = false, hasTip = false;
-        items.forEach(el => {
-          if (el.classList.contains('item-restaurant')) hasRestaurant = true;
-          if (el.classList.contains('item-tip'))        hasTip = true;
-        });
+        const items = [...fullEl.querySelectorAll('.item')];
+        const isSpecial = el =>
+          el.classList.contains('item-restaurant') ||
+          el.classList.contains('item-tip') ||
+          el.classList.contains('item-place') ||
+          el.classList.contains('item-detail');
 
-        let html = '';
-        let inSpecial = false;
-        items.forEach(el => {
-          const isSpecial = el.classList.contains('item-restaurant') || el.classList.contains('item-tip');
-          if (isSpecial && !inSpecial && (hasRestaurant || hasTip)) {
-            html += '<div class="modal-section-label">맛집 추천 & 팁</div>';
-            inSpecial = true;
-          }
-          html += el.outerHTML;
-        });
+        const normalItems  = items.filter(el => !isSpecial(el));
+        const specialItems = items.filter(el =>  isSpecial(el));
+
+        let html = normalItems.map(el => el.outerHTML).join('');
+
+        if (specialItems.length > 0) {
+          const hasRestaurant = specialItems.some(el => el.classList.contains('item-restaurant'));
+          const label = hasRestaurant ? '맛집 추천 & 팁' : '상세 정보';
+          html += `<div class="modal-section-label">${label}</div>`;
+          html += specialItems.map(el => el.outerHTML).join('');
+        }
 
         modal.querySelector('.modal-body').innerHTML = html;
       }
