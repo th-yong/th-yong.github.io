@@ -1414,21 +1414,49 @@
       if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
     }
 
-    // ── 스티커 커스텀 툴팁 ──
+    // ── 커스텀 툴팁 (데스크탑 hover + 모바일 tap) ──
     (function() {
       const tip = document.createElement('div');
       tip.className = 'cal-tooltip';
       document.body.appendChild(tip);
+      let activeEl = null;
+
+      function showTip(el) {
+        tip.textContent = el.dataset.tip;
+        tip.style.opacity = '1';
+        const r = el.getBoundingClientRect();
+        let left = Math.round(r.left + r.width / 2 - tip.offsetWidth / 2);
+        let top  = Math.round(r.top - tip.offsetHeight - 10);
+        // 뷰포트 이탈 보정
+        left = Math.max(8, Math.min(left, window.innerWidth - tip.offsetWidth - 8));
+        if (top < 8) top = Math.round(r.bottom + 10);
+        tip.style.left = left + 'px';
+        tip.style.top  = top  + 'px';
+        activeEl = el;
+      }
+
+      function hideTip() {
+        tip.style.opacity = '0';
+        activeEl = null;
+      }
 
       document.querySelectorAll('[data-tip]').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          tip.textContent = el.dataset.tip;
-          tip.style.opacity = '1';
-          const r = el.getBoundingClientRect();
-          tip.style.left = Math.round(r.left + r.width / 2 - tip.offsetWidth / 2) + 'px';
-          tip.style.top  = Math.round(r.top - tip.offsetHeight - 10) + 'px';
-        });
-        el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+        // 데스크탑: hover
+        el.addEventListener('mouseenter', () => showTip(el));
+        el.addEventListener('mouseleave', hideTip);
+
+        // 모바일: 스티커는 탭 → 툴팁 표시 (스크롤 차단)
+        if (el.classList.contains('gcal-sticker')) {
+          el.addEventListener('click', e => {
+            e.stopPropagation();           // 부모 scrollToDay 차단
+            activeEl === el ? hideTip() : showTip(el);
+          });
+        }
+      });
+
+      // 다른 곳 탭/클릭 시 닫기
+      document.addEventListener('click', e => {
+        if (activeEl && !activeEl.contains(e.target)) hideTip();
       });
     })();
   </script>
