@@ -172,6 +172,36 @@
     .item-tip .item-text { color: var(--gray-400); font-size: .82rem; font-style: italic; }
     .item-tip .item-icon { opacity: .55; }
 
+    .item-compare {
+      background: #EFF6FF; border-radius: 8px;
+      padding: 5px 8px; margin: 0 -8px;
+      border-left: 3px solid #3B82F6;
+    }
+    .item-compare .item-text { color: var(--gray-600); font-size: .85rem; }
+    .item-compare .item-icon { opacity: .8; }
+
+    /* ── 구글 맵 링크 ── */
+    .item-restaurant, .item-shopping, .item-compare { transition: filter .15s; }
+    .item-restaurant:hover, .item-shopping:hover, .item-compare:hover { filter: brightness(.95); }
+    .maps-badge {
+      flex-shrink: 0; margin-left: auto; padding: 2px 9px;
+      font-size: .68rem; font-weight: 600; border-radius: 10px;
+      background: rgba(0,0,0,.09); color: var(--gray-500);
+      opacity: 0; transition: opacity .15s; pointer-events: none;
+      white-space: nowrap;
+    }
+    .item-restaurant:hover .maps-badge,
+    .item-shopping:hover .maps-badge,
+    .item-compare:hover .maps-badge { opacity: 1; }
+
+    .item-shopping {
+      background: #FDF4FF; border-radius: 8px;
+      padding: 5px 8px; margin: 0 -8px;
+      border-left: 3px solid #A855F7;
+    }
+    .item-shopping .item-text { color: var(--gray-800); font-weight: 500; }
+    .item-shopping .item-icon { opacity: .9; }
+
     .badge {
       flex-shrink: 0; align-self: center; font-size: .7rem; font-weight: 600;
       padding: 2px 8px; border-radius: 20px; margin-left: 4px;
@@ -274,6 +304,120 @@
     }
     .modal-section-label:first-child { border-top: none; padding-top: 0; }
 
+    /* ── Gantt 캘린더 ── */
+    .trip-cal-wrap {
+      max-width: 760px; margin: 0 auto 28px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .trip-cal-wrap::-webkit-scrollbar { height: 4px; }
+    .trip-cal-wrap::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 2px; }
+
+    .trip-cal-gantt {
+      display: inline-block; min-width: max-content;
+      background: #fff; border-radius: var(--radius);
+      box-shadow: 0 1px 6px rgba(0,0,0,.07);
+      padding: 16px 20px 18px;
+    }
+
+    /* 월 + 날짜 헤더 */
+    .gcal-header { display: flex; flex-direction: column; }
+    .gcal-months, .gcal-dates { display: flex; align-items: stretch; }
+
+    .gcal-month {
+      font-size: .62rem; font-weight: 700; color: var(--gray-400);
+      letter-spacing: .07em; text-align: center; flex-shrink: 0;
+      padding-bottom: 4px; border-bottom: 1.5px solid var(--gray-100);
+    }
+    .gcal-vsep {
+      width: 1px; background: var(--gray-200);
+      flex-shrink: 0; margin-bottom: 4px; align-self: stretch;
+    }
+    .gcal-date {
+      display: flex; flex-direction: column; align-items: center;
+      padding: 4px 0 5px; flex-shrink: 0; border-radius: 6px;
+      transition: background .12s;
+    }
+    .gcal-date.gcal-clickable { cursor: pointer; }
+    .gcal-date.gcal-clickable:hover { background: var(--gray-50); }
+    .gcal-num {
+      font-size: .82rem; font-weight: 600; color: var(--gray-700);
+      font-family: 'Inter', monospace; line-height: 1;
+    }
+    .gcal-dow { font-size: .58rem; color: var(--gray-400); margin-top: 2px; }
+    .gcal-sat .gcal-num { color: #3B82F6; }
+    .gcal-sun .gcal-num { color: #EF4444; }
+    .gcal-sticker {
+      font-size: .9rem; line-height: 1;
+      margin-top: 3px; display: block; text-align: center;
+      cursor: default;
+      animation: stickerPop .4s cubic-bezier(.34,1.56,.64,1) both,
+                 stickerPulse 1.8s ease-in-out .4s infinite;
+    }
+    @keyframes stickerPop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    @keyframes stickerPulse {
+      0%, 100% { transform: scale(1);    opacity: 1; }
+      50%       { transform: scale(1.25); opacity: .6; }
+    }
+    .cal-tooltip {
+      position: fixed; z-index: 9999;
+      background: #1F2937; color: #fff;
+      font-size: .78rem; font-weight: 500;
+      font-family: 'Noto Sans KR', sans-serif;
+      padding: 6px 13px; border-radius: 9px;
+      pointer-events: none; white-space: nowrap;
+      opacity: 0; transition: opacity .15s;
+      box-shadow: 0 4px 14px rgba(0,0,0,.22);
+    }
+    .cal-tooltip::after {
+      content: ''; position: absolute;
+      top: 100%; left: 50%; transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #1F2937;
+    }
+
+    /* 트랙 행 */
+    .gcal-row {
+      display: flex; align-items: center; margin-top: 5px;
+    }
+    .gcal-row-label {
+      font-size: .62rem; font-weight: 700; color: var(--gray-400);
+      text-align: right; padding-right: 8px;
+      flex-shrink: 0; white-space: nowrap; width: 38px;
+    }
+    .gcal-row-track {
+      position: relative; height: 26px; flex-shrink: 0;
+    }
+
+    /* 세그먼트 */
+    .gcal-seg {
+      position: absolute; top: 3px; height: 20px;
+      border-radius: 5px; display: flex; align-items: center;
+      padding: 0 8px; overflow: hidden;
+      cursor: pointer; transition: filter .12s;
+    }
+    .gcal-seg:hover { filter: brightness(.93); }
+    .gcal-seg-tbd { opacity: .35; cursor: default; }
+    .gcal-seg-tbd:hover { filter: none; }
+    .gcal-seg-spain    { background: var(--es-light); border: 1.5px solid var(--es-mid); }
+    .gcal-seg-portugal { background: var(--pt-light); border: 1.5px solid var(--pt-mid); }
+    .gcal-seg-me       { background: var(--me-light); border: 1.5px solid var(--me-mid); }
+
+    .gcal-seg-city {
+      font-size: .59rem; font-weight: 600;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .gcal-seg-spain    .gcal-seg-city { color: var(--es-accent); }
+    .gcal-seg-portugal .gcal-seg-city { color: var(--pt-accent); }
+    .gcal-seg-me       .gcal-seg-city { color: var(--me-accent); }
+
+    /* 뷰 토글 연동 */
+    body[data-view="me"]      .gcal-row[data-audience="parents"] { display: none; }
+    body[data-view="parents"] .gcal-row[data-audience="me"]      { display: none; }
+
     /* ── 퀵 버튼 ── */
     .quick-btns {
       max-width: 760px; margin: 0 auto 28px;
@@ -286,8 +430,8 @@
       display: flex; align-items: center; gap: 6px;
     }
     .quick-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
-    .quick-btn-food { background: #FFF7ED; color: #C2410C; border: 1.5px solid #FDBA74; }
-    .quick-btn-cl   { background: #F0FDF4; color: #15803D; border: 1.5px solid #86EFAC; }
+    .quick-btn-food { background: #FFF1F2; color: #BE123C; border: 1.5px solid #FDA4AF; }
+    .quick-btn-cl   { background: #F0F9FF; color: #0369A1; border: 1.5px solid #7DD3FC; }
 
     /* ── 먹거리 모달 ── */
     .food-modal-body { padding-top: 4px; }
@@ -298,7 +442,7 @@
     .food-country:first-child { margin-top: 0; }
     .food-cat-label {
       font-size: .7rem; font-weight: 700; letter-spacing: .05em;
-      color: #C2410C; text-transform: uppercase; margin: 12px 0 6px;
+      color: #BE123C; text-transform: uppercase; margin: 12px 0 6px;
     }
     .food-item {
       display: flex; gap: 10px; align-items: flex-start;
@@ -313,7 +457,7 @@
     .cl-modal-body { padding-top: 4px; }
     .cl-cat-label {
       font-size: .7rem; font-weight: 700; letter-spacing: .05em;
-      color: #15803D; text-transform: uppercase;
+      color: #0369A1; text-transform: uppercase;
       padding: 14px 0 5px; border-top: 1px solid #DCFCE7; margin-top: 4px;
     }
     .cl-cat-label:first-child { border-top: none; padding-top: 0; }
@@ -324,8 +468,18 @@
       transition: color .12s;
     }
     .cl-item:last-of-type { border-bottom: none; }
-    .cl-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #22C55E; flex-shrink: 0; cursor: pointer; }
+    .cl-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #0EA5E9; flex-shrink: 0; cursor: pointer; }
     .cl-item.checked { color: var(--gray-400); text-decoration: line-through; }
+
+    /* ── 캘린더 클릭 하이라이트 ── */
+    @keyframes calPulse {
+      0%   { box-shadow: 0 0 0 0   rgba(59,130,246,.4); }
+      60%  { box-shadow: 0 0 0 10px rgba(59,130,246,.0); }
+      100% { box-shadow: none; }
+    }
+    .day-card.cal-highlight {
+      animation: calPulse .9s ease-out forwards;
+    }
 
     /* ── 푸터 ── */
     .site-footer {
@@ -356,6 +510,17 @@
     <p class="subtitle">Spain × Portugal</p>
   </header>
 
+  
+  <div class="trip-cal-wrap">
+    <div class="trip-cal-gantt">
+      <div class="gcal-header" style="padding-left:38px">
+        <div class="gcal-months"><div class="gcal-month" style="width:138px">4월</div><div class="gcal-vsep"></div><div class="gcal-month" style="width:598px">5월</div></div>
+        <div class="gcal-dates"><div class="gcal-date gcal-clickable" onclick="scrollToDay('0428')" style="width:46px"><span class="gcal-num">28</span><span class="gcal-dow">화</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0429')" style="width:46px"><span class="gcal-num">29</span><span class="gcal-dow">수</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0430')" style="width:46px"><span class="gcal-num">30</span><span class="gcal-dow">목</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0501')" style="width:46px"><span class="gcal-num">1</span><span class="gcal-dow">금</span></div><div class="gcal-date gcal-sat gcal-clickable" onclick="scrollToDay('0502')" style="width:46px"><span class="gcal-num">2</span><span class="gcal-dow">토</span><span class="gcal-sticker" data-tip="승준이 합류!">🎉</span></div><div class="gcal-date gcal-sun gcal-clickable" onclick="scrollToDay('0503')" style="width:46px"><span class="gcal-num">3</span><span class="gcal-dow">일</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0504')" style="width:46px"><span class="gcal-num">4</span><span class="gcal-dow">월</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0505')" style="width:46px"><span class="gcal-num">5</span><span class="gcal-dow">화</span><span class="gcal-sticker" data-tip="승준이와 작별">👋</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0506')" style="width:46px"><span class="gcal-num">6</span><span class="gcal-dow">수</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0507')" style="width:46px"><span class="gcal-num">7</span><span class="gcal-dow">목</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0508')" style="width:46px"><span class="gcal-num">8</span><span class="gcal-dow">금</span></div><div class="gcal-date gcal-sat gcal-clickable" onclick="scrollToDay('0509')" style="width:46px"><span class="gcal-num">9</span><span class="gcal-dow">토</span></div><div class="gcal-date gcal-sun gcal-clickable" onclick="scrollToDay('0510')" style="width:46px"><span class="gcal-num">10</span><span class="gcal-dow">일</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0511')" style="width:46px"><span class="gcal-num">11</span><span class="gcal-dow">월</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0512')" style="width:46px"><span class="gcal-num">12</span><span class="gcal-dow">화</span></div><div class="gcal-date"  style="width:46px"><span class="gcal-num">13</span><span class="gcal-dow">수</span></div></div>
+      </div>
+      <div class="gcal-row" data-audience="all"><div class="gcal-row-label">공통</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-spain" data-tip="마드리드" onclick="scrollToDay('0428', 'all')" style="left:0px;width:46px;border-radius:5px;"><span class="gcal-seg-city">마드리드</span></div><div class="gcal-seg gcal-seg-portugal" data-tip="리스본" onclick="scrollToDay('0429', 'all')" style="left:46px;width:138px;border-radius:5px 0 0 5px;"><span class="gcal-seg-city">리스본</span></div><div class="gcal-seg gcal-seg-portugal" data-tip="포르투" onclick="scrollToDay('0502', 'all')" style="left:184px;width:184px;border-radius:0 5px 5px 0;border-left:none;"><span class="gcal-seg-city">포르투</span></div></div></div><div class="gcal-row" data-audience="parents"><div class="gcal-row-label">부모님</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-spain" data-tip="마드리드" onclick="scrollToDay('0505', 'parents')" style="left:322px;width:46px;border-radius:5px 0 0 5px;"><span class="gcal-seg-city">마드리드</span></div><div class="gcal-seg gcal-seg-spain" data-tip="산세바스티안" onclick="scrollToDay('0506', 'parents')" style="left:368px;width:92px;border-radius:0;border-left:none;"><span class="gcal-seg-city">산세바스티안</span></div><div class="gcal-seg gcal-seg-spain" data-tip="빌바오" onclick="scrollToDay('0508', 'parents')" style="left:460px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">빌바오</span></div><div class="gcal-seg gcal-seg-spain" data-tip="오비에도" onclick="scrollToDay('0509', 'parents')" style="left:506px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">오비에도</span></div><div class="gcal-seg gcal-seg-spain" data-tip="산티아고" onclick="scrollToDay('0510', 'parents')" style="left:552px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">산티아고</span></div><div class="gcal-seg gcal-seg-spain" data-tip="마드리드" onclick="scrollToDay('0511', 'parents')" style="left:598px;width:92px;border-radius:0 5px 5px 0;border-left:none;"><span class="gcal-seg-city">마드리드</span></div></div></div><div class="gcal-row" data-audience="me"><div class="gcal-row-label">승주</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-me" data-tip="마드리드" onclick="scrollToDay('0505', 'me')" style="left:322px;width:138px;border-radius:5px;"><span class="gcal-seg-city">마드리드</span></div></div></div>
+    </div>
+  </div>
+
   <div class="quick-btns">
     <button class="quick-btn quick-btn-food" onclick="openFoodModal()">🍽️ 먹거리 리스트</button>
     <button class="quick-btn quick-btn-cl"   onclick="openCLModal()">🎒 준비물 체크리스트</button>
@@ -376,12 +541,12 @@
       <div class="section-flag">🇪🇸</div>
       <div class="section-info">
         <h2 class="section-name">스페인</h2>
-        <p class="section-period">4월 28일(화)</p>
+        <p class="section-period">4월 28일(화) – 4월 29일(수)</p>
       </div>
       
     </div>
     <div class="days-list">
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0428" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">4월 28일</span>
@@ -395,12 +560,38 @@
       <div class="day-body">
         <div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">인천공항 출발 09:55 → 마드리드 도착 18:00</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">B&B 마드리드 센트로 푸에르타 델 솔 체크인 <span class="item-time">18:30</span></span><span class="badge">1박 · 조식 불포함</span></div>
-        <div class="day-more">💡 팁 1개</div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">야식 — 산 히네스 츄러스+초콜라떼 (22:00~)</span><span class="badge">Sol · 호텔 도보 3분</span></div>
+        <div class="day-more">🍴 맛집 1곳  ·  🌐 비교 1곳  ·  💡 팁 1개</div>
         <div class="day-full" hidden><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">인천공항 출발 09:55 → 마드리드 도착 18:00</span></div>
 <div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">대한항공 KE913편 · 제2터미널</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">B&B 마드리드 센트로 푸에르타 델 솔 체크인 <span class="item-time">18:30</span></span><span class="badge">1박 · 조식 불포함</span></div>
 <div class="item item-place"><span class="item-icon">📍</span><span class="item-text">C/ Montera 10-12 · 디럭스 더블룸 2개</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">공항 택시: 약 25~35분 · 시내 고정 요금 30€</span></div></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">공항 택시: 약 25~35분 · 시내 고정 요금 30€</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">야식 — 산 히네스 츄러스+초콜라떼 (22:00~)</span><span class="badge">Sol · 호텔 도보 3분</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">산 히네스 — 1894년 창업 마드리드 원조 츄러스카페 · 24시간 영업 · Pasadizo de San Ginés 5</span></div>
+<div class="item item-compare"><span class="item-icon">🌐</span><span class="item-text">La Casa del Abuelo — 1906년 창업 마늘새우(Gambas al Ajillo) 원조 · C. de la Victoria 12 · Sol</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-card" data-theme="spain" data-date="0429" onclick="openModal(this)">
+      <div class="day-header">
+        <div class="day-date">
+          <span class="date-main">4월 29일</span>
+          <span class='date-day'>(수)</span>
+        </div>
+        <div class="day-meta">
+          <span class="day-city">마드리드</span>
+          
+        </div>
+      </div>
+      <div class="day-body">
+        <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">출국 전 점심 — DIVORARE Focaccia <span class="item-time">12:00</span></span><span class="badge">C. de Toledo 27 · Sol 도보 5분</span></div>
+<div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 14:55 → 리스본 도착 15:15</span></div>
+        <div class="day-more">🍴 맛집 1곳</div>
+        <div class="day-full" hidden><div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">출국 전 점심 — DIVORARE Focaccia <span class="item-time">12:00</span></span><span class="badge">C. de Toledo 27 · Sol 도보 5분</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">DIVORARE l Focaccia Madrid — 평점 4.9 이탈리아 포카치아 샌드위치 맛집</span></div>
+<div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 14:55 → 리스본 도착 15:15</span></div>
+<div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">Air Europa UX1155</span></div></div>
       </div>
     </div></div>
   </section>
@@ -416,7 +607,7 @@
       
     </div>
     <div class="days-list">
-    <div class="day-card" data-theme="portugal" onclick="openModal(this)">
+    <div class="day-card" data-theme="portugal" data-date="0429" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">4월 29일</span>
@@ -428,18 +619,15 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 14:55 → 리스본 도착 15:15</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">My Story Hotel Figueira 체크인 <span class="item-time">15:00</span></span><span class="badge">3박 · 조식 불포함</span></div>
+        <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">My Story Hotel Figueira 체크인 (15:15~)</span><span class="badge">3박 · 조식 불포함</span></div>
         <div class="day-more">💡 팁 1개</div>
-        <div class="day-full" hidden><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 14:55 → 리스본 도착 15:15</span></div>
-<div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">Air Europa UX1155</span></div>
-<div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">My Story Hotel Figueira 체크인 <span class="item-time">15:00</span></span><span class="badge">3박 · 조식 불포함</span></div>
+        <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">My Story Hotel Figueira 체크인 (15:15~)</span><span class="badge">3박 · 조식 불포함</span></div>
 <div class="item item-place"><span class="item-icon">📍</span><span class="item-text">Praça da Figueira 15, 리스본 1100-052</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">공항 택시: 약 15~20분 · 약 10~15€</span></div></div>
       </div>
     </div>
 
-    <div class="day-card day-tbd" data-theme="portugal" onclick="openModal(this)">
+    <div class="day-card day-tbd" data-theme="portugal" data-date="0430" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">4월 30일 – 5월 1일</span>
@@ -457,7 +645,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="portugal" onclick="openModal(this)">
+    <div class="day-card" data-theme="portugal" data-date="0502" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 2일</span>
@@ -482,7 +670,7 @@
       </div>
     </div>
 
-    <div class="day-card day-tbd" data-theme="portugal" onclick="openModal(this)">
+    <div class="day-card day-tbd" data-theme="portugal" data-date="0503" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 3일 – 5월 4일</span>
@@ -500,7 +688,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="portugal" onclick="openModal(this)">
+    <div class="day-card" data-theme="portugal" data-date="0505" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 5일</span>
@@ -531,7 +719,7 @@
       
     </div>
     <div class="days-list">
-    <div class="day-card" data-theme="me" onclick="openModal(this)">
+    <div class="day-card" data-theme="me" data-date="0505" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 5일</span>
@@ -543,13 +731,18 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Hard Rock Hotel Madrid 체크인</span><span class="badge">2박</span></div>
-        
-        <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Hard Rock Hotel Madrid 체크인</span><span class="badge">2박</span></div></div>
+        <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Hard Rock Hotel Madrid 체크인 (Plaza de España)</span><span class="badge">2박</span></div>
+<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">템플로 데 보드(Templo de Debod) 일몰 감상 <span class="item-time">19:00</span></span><span class="badge">호텔 도보 10분 · 2200년 된 이집트 신전</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — El Urogallo Príncipe Pío <span class="item-time">20:30</span></span><span class="badge">Paseo de la Florida 16 · 도보 15분</span></div>
+        <div class="day-more">🍴 맛집 1곳</div>
+        <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Hard Rock Hotel Madrid 체크인 (Plaza de España)</span><span class="badge">2박</span></div>
+<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">템플로 데 보드(Templo de Debod) 일몰 감상 <span class="item-time">19:00</span></span><span class="badge">호텔 도보 10분 · 2200년 된 이집트 신전</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — El Urogallo Príncipe Pío <span class="item-time">20:30</span></span><span class="badge">Paseo de la Florida 16 · 도보 15분</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">El Urogallo I Restaurante Príncipe Pío — 뽈뽀+밀푀유 맛집 · Paseo de la Florida 16</span></div></div>
       </div>
     </div>
 
-    <div class="day-card" data-theme="me" onclick="openModal(this)">
+    <div class="day-card" data-theme="me" data-date="0506" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 6일</span>
@@ -561,13 +754,35 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-activity"><span class="item-icon">🎸</span><span class="item-text">마드리드 자유 일정</span></div>
-        
-        <div class="day-full" hidden><div class="item item-activity"><span class="item-icon">🎸</span><span class="item-text">마드리드 자유 일정</span></div></div>
+        <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">오전 — NAJI Specialty Coffee 라떼 <span class="item-time">10:00</span> · Ciento Treinta Grados 스콘 <span class="item-time">10:30</span></span><span class="badge">Chamberí</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Vi Cool 가성비 코스 <span class="item-time">14:00</span></span><span class="badge">Barrio de las Letras · C. Huertas 12</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">프라도 미술관 (15:30~18:00)</span><span class="badge">Vi Cool에서 도보 10분 · 벨라스케스·고야·엘 그레코</span></div>
+<div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">레티로 공원 산책 (18:00~19:00)</span><span class="badge">프라도 바로 옆 · 크리스탈 팰리스·보트 호수 · 유네스코 세계유산</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — La Cabaña Argentina <span class="item-time">21:00</span></span><span class="badge">C. Ventura de la Vega 10</span></div>
+        <div class="day-more">🍴 맛집 4곳  ·  🛍️ 쇼핑 4곳  ·  🌐 비교 4곳  ·  💡 팁 2개</div>
+        <div class="day-full" hidden><div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">오전 — NAJI Specialty Coffee 라떼 <span class="item-time">10:00</span> · Ciento Treinta Grados 스콘 <span class="item-time">10:30</span></span><span class="badge">Chamberí</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">NAJI SPECIALTY COFFEE — 평점 4.8 피스타치오 라떼 맛집 · C. Cardenal Cisneros 39</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Ciento Treinta Grados — 스콘+에스프레소 맛집 · C. Fernando el Católico 17 (도보 10분)</span></div>
+<div class="item item-compare"><span class="item-icon">🌐</span><span class="item-text">Toma Café — 마드리드 최초 스페셜티 커피 (2012) · C. de la Palma 49 · Malasaña</span></div>
+<div class="item item-compare"><span class="item-icon">🌐</span><span class="item-text">HanSo Café — 스페인 최고 에스프레소 · C. del Pez 20 · Malasaña</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">Gran Vía + Fuencarral 쇼핑 (11:30~13:00)</span><span class="badge">Chamberí에서 도보 이동</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">Camper — C. Gran Vía 54 · 스페인 본국 가격 (한국 대비 20~30% 저렴)</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">Massimo Dutti — Gran Vía점 · 스페인 본국 가격</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">C. Fuencarral — 인디 브랜드·빈티지 숍 밀집 거리 · Gran Vía에서 도보 5분</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Vi Cool 가성비 코스 <span class="item-time">14:00</span></span><span class="badge">Barrio de las Letras · C. Huertas 12</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Vi Cool — 점심 코스 €10~20 · Sergi Arola 셰프</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">프라도 미술관 (15:30~18:00)</span><span class="badge">Vi Cool에서 도보 10분 · 벨라스케스·고야·엘 그레코</span></div>
+<div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">레티로 공원 산책 (18:00~19:00)</span><span class="badge">프라도 바로 옆 · 크리스탈 팰리스·보트 호수 · 유네스코 세계유산</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — La Cabaña Argentina <span class="item-time">21:00</span></span><span class="badge">C. Ventura de la Vega 10</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La Cabaña Argentina — 평점 4.7 아르헨티나 고기+가리비 · 예약 권장</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">(옵션) 점심 대안 — Matteo Cucina Italiana 생면 파스타 · Mercado de la Paz · Salamanca</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">(옵션) 저녁 대안 — Casa Mortero 크로켓·스테이크·치즈케이크 · Zorrilla 9</span></div>
+<div class="item item-compare"><span class="item-icon">🌐</span><span class="item-text">Lana Parrilla Argentina — 2025 미쉐린 가이드 · 세계 최고 스테이크 선정 · C. Ponzano 59 · Chamberí</span></div>
+<div class="item item-compare"><span class="item-icon">🌐</span><span class="item-text">Casa Julián de Tolosa — 바스크 그릴 · 포브스 "세계 최고 등심" · C. Cava Baja 18</span></div></div>
       </div>
     </div>
 
-    <div class="day-card" data-theme="me" onclick="openModal(this)">
+    <div class="day-card" data-theme="me" data-date="0507" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 7일</span>
@@ -579,10 +794,28 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00 (터미널 1 · MAD)</span></div>
+        <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">아침 — 산 히네스 츄러스+초콜라떼 <span class="item-time">10:00</span></span><span class="badge">Sol · Pasadizo de San Ginés 5</span></div>
+<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">왕궁(Palacio Real) + 알무데나 대성당 (11:00~12:30)</span><span class="badge">호텔 도보 15분 · 입장료 €14</span></div>
+<div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">플라사 데 오리엔테(Plaza de Oriente) 산책</span><span class="badge">왕궁 앞 광장 · 오페라 극장</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Casa Mortero <span class="item-time">13:30</span></span><span class="badge">Zorrilla 9 · Congreso 근처</span></div>
+<div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00 (터미널 1 · MAD)</span></div>
 <div class="item item-flight"><span class="item-icon">🛬</span><span class="item-text">서울/인천 도착 16:00 +1일 (터미널 2 · ICN)</span></div>
-        
-        <div class="day-full" hidden><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00 (터미널 1 · MAD)</span></div>
+        <div class="day-more">🍴 맛집 2곳  ·  🛍️ 쇼핑 4곳  ·  🌐 비교 1곳  ·  💡 팁 3개</div>
+        <div class="day-full" hidden><div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">아침 — 산 히네스 츄러스+초콜라떼 <span class="item-time">10:00</span></span><span class="badge">Sol · Pasadizo de San Ginés 5</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">산 히네스 — 1894년 창업 원조 츄러스카페 · 24시간 영업</span></div>
+<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">왕궁(Palacio Real) + 알무데나 대성당 (11:00~12:30)</span><span class="badge">호텔 도보 15분 · 입장료 €14</span></div>
+<div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">플라사 데 오리엔테(Plaza de Oriente) 산책</span><span class="badge">왕궁 앞 광장 · 오페라 극장</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">살라망카 쇼핑 (12:30~13:30)</span><span class="badge">택시 10분 · 마드리드 최고급 쇼핑 거리</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">Massimo Dutti 플래그십 — C. Serrano 48 · 국내 최대 매장 · 전 컬렉션 구비</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">Camper — C. Serrano 24 · 풀 컬렉션 · 이월상품 할인</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">C. Serrano + C. Ortega y Gasset — Loewe·Prada·Carolina Herrera 스페인 명품 거리</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Casa Mortero <span class="item-time">13:30</span></span><span class="badge">Zorrilla 9 · Congreso 근처</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Casa Mortero — 평점 4.7 · 미쉐린 가이드 · 크로켓·스테이크·치즈케이크</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">(옵션) 점심 대안 — La Catedral 스페인 요리 · 예약 필수 · €20~30 · C. San Jerónimo 16</span></div>
+<div class="item item-compare"><span class="item-icon">🌐</span><span class="item-text">Casa Lucio — 1974년 창업 · 국왕·클린턴 단골 · Huevos Estrellados 명물 · C. Cava Baja 35</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">기념품 — Captain Jonny's candy shop 해골젤리 · 산책 중 들르기</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">공항 이동: 호텔 출발 17:30 권장 · 터미널 1 (메트로 또는 택시 30~40분)</span></div>
+<div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00 (터미널 1 · MAD)</span></div>
 <div class="item item-flight"><span class="item-icon">🛬</span><span class="item-text">서울/인천 도착 16:00 +1일 (터미널 2 · ICN)</span></div></div>
       </div>
     </div></div>
@@ -599,7 +832,7 @@
       <button class="prep-btn" onclick="openPrepModal()">📋 여행 준비</button>
     </div>
     <div class="days-list">
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0505" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 5일</span>
@@ -613,7 +846,7 @@
       <div class="day-body">
         <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인 <span class="item-time">18:30</span></span><span class="badge">1박 · 조식 불포함</span></div>
 <div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">후안 카를로스 1세 공원 산책 <span class="item-time">19:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 1곳  ·  💡 팁 4개</div>
+        <div class="day-more">🍴 맛집 1곳  ·  💡 팁 4개</div>
         <div class="day-full" hidden><div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">힐튼 마드리드 에어포트 체크인 <span class="item-time">18:30</span></span><span class="badge">1박 · 조식 불포함</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">공항 택시: 약 5~10분 · 10€ 이내 (공항 인접 호텔 · 무료 셔틀 확인)</span></div>
 <div class="item item-activity"><span class="item-icon">🌳</span><span class="item-text">후안 카를로스 1세 공원 산책 <span class="item-time">19:00</span></span></div>
@@ -624,7 +857,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0506" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 6일</span>
@@ -642,7 +875,7 @@
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection San Sebastian Aranzazu 체크인 · 호텔 주차 <span class="item-time">18:30</span></span><span class="badge">2박 · 조식 포함</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">해변 산책로 도보 5분 거리</span></div>
 <div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 <span class="item-time">19:30</span> — 의자 있는 바 위주</span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 3개</div>
+        <div class="day-more">🍴 맛집 2곳  ·  💡 팁 3개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">렌터카 픽업 후 출발 <span class="item-time">09:30</span> · 호텔 근처 영업소</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">라구아르디아(Laguardia) 중세 마을 경유 <span class="item-time">13:00</span> — 성벽 안 골목 산책</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Hospedería de los Parajes — 리오하 와인 곁들인 전통 런치</span></div>
@@ -657,7 +890,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0507" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 7일</span>
@@ -672,7 +905,7 @@
         <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔에서 택시로 이동 (차량은 호텔 주차)</span></div>
 <div class="item item-activity"><span class="item-icon">🌊</span><span class="item-text">라콘차 해변 + 몬테 이겔도 전망대 <span class="item-time">11:00</span> — 푸니쿨라 탑승</span></div>
 <div class="item item-activity"><span class="item-icon">🌆</span><span class="item-text">구시가지 핀초 투어 <span class="item-time">19:30</span> — 의자 있는 바 위주 2~3곳</span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 4개</div>
+        <div class="day-more">🍴 맛집 2곳  ·  💡 팁 4개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔에서 택시로 이동 (차량은 호텔 주차)</span></div>
 <div class="item item-activity"><span class="item-icon">🌊</span><span class="item-text">라콘차 해변 + 몬테 이겔도 전망대 <span class="item-time">11:00</span> — 푸니쿨라 탑승</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">La Rampa — 항구 옆 · 구운 가자미·해산물 플래터 (점심 13:00)</span></div>
@@ -685,7 +918,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0508" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 8일</span>
@@ -703,7 +936,7 @@
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">구겐하임 미술관까지 도보 1분 (호텔 바로 옆)</span></div>
 <div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">구겐하임 미술관 관람 + 야외 강아지(Puppy) 조각 <span class="item-time">16:30</span></span></div>
 <div class="item item-activity"><span class="item-icon">🌉</span><span class="item-text">네르비온 강변 산책 <span class="item-time">18:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 2개</div>
+        <div class="day-more">🍴 맛집 2곳  ·  💡 팁 2개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">산세바스티안 출발 <span class="item-time">10:30</span> — 게타리아 해안 절벽 드라이브</span></div>
 <div class="item item-activity"><span class="item-icon">🐟</span><span class="item-text">게타리아(Getaria) 어촌 마을 런치 경유 <span class="item-time">12:30</span></span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Kaia Kaipe — 숯불 통생선구이(Rodaballo) 끝판왕 · 예약 필수</span></div>
@@ -717,7 +950,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0509" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 9일</span>
@@ -734,7 +967,7 @@
 <div class="item item-transport"><span class="item-icon">🚡</span><span class="item-text">푸엔테 데(Fuente Dé) 케이블카 — 4분 만에 해발 1,800m</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Barcelo Hotel Oviedo Cervantes 체크인 · 호텔 주차 <span class="item-time">18:00</span></span><span class="badge">1박 · 조식 포함</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">시드라 거리 + 산살바도르 성당 도보 산책 <span class="item-time">19:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 3개</div>
+        <div class="day-more">🍴 맛집 2곳  ·  💡 팁 3개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">빌바오 출발 <span class="item-time">10:30</span></span></div>
 <div class="item item-activity"><span class="item-icon">⛰️</span><span class="item-text">피코스 데 에우로파 국립공원 경유 <span class="item-time">13:00</span> — 렌터카로만 가능한 절경</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Mesón del Oso — 지역 전통 스튜(Cocido) 추천</span></div>
@@ -748,7 +981,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0510" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 10일</span>
@@ -765,7 +998,7 @@
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">NH Collection Santiago de Compostela 체크인 · 호텔 주차 <span class="item-time">18:00</span></span><span class="badge">1박 · 조식 포함</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">대성당 광장까지 도보 이동</span></div>
 <div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">산티아고 데 콤포스텔라 대성당 광장 관람 <span class="item-time">18:30</span></span></div>
-        <div class="day-more">🍴 맛집 추천 2곳  ·  💡 팁 4개</div>
+        <div class="day-more">🍴 맛집 2곳  ·  💡 팁 4개</div>
         <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">오비에도 출발 <span class="item-time">10:00</span></span></div>
 <div class="item item-activity"><span class="item-icon">🏖️</span><span class="item-text">대성당 해변 (Playa de las Catedrales) 경유 <span class="item-time">11:30</span> — 물때(썰물) 맞춰 방문</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">사전 입장 예약 필수 (환경 보호 입장 인원 제한)</span></div>
@@ -780,7 +1013,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0511" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 11일</span>
@@ -796,7 +1029,7 @@
 <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">마드리드 향발 <span class="item-time">13:30</span> — 아스토르가 경유 · 총 약 6시간</span></div>
 <div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">아스토르가 가우디 궁전 & 카페 중간 휴식</span></div>
 <div class="item item-hotel"><span class="item-icon">🏨</span><span class="item-text">Clement Barajas 체크인 · 렌터카 반납 <span class="item-time">20:00</span></span><span class="badge">1박 · 조식 불포함</span></div>
-        <div class="day-more">🍴 맛집 추천 3곳  ·  💡 팁 2개</div>
+        <div class="day-more">🍴 맛집 3곳  ·  💡 팁 2개</div>
         <div class="day-full" hidden><div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">산티아고 대성당 내부 관람 + 향로 미사 <span class="item-time">10:00</span> — 호텔에서 도보</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Casa Marcelo — 미쉐린급 퓨전 요리 런치</span></div>
 <div class="item item-transport"><span class="item-icon">🚗</span><span class="item-text">마드리드 향발 <span class="item-time">13:30</span> — 아스토르가 경유 · 총 약 6시간</span></div>
@@ -809,34 +1042,7 @@
       </div>
     </div>
 
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
-      <div class="day-header">
-        <div class="day-date">
-          <span class="date-main">5월 12일</span>
-          <span class='date-day'>(화)</span>
-        </div>
-        <div class="day-meta">
-          <span class="day-city">마드리드</span>
-          
-        </div>
-      </div>
-      <div class="day-body">
-        <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">택시로 시내 이동 (차량 없이 자유롭게)</span></div>
-<div class="item item-activity"><span class="item-icon">🛍️</span><span class="item-text">마드리드 시내 미식 탐방 <span class="item-time">11:00</span></span></div>
-<div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터 <span class="item-time">14:00</span> — 게르니카 관람</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div>
-        <div class="day-more">🍴 맛집 추천 1곳  ·  💡 팁 2개</div>
-        <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">택시로 시내 이동 (차량 없이 자유롭게)</span></div>
-<div class="item item-activity"><span class="item-icon">🛍️</span><span class="item-text">마드리드 시내 미식 탐방 <span class="item-time">11:00</span></span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">San Miguel Market — 고품격 타파스 시식</span></div>
-<div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터 <span class="item-time">14:00</span> — 게르니카 관람</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">마드리드 시내: 1.5~2시간 평지 (산미구엘 시장 + 솔 광장)</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">소피아 왕비: 관람 동선 포함 도보 · 게르니카 후 엘 레티로 공원 산책</span></div></div>
-      </div>
-    </div>
-
-    <div class="day-card" data-theme="spain" onclick="openModal(this)">
+    <div class="day-card" data-theme="spain" data-date="0512" onclick="openModal(this)">
       <div class="day-header">
         <div class="day-date">
           <span class="date-main">5월 12일 – 13일</span>
@@ -848,10 +1054,20 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00</span></div>
+        <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">택시로 시내 이동 (차량 없이 자유롭게)</span></div>
+<div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터 <span class="item-time">14:00</span> — 게르니카 관람</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div>
+<div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00</span></div>
 <div class="item item-flight"><span class="item-icon">🛬</span><span class="item-text">인천공항 도착 16:00 (5월 13일)</span></div>
-        
-        <div class="day-full" hidden><div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00</span></div>
+        <div class="day-more">🍴 맛집 1곳  ·  🛍️ 쇼핑 1곳  ·  💡 팁 2개</div>
+        <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">택시로 시내 이동 (차량 없이 자유롭게)</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">마드리드 시내 미식 탐방 <span class="item-time">11:00</span></span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">San Miguel Market — 고품격 타파스 시식</span></div>
+<div class="item item-activity"><span class="item-icon">🎨</span><span class="item-text">소피아 왕비 미술 센터 <span class="item-time">14:00</span> — 게르니카 관람</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 및 공항 이동 <span class="item-time">17:00</span></span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">마드리드 시내: 1.5~2시간 평지 (산미구엘 시장 + 솔 광장)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">소피아 왕비: 관람 동선 포함 도보 · 게르니카 후 엘 레티로 공원 산책</span></div>
+<div class="item item-flight"><span class="item-icon">✈️</span><span class="item-text">마드리드 출발 20:00</span></div>
 <div class="item item-flight"><span class="item-icon">🛬</span><span class="item-text">인천공항 도착 16:00 (5월 13일)</span></div>
 <div class="item item-detail"><span class="item-icon">🛫</span><span class="item-text">대한항공 KE914편</span></div></div>
       </div>
@@ -889,12 +1105,12 @@
   
   <div id="food-modal" class="modal-overlay" onclick="if(event.target===this)closeFoodModal()">
     <div class="modal-box">
-      <div class="modal-head" style="background:#FFF7ED;border-bottom-color:#FB923C;">
+      <div class="modal-head" style="background:#FFF1F2;border-bottom-color:#FDA4AF;">
         <div class="modal-date-block">
           <div class="modal-date-row">
             <span class="modal-date-main">🍽️ 먹거리 리스트</span>
           </div>
-          <div class="modal-meta-row" style="color:#C2410C;font-size:.8rem;margin-top:4px;">꼭 먹어봐야 할 음식 & 디저트</div>
+          <div class="modal-meta-row" style="color:#BE123C;font-size:.8rem;margin-top:4px;">꼭 먹어봐야 할 음식 & 디저트</div>
         </div>
         <button class="modal-close" onclick="closeFoodModal()">×</button>
       </div>
@@ -945,14 +1161,14 @@
   
   <div id="cl-modal" class="modal-overlay" onclick="if(event.target===this)closeCLModal()">
     <div class="modal-box">
-      <div class="modal-head" style="background:#F0FDF4;border-bottom-color:#4ADE80;">
+      <div class="modal-head" style="background:#F0F9FF;border-bottom-color:#7DD3FC;">
         <div class="modal-date-block">
           <div class="modal-date-row">
             <span class="modal-date-main">🎒 준비물 체크리스트</span>
           </div>
-          <div class="modal-meta-row" style="color:#15803D;font-size:.8rem;margin-top:4px;">
+          <div class="modal-meta-row" style="color:#0369A1;font-size:.8rem;margin-top:4px;">
             체크하면 자동 저장됩니다
-            <button onclick="resetCL()" style="margin-left:10px;font-size:.72rem;padding:1px 8px;border-radius:12px;border:1px solid #86EFAC;background:transparent;color:#15803D;cursor:pointer;">초기화</button>
+            <button onclick="resetCL()" style="margin-left:10px;font-size:.72rem;padding:1px 8px;border-radius:12px;border:1px solid #7DD3FC;background:transparent;color:#0369A1;cursor:pointer;">초기화</button>
           </div>
         </div>
         <button class="modal-close" onclick="closeCLModal()">×</button>
@@ -986,6 +1202,45 @@
   </footer>
 
   <script>
+    // ── 캘린더 → 섹션 스크롤 ──
+    function scrollToDay(mmdd, audience) {
+      const view  = document.body.dataset.view || 'all';
+      const cards = [...document.querySelectorAll('.day-card[data-date="' + mmdd + '"]')];
+      let target  = null;
+
+      // 1순위: audience 가 지정된 경우 해당 섹션 카드
+      if (audience) {
+        target = cards.find(c => {
+          const sec = c.closest('.trip-section');
+          return sec && sec.dataset.audience === audience;
+        }) || null;
+      }
+
+      // 2순위: 현재 뷰에서 보이는 카드
+      if (!target) {
+        for (const card of cards) {
+          const sec = card.closest('.trip-section');
+          if (!sec) continue;
+          const aud = sec.dataset.audience;
+          if (view === 'all' || aud === 'all' || aud === view) {
+            target = card; break;
+          }
+        }
+      }
+
+      if (!target && cards.length) target = cards[0];
+      if (!target) return;
+
+      // 헤더(sticky nav) 높이만큼 오프셋
+      const offset = 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+
+      // 잠깐 하이라이트
+      target.classList.add('cal-highlight');
+      setTimeout(() => target.classList.remove('cal-highlight'), 1200);
+    }
+
     // ── 뷰 토글 ──
     document.querySelectorAll('.toggle-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1031,13 +1286,30 @@
         let html = normalItems.map(el => el.outerHTML).join('');
 
         if (specialItems.length > 0) {
-          const hasRestaurant = specialItems.some(el => el.classList.contains('item-restaurant'));
-          const label = hasRestaurant ? '맛집 추천 & 팁' : '상세 정보';
-          html += `<div class="modal-section-label">${label}</div>`;
-          html += specialItems.map(el => el.outerHTML).join('');
+          const mainItems    = specialItems.filter(el => !el.classList.contains('item-compare'));
+          const compareItems = specialItems.filter(el =>  el.classList.contains('item-compare'));
+
+          const shopItems    = mainItems.filter(el =>  el.classList.contains('item-shopping'));
+          const nonShopItems = mainItems.filter(el => !el.classList.contains('item-shopping'));
+
+          if (shopItems.length > 0) {
+            html += `<div class="modal-section-label">🛍️ 쇼핑</div>`;
+            html += shopItems.map(el => el.outerHTML).join('');
+          }
+          if (nonShopItems.length > 0) {
+            html += `<div class="modal-section-label">맛집 추천 & 팁</div>`;
+            html += nonShopItems.map(el => el.outerHTML).join('');
+          }
+          if (compareItems.length > 0) {
+            html += `<div class="modal-section-label">🌐 이 동네 유명한 곳 비교</div>`;
+            html += compareItems.map(el => el.outerHTML).join('');
+          }
         }
 
         modal.querySelector('.modal-body').innerHTML = html;
+        const cityEl2 = modal.querySelector('.day-city');
+        const cityName = cityEl2 ? cityEl2.textContent.split(/[→►]/)[0].trim() : '';
+        addMapsLinks(modal.querySelector('.modal-body'), cityName);
       }
 
       document.body.style.overflow = 'hidden';
@@ -1071,6 +1343,37 @@
     function closeFoodModal() {
       const m = document.getElementById('food-modal');
       if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
+    }
+
+    // ── 구글 맵 링크 ──
+    function addMapsLinks(container, city) {
+      const location = city || 'Madrid';
+      ['item-restaurant', 'item-shopping', 'item-compare'].forEach(cls => {
+        container.querySelectorAll('.' + cls).forEach(el => {
+          const textEl = el.querySelector('.item-text');
+          if (!textEl) return;
+          const raw = textEl.textContent;
+          const sep = raw.indexOf(' — ');  // em dash
+          let name = sep > 0 ? raw.substring(0, sep).trim() : raw.split(' · ')[0].trim();
+          name = name.replace(/\s*\([^)]*\)/g, '').trim();
+          // 섹션 헤더형 항목 스킵 (+ 포함, 너무 긴 이름)
+          if (!name || name.length > 50 || name.includes(' + ')) return;
+          // 한국어로만 이루어진 경우 스킵
+          if (/^[가-힯 ]+$/.test(name)) return;
+          // 검색어에서 뒤쪽 한글 제거 (예: "Massimo Dutti 플래그십" → "Massimo Dutti")
+          const searchName = (name.replace(/[가-힯]+/g, '').trim() || name).replace(/\s+/g, ' ').trim();
+          const url = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(searchName + ' ' + location);
+          el.style.cursor = 'pointer';
+          const badge = document.createElement('span');
+          badge.className = 'maps-badge';
+          badge.textContent = '지도';
+          el.appendChild(badge);
+          el.addEventListener('click', e => {
+            e.stopPropagation();
+            window.open(url, '_blank');
+          });
+        });
+      });
     }
 
     // ── 준비물 체크리스트 모달 ──
@@ -1110,6 +1413,24 @@
       const m = document.getElementById('cl-modal');
       if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
     }
+
+    // ── 스티커 커스텀 툴팁 ──
+    (function() {
+      const tip = document.createElement('div');
+      tip.className = 'cal-tooltip';
+      document.body.appendChild(tip);
+
+      document.querySelectorAll('[data-tip]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          tip.textContent = el.dataset.tip;
+          tip.style.opacity = '1';
+          const r = el.getBoundingClientRect();
+          tip.style.left = Math.round(r.left + r.width / 2 - tip.offsetWidth / 2) + 'px';
+          tip.style.top  = Math.round(r.top - tip.offsetHeight - 10) + 'px';
+        });
+        el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+      });
+    })();
   </script>
 </body>
 </html>
