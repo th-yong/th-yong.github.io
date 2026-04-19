@@ -430,8 +430,9 @@
       display: flex; align-items: center; gap: 6px;
     }
     .quick-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
-    .quick-btn-food { background: #FFF1F2; color: #BE123C; border: 1.5px solid #FDA4AF; }
-    .quick-btn-cl   { background: #F0F9FF; color: #0369A1; border: 1.5px solid #7DD3FC; }
+    .quick-btn-food   { background: #FFF1F2; color: #BE123C; border: 1.5px solid #FDA4AF; }
+    .quick-btn-cl     { background: #F0F9FF; color: #0369A1; border: 1.5px solid #7DD3FC; }
+    .quick-btn-phrase { background: #FAF5FF; color: #6D28D9; border: 1.5px solid #C4B5FD; }
 
     /* ── 먹거리 모달 ── */
     .food-modal-body { padding-top: 4px; }
@@ -470,6 +471,79 @@
     .cl-item:last-of-type { border-bottom: none; }
     .cl-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: #0EA5E9; flex-shrink: 0; cursor: pointer; }
     .cl-item.checked { color: var(--gray-400); text-decoration: line-through; }
+
+    /* ── 간단 회화 모달 ── */
+    /* 타이틀 헤더는 sticky 해제 — 스크롤하면 위로 사라짐 */
+    .phrases-modal-head { position: relative !important; top: auto !important; }
+    .phrase-tabs {
+      position: sticky; top: 0; z-index: 5;
+      display: flex; gap: 6px; padding: 10px 16px;
+      background: #fff; border-bottom: 1px solid var(--gray-100);
+      align-items: center;
+    }
+    .phrase-tab {
+      flex: 1; padding: 7px 8px; border-radius: 20px;
+      border: 1.5px solid var(--gray-200); background: transparent;
+      font-size: .8rem; font-weight: 500; color: var(--gray-500);
+      cursor: pointer; transition: all .15s;
+      white-space: nowrap;
+    }
+    .phrase-tab:hover { border-color: #C4B5FD; color: #6D28D9; }
+    .phrase-tab.active {
+      background: #FAF5FF; border-color: #C4B5FD; color: #6D28D9; font-weight: 600;
+    }
+    .phrase-tabs-close {
+      flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+      border: none; background: rgba(0,0,0,.07); cursor: pointer;
+      font-size: 1.05rem; color: var(--gray-600);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .phrase-tabs-close:hover { background: rgba(0,0,0,.15); }
+    .phrases-modal-body[data-filter="es-ES"] .phrase-lang-group[data-lang="pt-PT"],
+    .phrases-modal-body[data-filter="pt-PT"] .phrase-lang-group[data-lang="es-ES"] { display: none; }
+    .phrases-modal-body[data-filter="es-ES"] .phrase-country,
+    .phrases-modal-body[data-filter="pt-PT"] .phrase-country { display: none; }
+    .phrases-modal-body { padding-top: 4px; }
+    .phrase-country {
+      font-size: .95rem; font-weight: 700; margin: 16px 0 8px;
+      padding-bottom: 6px; border-bottom: 2px solid var(--gray-200);
+    }
+    .phrase-country:first-child { margin-top: 0; }
+    .phrase-cat-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .05em;
+      color: #6D28D9; text-transform: uppercase; margin: 12px 0 6px;
+    }
+    .phrase-item {
+      position: relative;
+      display: flex; flex-direction: column; gap: 3px;
+      padding: 8px 34px 8px 10px; margin: 0 -10px;
+      border-bottom: 1px solid var(--gray-100); border-radius: 6px;
+      line-height: 1.5; cursor: pointer;
+      transition: background .12s;
+    }
+    .phrase-item:last-child { border-bottom: none; }
+    .phrase-item:hover { background: #FAF5FF; }
+    .phrase-item.speaking { background: #F3E8FF; }
+    .phrase-item.speaking .phrase-speak-hint { opacity: 1; color: #6D28D9; }
+    .phrase-speak-hint {
+      position: absolute; right: 10px; top: 50%;
+      transform: translateY(-50%);
+      font-size: .95rem; opacity: .25;
+      transition: opacity .12s, color .12s;
+      pointer-events: none;
+    }
+    .phrase-item:hover .phrase-speak-hint { opacity: .7; }
+    .phrase-ko { font-size: .88rem; color: var(--gray-800); font-weight: 500; }
+    .phrase-body {
+      display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline;
+    }
+    .phrase-orig {
+      font-family: 'Inter', sans-serif; font-style: italic;
+      color: var(--gray-500); font-size: .83rem;
+    }
+    .phrase-pron { color: var(--gray-600); font-size: .87rem; }
+    .phrase-pron strong { color: #6D28D9; font-weight: 700; }
 
     /* ── 캘린더 클릭 하이라이트 ── */
     @keyframes calPulse {
@@ -522,8 +596,9 @@
   </div>
 
   <div class="quick-btns">
-    <button class="quick-btn quick-btn-food" onclick="openFoodModal()">🍽️ 먹거리 리스트</button>
-    <button class="quick-btn quick-btn-cl"   onclick="openCLModal()">🎒 준비물 체크리스트</button>
+    <button class="quick-btn quick-btn-food"   onclick="openFoodModal()">🍽️ 먹거리 리스트</button>
+    <button class="quick-btn quick-btn-cl"     onclick="openCLModal()">🎒 준비물 체크리스트</button>
+    <button class="quick-btn quick-btn-phrase" onclick="openPhrasesModal()">💬 간단 회화</button>
   </div>
 
   <div class="view-toggle-wrap">
@@ -1203,6 +1278,28 @@
       </div>
     </div>
   </div>
+  
+  <div id="phrases-modal" class="modal-overlay" onclick="if(event.target===this)closePhrasesModal()">
+    <div class="modal-box">
+      <div class="modal-head phrases-modal-head" style="background:#FAF5FF;border-bottom-color:#C4B5FD;">
+        <div class="modal-date-block">
+          <div class="modal-date-row">
+            <span class="modal-date-main">💬 간단 회화</span>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closePhrasesModal()">×</button>
+      </div>
+      <div class="phrase-tabs">
+        <button class="phrase-tab active" data-filter="all">🌐 전체</button>
+        <button class="phrase-tab" data-filter="es-ES">🇪🇸 스페인어</button>
+        <button class="phrase-tab" data-filter="pt-PT">🇵🇹 포르투갈어</button>
+        <button class="phrase-tabs-close" onclick="closePhrasesModal()" aria-label="닫기">×</button>
+      </div>
+      <div class="modal-body phrases-modal-body" data-filter="all">
+        <div class="phrase-lang-group" data-lang="es-ES"><div class="phrase-country">🇪🇸 스페인어</div><div class="phrase-cat-label">인사·기본</div><div class="phrase-item" data-speak="Hola" data-lang="es-ES"><div class="phrase-ko">안녕하세요</div><div class="phrase-body"><span class="phrase-orig">Hola</span><span class="phrase-pron"><strong>올</strong>라</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Gracias" data-lang="es-ES"><div class="phrase-ko">감사합니다</div><div class="phrase-body"><span class="phrase-orig">Gracias</span><span class="phrase-pron">그<strong>라</strong>시아스</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="De nada" data-lang="es-ES"><div class="phrase-ko">천만에요</div><div class="phrase-body"><span class="phrase-orig">De nada</span><span class="phrase-pron">데 <strong>나</strong>다</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Perdón" data-lang="es-ES"><div class="phrase-ko">실례합니다</div><div class="phrase-body"><span class="phrase-orig">Perdón</span><span class="phrase-pron">뻬르<strong>돈</strong></span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Lo siento" data-lang="es-ES"><div class="phrase-ko">죄송합니다</div><div class="phrase-body"><span class="phrase-orig">Lo siento</span><span class="phrase-pron">로 시<strong>엔</strong>또</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Sí / No" data-lang="es-ES"><div class="phrase-ko">네 / 아니요</div><div class="phrase-body"><span class="phrase-orig">Sí / No</span><span class="phrase-pron"><strong>씨</strong> / <strong>노</strong></span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Adiós" data-lang="es-ES"><div class="phrase-ko">안녕히 가세요</div><div class="phrase-body"><span class="phrase-orig">Adiós</span><span class="phrase-pron">아디<strong>오</strong>스</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="¿Habla inglés?" data-lang="es-ES"><div class="phrase-ko">영어 할 줄 아세요?</div><div class="phrase-body"><span class="phrase-orig">¿Habla inglés?</span><span class="phrase-pron"><strong>아</strong>블라 잉<strong>글</strong>레스?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Soy coreano" data-lang="es-ES"><div class="phrase-ko">한국인이에요</div><div class="phrase-body"><span class="phrase-orig">Soy coreano</span><span class="phrase-pron"><strong>소</strong>이 꼬레<strong>아</strong>노</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-cat-label">식당</div><div class="phrase-item" data-speak="Para dos, por favor" data-lang="es-ES"><div class="phrase-ko">2명이요</div><div class="phrase-body"><span class="phrase-orig">Para dos, por favor</span><span class="phrase-pron"><strong>빠</strong>라 도스, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="La carta, por favor" data-lang="es-ES"><div class="phrase-ko">메뉴 주세요</div><div class="phrase-body"><span class="phrase-orig">La carta, por favor</span><span class="phrase-pron">라 <strong>까</strong>르따, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Esto, por favor" data-lang="es-ES"><div class="phrase-ko">이거 주세요</div><div class="phrase-body"><span class="phrase-orig">Esto, por favor</span><span class="phrase-pron"><strong>에</strong>스또, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Poco sal, por favor" data-lang="es-ES"><div class="phrase-ko">소금 조금만요</div><div class="phrase-body"><span class="phrase-orig">Poco sal, por favor</span><span class="phrase-pron"><strong>뽀</strong>꼬 <strong>살</strong>, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Sin sal, por favor" data-lang="es-ES"><div class="phrase-ko">소금 빼주세요</div><div class="phrase-body"><span class="phrase-orig">Sin sal, por favor</span><span class="phrase-pron">씬 <strong>살</strong>, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Sin picante" data-lang="es-ES"><div class="phrase-ko">매운 거 빼주세요</div><div class="phrase-body"><span class="phrase-orig">Sin picante</span><span class="phrase-pron">씬 삐<strong>깐</strong>떼</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Agua sin gas" data-lang="es-ES"><div class="phrase-ko">가스 없는 물</div><div class="phrase-body"><span class="phrase-orig">Agua sin gas</span><span class="phrase-pron"><strong>아</strong>구아 씬 <strong>가</strong>스</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Muy bueno" data-lang="es-ES"><div class="phrase-ko">맛있어요</div><div class="phrase-body"><span class="phrase-orig">Muy bueno</span><span class="phrase-pron">무이 <strong>부</strong>에노</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="La cuenta, por favor" data-lang="es-ES"><div class="phrase-ko">계산서 주세요</div><div class="phrase-body"><span class="phrase-orig">La cuenta, por favor</span><span class="phrase-pron">라 <strong>꾸</strong>엔따, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="¿Aceptan tarjeta?" data-lang="es-ES"><div class="phrase-ko">카드 되나요?</div><div class="phrase-body"><span class="phrase-orig">¿Aceptan tarjeta?</span><span class="phrase-pron">아<strong>셉</strong>딴 따르<strong>헤</strong>따?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-cat-label">길 찾기·교통</div><div class="phrase-item" data-speak="¿Dónde está?" data-lang="es-ES"><div class="phrase-ko">어디에 있어요?</div><div class="phrase-body"><span class="phrase-orig">¿Dónde está?</span><span class="phrase-pron"><strong>돈</strong>데 에스<strong>따</strong>?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="¿Cuánto cuesta?" data-lang="es-ES"><div class="phrase-ko">얼마예요?</div><div class="phrase-body"><span class="phrase-orig">¿Cuánto cuesta?</span><span class="phrase-pron"><strong>꾸</strong>안또 <strong>꾸</strong>에스따?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="¿Dónde está el baño?" data-lang="es-ES"><div class="phrase-ko">화장실이 어디예요?</div><div class="phrase-body"><span class="phrase-orig">¿Dónde está el baño?</span><span class="phrase-pron"><strong>돈</strong>데 에스<strong>따</strong> 엘 <strong>바</strong>뇨?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Llame a un taxi" data-lang="es-ES"><div class="phrase-ko">택시 불러주세요</div><div class="phrase-body"><span class="phrase-orig">Llame a un taxi</span><span class="phrase-pron"><strong>야</strong>메 아 운 <strong>딱</strong>시</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Al aeropuerto" data-lang="es-ES"><div class="phrase-ko">공항까지요</div><div class="phrase-body"><span class="phrase-orig">Al aeropuerto</span><span class="phrase-pron">알 아에로<strong>뿌</strong>에르또</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Pare aquí" data-lang="es-ES"><div class="phrase-ko">여기 세워주세요</div><div class="phrase-body"><span class="phrase-orig">Pare aquí</span><span class="phrase-pron"><strong>빠</strong>레 아<strong>끼</strong></span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-cat-label">응급</div><div class="phrase-item" data-speak="Ayúdeme, por favor" data-lang="es-ES"><div class="phrase-ko">도와주세요</div><div class="phrase-body"><span class="phrase-orig">Ayúdeme, por favor</span><span class="phrase-pron">아<strong>유</strong>데메, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="¿Dónde está el hospital?" data-lang="es-ES"><div class="phrase-ko">병원 어디예요?</div><div class="phrase-body"><span class="phrase-orig">¿Dónde está el hospital?</span><span class="phrase-pron"><strong>돈</strong>데 에스<strong>따</strong> 엘 오스삐<strong>딸</strong>?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Farmacia" data-lang="es-ES"><div class="phrase-ko">약국</div><div class="phrase-body"><span class="phrase-orig">Farmacia</span><span class="phrase-pron">파르<strong>마</strong>시아</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Me duele" data-lang="es-ES"><div class="phrase-ko">아파요</div><div class="phrase-body"><span class="phrase-orig">Me duele</span><span class="phrase-pron">메 <strong>두</strong>엘레</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Llame a la policía" data-lang="es-ES"><div class="phrase-ko">경찰 불러주세요</div><div class="phrase-body"><span class="phrase-orig">Llame a la policía</span><span class="phrase-pron"><strong>야</strong>메 아 라 뽈리<strong>씨</strong>아</span></div><span class="phrase-speak-hint">🔊</span></div></div><div class="phrase-lang-group" data-lang="pt-PT"><div class="phrase-country">🇵🇹 포르투갈어</div><div class="phrase-cat-label">인사·기본</div><div class="phrase-item" data-speak="Olá" data-lang="pt-PT"><div class="phrase-ko">안녕하세요</div><div class="phrase-body"><span class="phrase-orig">Olá</span><span class="phrase-pron">올<strong>라</strong></span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Bom dia" data-lang="pt-PT"><div class="phrase-ko">좋은 아침</div><div class="phrase-body"><span class="phrase-orig">Bom dia</span><span class="phrase-pron"><strong>봉 디</strong>아</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Boa tarde" data-lang="pt-PT"><div class="phrase-ko">좋은 오후</div><div class="phrase-body"><span class="phrase-orig">Boa tarde</span><span class="phrase-pron"><strong>보</strong>아 <strong>따</strong>르드</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Obrigado" data-lang="pt-PT"><div class="phrase-ko">감사합니다 (남)</div><div class="phrase-body"><span class="phrase-orig">Obrigado</span><span class="phrase-pron">오브리<strong>가</strong>두</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Obrigada" data-lang="pt-PT"><div class="phrase-ko">감사합니다 (여)</div><div class="phrase-body"><span class="phrase-orig">Obrigada</span><span class="phrase-pron">오브리<strong>가</strong>다</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="De nada" data-lang="pt-PT"><div class="phrase-ko">천만에요</div><div class="phrase-body"><span class="phrase-orig">De nada</span><span class="phrase-pron">드 <strong>나</strong>다</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Desculpe" data-lang="pt-PT"><div class="phrase-ko">실례합니다</div><div class="phrase-body"><span class="phrase-orig">Desculpe</span><span class="phrase-pron">데스<strong>꿀</strong>프</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Sim / Não" data-lang="pt-PT"><div class="phrase-ko">네 / 아니요</div><div class="phrase-body"><span class="phrase-orig">Sim / Não</span><span class="phrase-pron"><strong>씽</strong> / <strong>나</strong>웅</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Adeus" data-lang="pt-PT"><div class="phrase-ko">안녕히 가세요</div><div class="phrase-body"><span class="phrase-orig">Adeus</span><span class="phrase-pron">아<strong>데</strong>우스</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Fala inglês?" data-lang="pt-PT"><div class="phrase-ko">영어 할 줄 아세요?</div><div class="phrase-body"><span class="phrase-orig">Fala inglês?</span><span class="phrase-pron"><strong>팔</strong>라 잉<strong>글</strong>레스?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-cat-label">식당</div><div class="phrase-item" data-speak="Mesa para dois, por favor" data-lang="pt-PT"><div class="phrase-ko">2명이요</div><div class="phrase-body"><span class="phrase-orig">Mesa para dois, por favor</span><span class="phrase-pron"><strong>메</strong>자 <strong>빠</strong>라 <strong>도</strong>이스, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="O menu, por favor" data-lang="pt-PT"><div class="phrase-ko">메뉴 주세요</div><div class="phrase-body"><span class="phrase-orig">O menu, por favor</span><span class="phrase-pron">우 메<strong>누</strong>, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Está delicioso" data-lang="pt-PT"><div class="phrase-ko">맛있어요</div><div class="phrase-body"><span class="phrase-orig">Está delicioso</span><span class="phrase-pron">에스<strong>따</strong> 델리시<strong>오</strong>주</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="A conta, por favor" data-lang="pt-PT"><div class="phrase-ko">계산서 주세요</div><div class="phrase-body"><span class="phrase-orig">A conta, por favor</span><span class="phrase-pron">아 <strong>꼰</strong>따, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Aceita cartão?" data-lang="pt-PT"><div class="phrase-ko">카드 되나요?</div><div class="phrase-body"><span class="phrase-orig">Aceita cartão?</span><span class="phrase-pron">아<strong>쎄</strong>이따 까르<strong>떠</strong>웅?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-cat-label">길 찾기·교통</div><div class="phrase-item" data-speak="Onde fica?" data-lang="pt-PT"><div class="phrase-ko">어디에 있어요?</div><div class="phrase-body"><span class="phrase-orig">Onde fica?</span><span class="phrase-pron"><strong>옹</strong>드 <strong>피</strong>까?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Quanto custa?" data-lang="pt-PT"><div class="phrase-ko">얼마예요?</div><div class="phrase-body"><span class="phrase-orig">Quanto custa?</span><span class="phrase-pron"><strong>꽌</strong>뚜 <strong>꾸</strong>스따?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Onde é a casa de banho?" data-lang="pt-PT"><div class="phrase-ko">화장실이 어디예요?</div><div class="phrase-body"><span class="phrase-orig">Onde é a casa de banho?</span><span class="phrase-pron"><strong>옹</strong>드 에 아 <strong>까</strong>자 드 <strong>반</strong>뉴?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Chame um táxi" data-lang="pt-PT"><div class="phrase-ko">택시 불러주세요</div><div class="phrase-body"><span class="phrase-orig">Chame um táxi</span><span class="phrase-pron"><strong>샤</strong>므 웅 <strong>딱</strong>시</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-cat-label">응급</div><div class="phrase-item" data-speak="Ajude-me, por favor" data-lang="pt-PT"><div class="phrase-ko">도와주세요</div><div class="phrase-body"><span class="phrase-orig">Ajude-me, por favor</span><span class="phrase-pron">아<strong>주</strong>드 므, 뽀르 파<strong>보</strong>르</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Onde é o hospital?" data-lang="pt-PT"><div class="phrase-ko">병원 어디예요?</div><div class="phrase-body"><span class="phrase-orig">Onde é o hospital?</span><span class="phrase-pron"><strong>옹</strong>드 에 우 오스삐<strong>딸</strong>?</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Farmácia" data-lang="pt-PT"><div class="phrase-ko">약국</div><div class="phrase-body"><span class="phrase-orig">Farmácia</span><span class="phrase-pron">파르<strong>마</strong>시아</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Dói-me" data-lang="pt-PT"><div class="phrase-ko">아파요</div><div class="phrase-body"><span class="phrase-orig">Dói-me</span><span class="phrase-pron"><strong>도</strong>이 므</span></div><span class="phrase-speak-hint">🔊</span></div><div class="phrase-item" data-speak="Chame a polícia" data-lang="pt-PT"><div class="phrase-ko">경찰 불러주세요</div><div class="phrase-body"><span class="phrase-orig">Chame a polícia</span><span class="phrase-pron"><strong>샤</strong>므 아 뿔<strong>리</strong>시아</span></div><span class="phrase-speak-hint">🔊</span></div></div>
+      </div>
+    </div>
+  </div>
 
   <!-- 상세 모달 -->
   <div id="day-modal" class="modal-overlay" onclick="if(event.target===this)closeModal()">
@@ -1347,7 +1444,7 @@
     }
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') { closeModal(); closePrepModal(); closeFoodModal(); closeCLModal(); }
+      if (e.key === 'Escape') { closeModal(); closePrepModal(); closeFoodModal(); closeCLModal(); closePhrasesModal(); }
     });
 
     // ── 준비 모달 ──
@@ -1369,6 +1466,99 @@
       const m = document.getElementById('food-modal');
       if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
     }
+
+    // ── 간단 회화 모달 ──
+    function openPhrasesModal() {
+      const m = document.getElementById('phrases-modal');
+      if (m) { m.className = 'modal-overlay open'; document.body.style.overflow = 'hidden'; }
+    }
+    function closePhrasesModal() {
+      const m = document.getElementById('phrases-modal');
+      if (m) {
+        m.className = 'modal-overlay'; document.body.style.overflow = '';
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        m.querySelectorAll('.phrase-item.speaking').forEach(el => el.classList.remove('speaking'));
+      }
+    }
+
+    // ── 회화 탭 필터 ──
+    document.querySelectorAll('.phrase-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.phrase-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const body = document.querySelector('.phrases-modal-body');
+        if (body) body.dataset.filter = tab.dataset.filter;
+        // 탭 바꾸면 재생 중인 소리 중단
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        document.querySelectorAll('.phrase-item.speaking').forEach(x => x.classList.remove('speaking'));
+      });
+    });
+
+    // ── 회화 행 클릭 → TTS 재생 ──
+    (function() {
+      if (!('speechSynthesis' in window)) return;
+      // Chrome은 첫 호출 전 voice 목록이 비어있을 수 있어 미리 트리거
+      window.speechSynthesis.getVoices();
+      if (typeof speechSynthesis.onvoiceschanged !== 'undefined') {
+        speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+      }
+
+      // 최적 voice 선택: 정확한 lang 일치 > 같은 언어 prefix > null
+      //   동점일 땐 Enhanced/Premium/Neural > localService > 그 외
+      //   (null/empty 결과는 캐싱하지 않음 — 나중에 voice 로드되면 재조회)
+      const voiceCache = {};
+      function pickVoice(lang) {
+        if (voiceCache[lang]) return voiceCache[lang];
+        const voices = window.speechSynthesis.getVoices();
+        if (!voices.length) return null;
+        const prefix = lang.split('-')[0];
+        const exact  = voices.filter(v => v.lang.replace('_', '-') === lang);
+        const loose  = voices.filter(v => v.lang.replace('_', '-').startsWith(prefix));
+        const pool   = exact.length ? exact : loose;
+        if (!pool.length) return null;
+        const score = v => {
+          let s = 0;
+          if (v.localService) s += 10;
+          if (/enhanced|premium|neural|natural|siri/i.test(v.name)) s += 20;
+          return s;
+        };
+        pool.sort((a, b) => score(b) - score(a));
+        voiceCache[lang] = pool[0];
+        return pool[0];
+      }
+
+      document.querySelectorAll('.phrase-item').forEach(el => {
+        const text = el.dataset.speak;
+        const lang = el.dataset.lang;
+        if (!text || !lang) return;
+        el.addEventListener('click', () => {
+          window.speechSynthesis.cancel();
+          document.querySelectorAll('.phrase-item.speaking').forEach(x => x.classList.remove('speaking'));
+          const u = new SpeechSynthesisUtterance(text);
+          const v = pickVoice(lang);
+          if (v) u.voice = v;
+          u.lang = lang;
+          u.rate = 0.95;
+          u.pitch = 1.0;
+          el.classList.add('speaking');
+          u.onend   = () => el.classList.remove('speaking');
+          u.onerror = () => el.classList.remove('speaking');
+          // Chrome: cancel() 직후 speak() 하면 무음 버그 — 약간 딜레이
+          setTimeout(() => {
+            if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+            window.speechSynthesis.speak(u);
+          }, 80);
+        });
+      });
+
+      // Chrome: 15초 넘는 발화에서 자동 pause 되는 버그 방지
+      setInterval(() => {
+        if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+          window.speechSynthesis.pause();
+          window.speechSynthesis.resume();
+        }
+      }, 10000);
+    })();
 
     // ── 구글 맵 링크 ──
     function addMapsLinks(container, city) {
