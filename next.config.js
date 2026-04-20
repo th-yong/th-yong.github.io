@@ -13,6 +13,7 @@ const nextConfig = {
   // NEXT_PUBLIC_ 접두사가 있어야 클라이언트에서 접근 가능
   // GITHUB_ 접두사는 예약어이므로 REPO_ 접두사 사용
   env: {
+    NEXT_PUBLIC_BASE_PATH: process.env.BASE_PATH || '',
     NEXT_PUBLIC_ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || '',
     NEXT_PUBLIC_REPO_OWNER: process.env.REPO_OWNER || 'th-yong',
     NEXT_PUBLIC_REPO_NAME: process.env.REPO_NAME || 'th-yong.github.io',

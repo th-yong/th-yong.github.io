@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: 'Tae-Hoon Yong - AI Engineer',
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <Navigation />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )
