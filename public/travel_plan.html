@@ -3,7 +3,23 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>2026 유럽 여행</title>
+  <title>2026 유럽 여행 — Spain × Portugal</title>
+  <meta name="description" content="2026년 4월 28일부터 5월 13일까지, 스페인과 포르투갈을 누비는 16일 가족 여행 일정."/>
+  <meta property="og:title" content="2026 유럽 여행 — Spain × Portugal"/>
+  <meta property="og:description" content="마드리드·리스본·신트라·포르투·산세바스티안·빌바오·산티아고를 잇는 16일 여정."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://th-yong.github.io/travel_plan.html"/>
+  <meta property="og:image" content="https://th-yong.github.io/travel-og-image.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:alt" content="2026 유럽 여행 — Spain × Portugal"/>
+  <meta property="og:locale" content="ko_KR"/>
+  <meta property="og:site_name" content="2026 유럽 여행"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="2026 유럽 여행 — Spain × Portugal"/>
+  <meta name="twitter:description" content="마드리드·리스본·신트라·포르투·산세바스티안·빌바오·산티아고를 잇는 16일 여정."/>
+  <meta name="twitter:image" content="https://th-yong.github.io/travel-og-image.png"/>
+  <meta name="twitter:image:alt" content="2026 유럽 여행 — Spain × Portugal"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
@@ -431,6 +447,7 @@
     }
     .quick-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.12); }
     .quick-btn-food   { background: #FFF1F2; color: #BE123C; border: 1.5px solid #FDA4AF; }
+    .quick-btn-bk     { background: #FEF3C7; color: #B45309; border: 1.5px solid #FCD34D; }
     .quick-btn-cl     { background: #F0F9FF; color: #0369A1; border: 1.5px solid #7DD3FC; }
     .quick-btn-phrase { background: #FAF5FF; color: #6D28D9; border: 1.5px solid #C4B5FD; }
 
@@ -453,6 +470,30 @@
     .food-item:last-child { border-bottom: none; }
     .food-emoji { font-size: 1.1rem; flex-shrink: 0; width: 22px; text-align: center; }
     .food-item strong { color: var(--gray-800); }
+
+    /* ── 예매 체크리스트 모달 ── */
+    .bk-modal-body { padding-top: 4px; }
+    .bk-cat-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .03em;
+      color: #B45309;
+      padding: 14px 0 6px; border-top: 1px solid #FEF3C7; margin-top: 4px;
+    }
+    .bk-cat-label:first-child { border-top: none; padding-top: 0; }
+    .bk-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 9px 4px; border-bottom: 1px solid var(--gray-100);
+      cursor: pointer; transition: color .12s;
+    }
+    .bk-item:last-of-type { border-bottom: none; }
+    .bk-item input[type="checkbox"] {
+      width: 16px; height: 16px; accent-color: #F59E0B;
+      flex-shrink: 0; cursor: pointer; margin-top: 3px;
+    }
+    .bk-item-body { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .bk-item-title { font-size: .9rem; font-weight: 600; color: var(--gray-800); }
+    .bk-item-detail { font-size: .78rem; color: var(--gray-500); line-height: 1.45; }
+    .bk-item.checked .bk-item-title { color: var(--gray-400); text-decoration: line-through; }
+    .bk-item.checked .bk-item-detail { color: var(--gray-400); }
 
     /* ── 준비물 체크리스트 모달 ── */
     .cl-modal-body { padding-top: 4px; }
@@ -591,12 +632,13 @@
         <div class="gcal-months"><div class="gcal-month" style="width:138px">4월</div><div class="gcal-vsep"></div><div class="gcal-month" style="width:598px">5월</div></div>
         <div class="gcal-dates"><div class="gcal-date gcal-clickable" onclick="scrollToDay('0428')" style="width:46px"><span class="gcal-num">28</span><span class="gcal-dow">화</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0429')" style="width:46px"><span class="gcal-num">29</span><span class="gcal-dow">수</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0430')" style="width:46px"><span class="gcal-num">30</span><span class="gcal-dow">목</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0501')" style="width:46px"><span class="gcal-num">1</span><span class="gcal-dow">금</span></div><div class="gcal-date gcal-sat gcal-clickable" onclick="scrollToDay('0502')" style="width:46px"><span class="gcal-num">2</span><span class="gcal-dow">토</span><span class="gcal-sticker" data-tip="승준이 합류!">🎉</span></div><div class="gcal-date gcal-sun gcal-clickable" onclick="scrollToDay('0503')" style="width:46px"><span class="gcal-num">3</span><span class="gcal-dow">일</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0504')" style="width:46px"><span class="gcal-num">4</span><span class="gcal-dow">월</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0505')" style="width:46px"><span class="gcal-num">5</span><span class="gcal-dow">화</span><span class="gcal-sticker" data-tip="승준이와 작별">👋</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0506')" style="width:46px"><span class="gcal-num">6</span><span class="gcal-dow">수</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0507')" style="width:46px"><span class="gcal-num">7</span><span class="gcal-dow">목</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0508')" style="width:46px"><span class="gcal-num">8</span><span class="gcal-dow">금</span></div><div class="gcal-date gcal-sat gcal-clickable" onclick="scrollToDay('0509')" style="width:46px"><span class="gcal-num">9</span><span class="gcal-dow">토</span></div><div class="gcal-date gcal-sun gcal-clickable" onclick="scrollToDay('0510')" style="width:46px"><span class="gcal-num">10</span><span class="gcal-dow">일</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0511')" style="width:46px"><span class="gcal-num">11</span><span class="gcal-dow">월</span></div><div class="gcal-date gcal-clickable" onclick="scrollToDay('0512')" style="width:46px"><span class="gcal-num">12</span><span class="gcal-dow">화</span></div><div class="gcal-date"  style="width:46px"><span class="gcal-num">13</span><span class="gcal-dow">수</span></div></div>
       </div>
-      <div class="gcal-row" data-audience="all"><div class="gcal-row-label">공통</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0428', 'all')" style="left:0px;width:46px;border-radius:5px;"><span class="gcal-seg-city">마드리드</span></div><div class="gcal-seg gcal-seg-portugal" onclick="scrollToDay('0429', 'all')" style="left:46px;width:138px;border-radius:5px 0 0 5px;"><span class="gcal-seg-city">리스본</span></div><div class="gcal-seg gcal-seg-portugal" onclick="scrollToDay('0502', 'all')" style="left:184px;width:184px;border-radius:0 5px 5px 0;border-left:none;"><span class="gcal-seg-city">포르투</span></div></div></div><div class="gcal-row" data-audience="parents"><div class="gcal-row-label">부모님</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0505', 'parents')" style="left:322px;width:46px;border-radius:5px 0 0 5px;"><span class="gcal-seg-city">마드리드</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0506', 'parents')" style="left:368px;width:92px;border-radius:0;border-left:none;"><span class="gcal-seg-city">산세바스티안</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0508', 'parents')" style="left:460px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">빌바오</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0509', 'parents')" style="left:506px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">오비에도</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0510', 'parents')" style="left:552px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">산티아고</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0511', 'parents')" style="left:598px;width:92px;border-radius:0 5px 5px 0;border-left:none;"><span class="gcal-seg-city">마드리드</span></div></div></div><div class="gcal-row" data-audience="me"><div class="gcal-row-label">승주</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-me" onclick="scrollToDay('0505', 'me')" style="left:322px;width:138px;border-radius:5px;"><span class="gcal-seg-city">마드리드</span></div></div></div>
+      <div class="gcal-row" data-audience="all"><div class="gcal-row-label">공통</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0428', 'all')" style="left:0px;width:46px;border-radius:5px;"><span class="gcal-seg-city">마드리드</span></div><div class="gcal-seg gcal-seg-portugal" onclick="scrollToDay('0429', 'all')" style="left:46px;width:46px;border-radius:5px 0 0 5px;"><span class="gcal-seg-city">리스본</span></div><div class="gcal-seg gcal-seg-portugal" onclick="scrollToDay('0430', 'all')" style="left:92px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">신트라 투</span></div><div class="gcal-seg gcal-seg-portugal" onclick="scrollToDay('0501', 'all')" style="left:138px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">리스본</span></div><div class="gcal-seg gcal-seg-portugal" onclick="scrollToDay('0502', 'all')" style="left:184px;width:184px;border-radius:0 5px 5px 0;border-left:none;"><span class="gcal-seg-city">포르투</span></div></div></div><div class="gcal-row" data-audience="parents"><div class="gcal-row-label">부모님</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0505', 'parents')" style="left:322px;width:46px;border-radius:5px 0 0 5px;"><span class="gcal-seg-city">마드리드</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0506', 'parents')" style="left:368px;width:92px;border-radius:0;border-left:none;"><span class="gcal-seg-city">산세바스티안</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0508', 'parents')" style="left:460px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">빌바오</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0509', 'parents')" style="left:506px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">오비에도</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0510', 'parents')" style="left:552px;width:46px;border-radius:0;border-left:none;"><span class="gcal-seg-city">산티아고</span></div><div class="gcal-seg gcal-seg-spain" onclick="scrollToDay('0511', 'parents')" style="left:598px;width:92px;border-radius:0 5px 5px 0;border-left:none;"><span class="gcal-seg-city">마드리드</span></div></div></div><div class="gcal-row" data-audience="me"><div class="gcal-row-label">승주</div><div class="gcal-row-track" style="width:736px"><div class="gcal-seg gcal-seg-me" onclick="scrollToDay('0505', 'me')" style="left:322px;width:138px;border-radius:5px;"><span class="gcal-seg-city">마드리드</span></div></div></div>
     </div>
   </div>
 
   <div class="quick-btns">
     <button class="quick-btn quick-btn-food"   onclick="openFoodModal()">🍽️ 먹거리 리스트</button>
+    <button class="quick-btn quick-btn-bk"     onclick="openBKModal()">🎫 예매 체크리스트</button>
     <button class="quick-btn quick-btn-cl"     onclick="openCLModal()">🎒 준비물 체크리스트</button>
     <button class="quick-btn quick-btn-phrase" onclick="openPhrasesModal()">💬 간단 회화</button>
   </div>
@@ -724,38 +766,42 @@
           <span class='date-day'>(목)</span>
         </div>
         <div class="day-meta">
-          <span class="day-city">리스본</span>
+          <span class="day-city">신트라 투어</span>
           
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">호텔 근처 Fábrica Coffee Roasters 브런치 <span class="item-time">09:30</span></span><span class="badge">R. das Portas de Santo Antão 136</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">상 조르즈 성 택시 이동 <span class="item-time">10:30</span></span><span class="badge">언덕 위라 택시 권장 · 6~8€</span></div>
-<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">상 조르즈 성 전망 + 정원 산책 (11:00~12:30)</span><span class="badge">리스본 7개 언덕 최고 전망</span></div>
-<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">알파마 골목 내리막 산책 (12:30~13:30)</span><span class="badge">대성당(Sé)·파두 골목·빨래 널린 좁은 길</span></div>
-<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Cervejaria Ramiro 해산물 <span class="item-time">14:00</span></span><span class="badge">Av. Almirante Reis 1 · 현지인 명소</span></div>
-<div class="item item-activity"><span class="item-icon">🚋</span><span class="item-text">28번 트램 바이샤→시아두 구간 탑승 <span class="item-time">16:30</span></span><span class="badge">시아두까지만 짧게 체험</span></div>
-<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">A Brasileira 카페 에스프레소 <span class="item-time">17:00</span></span><span class="badge">R. Garrett 120 · 1905년 창업 · 페소아 단골</span></div>
-<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Pastelaria Alcôa 파스텔 드 나타 <span class="item-time">17:20</span></span><span class="badge">R. Garrett 37 · A Brasileira 도보 2분</span></div>
-<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">산타주스타 엘리베이터 외관 + 카르무 수도원 광장 <span class="item-time">17:30</span></span><span class="badge">엘리베이터 대기줄 김 · 외관만</span></div>
+        <div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">호텔 조식 겸 간단 브런치 <span class="item-time">08:30</span></span><span class="badge">Fábrica Coffee Roasters · R. das Portas de Santo Antão 136</span></div>
+<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">미팅 장소 도보 이동 <span class="item-time">09:10</span></span><span class="badge">호텔 → Restauradores 광장 Mango 매장 앞 · 도보 7분</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">헤갈레이라 저택 (Quinta da Regaleira)</span><span class="badge">약 1시간 50분 · 4헥타르 신비 정원 · 한국어 가이드</span></div>
+<div class="item item-activity"><span class="item-icon">🌊</span><span class="item-text">절벽 마을 Azenhas do Mar + 현지 로컬 맛집 점심</span><span class="badge">약 2시간 · 1인 25~35€ 카드 가능</span></div>
+<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">호카곶 (Cabo da Roca)</span><span class="badge">약 40분 · 유럽 대륙 최서단 · 대서양 수평선</span></div>
+<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">페나 궁전 (Palácio da Pena) 외부 테라스</span><span class="badge">약 1시간 30분 · 알록달록 외관·정원·뷰포인트</span></div>
+<div class="item item-activity"><span class="item-icon">🚐</span><span class="item-text">리스본 Restauradores 복귀 (19:00~19:30)</span><span class="badge">출발지 동일</span></div>
+<div class="item item-activity"><span class="item-icon">💰</span><span class="item-text">투어비 외 당일 현금: 티켓 1인 30€ (페나) / 33€ (신트라) · 점심 25~35€</span></div>
 <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Clube de Fado 파두 디너 <span class="item-time">20:30</span></span><span class="badge">R. São João da Praça 94 · 알파마</span></div>
-        <div class="day-more">🍴 맛집 3곳  ·  🛍️ 쇼핑 1곳  ·  💡 팁 2개</div>
-        <div class="day-full" hidden><div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">호텔 근처 Fábrica Coffee Roasters 브런치 <span class="item-time">09:30</span></span><span class="badge">R. das Portas de Santo Antão 136</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">상 조르즈 성 택시 이동 <span class="item-time">10:30</span></span><span class="badge">언덕 위라 택시 권장 · 6~8€</span></div>
-<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">상 조르즈 성 전망 + 정원 산책 (11:00~12:30)</span><span class="badge">리스본 7개 언덕 최고 전망</span></div>
-<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">알파마 골목 내리막 산책 (12:30~13:30)</span><span class="badge">대성당(Sé)·파두 골목·빨래 널린 좁은 길</span></div>
-<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Cervejaria Ramiro 해산물 <span class="item-time">14:00</span></span><span class="badge">Av. Almirante Reis 1 · 현지인 명소</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Cervejaria Ramiro — 1956년 창업 · 새우·거위목따개비(percebes)·랍스터 · 안소니 부르댕 극찬</span></div>
-<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">코메르시우 광장 + 아우구스타 개선문 <span class="item-time">16:00</span></span><span class="badge">테주강 뷰 평지</span></div>
-<div class="item item-activity"><span class="item-icon">🚋</span><span class="item-text">28번 트램 바이샤→시아두 구간 탑승 <span class="item-time">16:30</span></span><span class="badge">시아두까지만 짧게 체험</span></div>
-<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">A Brasileira 카페 에스프레소 <span class="item-time">17:00</span></span><span class="badge">R. Garrett 120 · 1905년 창업 · 페소아 단골</span></div>
-<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Pastelaria Alcôa 파스텔 드 나타 <span class="item-time">17:20</span></span><span class="badge">R. Garrett 37 · A Brasileira 도보 2분</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Pastelaria Alcôa — 알코바사 수도원 레시피 · 2019 리스본 최고 파스텔 드 나타 수상</span></div>
-<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">산타주스타 엘리베이터 외관 + 카르무 수도원 광장 <span class="item-time">17:30</span></span><span class="badge">엘리베이터 대기줄 김 · 외관만</span></div>
+        <div class="day-more">🍴 맛집 2곳  ·  🛍️ 쇼핑 1곳  ·  💡 팁 8개</div>
+        <div class="day-full" hidden><div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">마이리얼트립 [한국어 투어] '로맨틱 파라다이스' 신트라 (페나 궁전/헤갈레이라/절벽마을/호카곶)</span></div>
+<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">호텔 조식 겸 간단 브런치 <span class="item-time">08:30</span></span><span class="badge">Fábrica Coffee Roasters · R. das Portas de Santo Antão 136</span></div>
+<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">미팅 장소 도보 이동 <span class="item-time">09:10</span></span><span class="badge">호텔 → Restauradores 광장 Mango 매장 앞 · 도보 7분</span></div>
+<div class="item item-place"><span class="item-icon">📍</span><span class="item-text">집결: Praça dos Restauradores 17-24 · Mango 매장 앞 · 09:30 출발 엄수</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">헤갈레이라 저택 (Quinta da Regaleira)</span><span class="badge">약 1시간 50분 · 4헥타르 신비 정원 · 한국어 가이드</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Quinta da Regaleira — 100년 전 카르발류 몬테이루 별장 · 우물 나선계단·동굴·상징 가득</span></div>
+<div class="item item-activity"><span class="item-icon">🌊</span><span class="item-text">절벽 마을 Azenhas do Mar + 현지 로컬 맛집 점심</span><span class="badge">약 2시간 · 1인 25~35€ 카드 가능</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">절벽 아래 작은 해변에서 대서양 파도 감상 · 점심은 근처 로컬 맛집 (식당명 비공개)</span></div>
+<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">호카곶 (Cabo da Roca)</span><span class="badge">약 40분 · 유럽 대륙 최서단 · 대서양 수평선</span></div>
+<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">페나 궁전 (Palácio da Pena) 외부 테라스</span><span class="badge">약 1시간 30분 · 알록달록 외관·정원·뷰포인트</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">4월부터 내부 가이드 설명 금지 → 외부 테라스·정원만 방문 (뷰포인트·포토스팟 전부 외부)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">날씨 악화(안개·비·태풍·산불) 시 신트라 궁전으로 대체 (전날 저녁 단톡방 안내)</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">신트라 시내 (Centro Histórico de Sintra)</span><span class="badge">약 40분 · 코르크·세라믹 기념품 · 베개빵 맛집</span></div>
+<div class="item item-activity"><span class="item-icon">🚐</span><span class="item-text">리스본 Restauradores 복귀 (19:00~19:30)</span><span class="badge">출발지 동일</span></div>
+<div class="item item-activity"><span class="item-icon">💰</span><span class="item-text">투어비 외 당일 현금: 티켓 1인 30€ (페나) / 33€ (신트라) · 점심 25~35€</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">총 보행 1만보·언덕 포함 · 편한 신발 필수 · 산/바다라 시내보다 기온 낮음 → 따뜻한 외투</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">유선 이어폰 지참 (없으면 일회용 무료 제공) · 생수 무제한 제공</span></div>
 <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Clube de Fado 파두 디너 <span class="item-time">20:30</span></span><span class="badge">R. São João da Praça 94 · 알파마</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Clube de Fado — 리스본 대표 파두 하우스 · 대성당 옆 · 예약 필수</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">파두 공연 21:30~23:00 · 디너+공연 1인 45~60€ · 한국어 메뉴 없으나 영어 가능</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">오늘 평지 도보: 약 1.5시간 (알파마 내리막 + 바이샤 광장 + 시아두)</span></div></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">19:30 복귀 → 호텔 짧은 휴식·환복 후 택시로 알파마 이동 (10~15분)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">파두 공연 21:30~23:00 · 디너+공연 1인 45~60€ · 한국어 메뉴 없으나 영어 가능</span></div></div>
       </div>
     </div>
 
@@ -771,31 +817,50 @@
         </div>
       </div>
       <div class="day-body">
-        <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">벨렘 지구 택시 이동 <span class="item-time">10:00</span></span><span class="badge">리스본 서부 · 약 15분 · 12~15€</span></div>
-<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">제로니무스 수도원 (10:30~12:00)</span><span class="badge">유네스코 · 마누엘 양식 걸작 · 바스쿠 다 가마 묘</span></div>
-<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Pastéis de Belém 본점 <span class="item-time">12:30</span></span><span class="badge">R. Belém 84~92 · 1837년 창업</span></div>
-<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">벨렘 탑 외관 감상 <span class="item-time">14:00</span></span><span class="badge">테주강변 · 대항해시대 출발점 · 외부 촬영만 (내부 좁은 계단)</span></div>
-<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">발견 기념비 (Padrão dos Descobrimentos) <span class="item-time">14:30</span></span><span class="badge">벨렘 탑 도보 5분 · 대항해 영웅 조각</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">LX Factory 이동 <span class="item-time">15:30</span></span><span class="badge">구 섬유공장 리노베이션 단지 · 벨렘에서 택시 7분</span></div>
-<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">Ler Devagar 서점 카페 <span class="item-time">16:00</span></span><span class="badge">LX Factory 내 · 철제 구조물 인쇄기 전시</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 휴식 <span class="item-time">18:00</span></span></div>
-<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Time Out Market Ribeira <span class="item-time">20:30</span></span><span class="badge">Mercado da Ribeira · 리스본 스타 셰프 한자리</span></div>
-        <div class="day-more">🍴 맛집 2곳  ·  🛍️ 쇼핑 1곳  ·  💡 팁 4개</div>
-        <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">벨렘 지구 택시 이동 <span class="item-time">10:00</span></span><span class="badge">리스본 서부 · 약 15분 · 12~15€</span></div>
-<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">제로니무스 수도원 (10:30~12:00)</span><span class="badge">유네스코 · 마누엘 양식 걸작 · 바스쿠 다 가마 묘</span></div>
-<div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">사전 온라인 예매 권장 (현장 줄 40~60분) · 일반 12€</span></div>
-<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Pastéis de Belém 본점 <span class="item-time">12:30</span></span><span class="badge">R. Belém 84~92 · 1837년 창업</span></div>
+        <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">벨렘 지구 택시 이동 <span class="item-time">08:30</span></span><span class="badge">약 15분 · 12~15€ · Pastéis de Belém 오픈 직후 도착</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Pastéis de Belém 아침 브런치 (08:45~09:20)</span><span class="badge">R. Belém 84~92 · 1837년 창업 · 오픈 직후 대기 거의 없음</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">제로니무스 수도원 (09:30~11:00)</span><span class="badge">유네스코 · 마누엘 양식 걸작 · 바스쿠 다 가마 묘 · 오픈 09:30</span></div>
+<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">벨렘 탑 외관 감상 (11:00~11:30)</span><span class="badge">테주강변 · 대항해시대 출발점 · 외부 촬영만 (내부 좁은 계단)</span></div>
+<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">발견 기념비 (Padrão dos Descobrimentos) (11:30~12:00)</span><span class="badge">벨렘 탑 도보 5분 · 대항해 영웅 조각</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">Cais do Sodré 이동 <span class="item-time">12:15</span></span><span class="badge">벨렘→Time Out Market 약 10분</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Time Out Market Ribeira (12:30~13:30)</span><span class="badge">Mercado da Ribeira · 40여 개 미쉐린 셰프 부스</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">상 조르즈 성 택시 이동 <span class="item-time">13:45</span></span><span class="badge">Cais do Sodré→성 약 15분</span></div>
+<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">상 조르즈 성 전망 + 정원 산책 (14:00~15:30)</span><span class="badge">리스본 7개 언덕 최고 전망</span></div>
+<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">알파마 골목 내리막 산책 (15:30~16:30)</span><span class="badge">대성당(Sé)·파두 골목·빨래 널린 좁은 길</span></div>
+<div class="item item-activity"><span class="item-icon">🚋</span><span class="item-text">28번 트램 바이샤→시아두 구간 탑승 <span class="item-time">17:00</span></span><span class="badge">시아두까지만 짧게 체험</span></div>
+<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">A Brasileira 카페 에스프레소 <span class="item-time">17:30</span></span><span class="badge">R. Garrett 120 · 1905년 창업 · 페소아 단골</span></div>
+<div class="item item-activity"><span class="item-icon">📚</span><span class="item-text">Livraria Bertrand Chiado <span class="item-time">17:45</span></span><span class="badge">R. Garrett 73 · A Brasileira 도보 1분 · 무료 입장</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Pastelaria Alcôa 파스텔 드 나타 <span class="item-time">18:00</span></span><span class="badge">R. Garrett 37 · Bertrand 도보 1분</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">산타주스타 엘리베이터 외관 + 카르무 수도원 광장 <span class="item-time">18:15</span></span><span class="badge">외관 사진만·카르무 광장 경유</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 휴식 <span class="item-time">18:30</span></span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Cervejaria Ramiro 해산물 <span class="item-time">20:30</span></span><span class="badge">Av. Almirante Reis 1 · 예약 필수 (웨이팅 심함)</span></div>
+        <div class="day-more">🍴 맛집 5곳  ·  🛍️ 쇼핑 1곳  ·  💡 팁 4개</div>
+        <div class="day-full" hidden><div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">벨렘 지구 택시 이동 <span class="item-time">08:30</span></span><span class="badge">약 15분 · 12~15€ · Pastéis de Belém 오픈 직후 도착</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Pastéis de Belém 아침 브런치 (08:45~09:20)</span><span class="badge">R. Belém 84~92 · 1837년 창업 · 오픈 직후 대기 거의 없음</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Pastéis de Belém — 원조 에그타르트 · 수도원 비법 레시피 · 하루 2만 개 판매</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">매장 내 식사 공간 넓음 · 에그타르트 외 간단한 수프·샌드위치 가능</span></div>
-<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">벨렘 탑 외관 감상 <span class="item-time">14:00</span></span><span class="badge">테주강변 · 대항해시대 출발점 · 외부 촬영만 (내부 좁은 계단)</span></div>
-<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">발견 기념비 (Padrão dos Descobrimentos) <span class="item-time">14:30</span></span><span class="badge">벨렘 탑 도보 5분 · 대항해 영웅 조각</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">LX Factory 이동 <span class="item-time">15:30</span></span><span class="badge">구 섬유공장 리노베이션 단지 · 벨렘에서 택시 7분</span></div>
-<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">Ler Devagar 서점 카페 <span class="item-time">16:00</span></span><span class="badge">LX Factory 내 · 철제 구조물 인쇄기 전시</span></div>
-<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">LX Factory 감성 숍 산책 (16:00~17:30)</span><span class="badge">코르크 공예·도자기·빈티지 · 평지</span></div>
-<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 휴식 <span class="item-time">18:00</span></span></div>
-<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Time Out Market Ribeira <span class="item-time">20:30</span></span><span class="badge">Mercado da Ribeira · 리스본 스타 셰프 한자리</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Time Out Market — 40여 개 미쉐린 셰프·맛집 부스 · 원하는 메뉴 선택 자유</span></div>
-<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">오늘 평지 도보: 약 1.5시간 (수도원 내부 + 벨렘 강변 + LX Factory)</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">제로니무스 수도원 (09:30~11:00)</span><span class="badge">유네스코 · 마누엘 양식 걸작 · 바스쿠 다 가마 묘 · 오픈 09:30</span></div>
+<div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">사전 온라인 예매 권장 (현장 줄 40~60분) · 일반 12€</span></div>
+<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">벨렘 탑 외관 감상 (11:00~11:30)</span><span class="badge">테주강변 · 대항해시대 출발점 · 외부 촬영만 (내부 좁은 계단)</span></div>
+<div class="item item-activity"><span class="item-icon">🌅</span><span class="item-text">발견 기념비 (Padrão dos Descobrimentos) (11:30~12:00)</span><span class="badge">벨렘 탑 도보 5분 · 대항해 영웅 조각</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">Cais do Sodré 이동 <span class="item-time">12:15</span></span><span class="badge">벨렘→Time Out Market 약 10분</span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Time Out Market Ribeira (12:30~13:30)</span><span class="badge">Mercado da Ribeira · 40여 개 미쉐린 셰프 부스</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Time Out Market — 원하는 메뉴 자유 선택 · 가벼운 해산물·고기밥·디저트 · 평점 높음</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">상 조르즈 성 택시 이동 <span class="item-time">13:45</span></span><span class="badge">Cais do Sodré→성 약 15분</span></div>
+<div class="item item-activity"><span class="item-icon">🏰</span><span class="item-text">상 조르즈 성 전망 + 정원 산책 (14:00~15:30)</span><span class="badge">리스본 7개 언덕 최고 전망</span></div>
+<div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">알파마 골목 내리막 산책 (15:30~16:30)</span><span class="badge">대성당(Sé)·파두 골목·빨래 널린 좁은 길</span></div>
+<div class="item item-shopping"><span class="item-icon">🛍️</span><span class="item-text">코메르시우 광장 + 아우구스타 개선문 (16:30~17:00)</span><span class="badge">테주강 뷰 평지</span></div>
+<div class="item item-activity"><span class="item-icon">🚋</span><span class="item-text">28번 트램 바이샤→시아두 구간 탑승 <span class="item-time">17:00</span></span><span class="badge">시아두까지만 짧게 체험</span></div>
+<div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">A Brasileira 카페 에스프레소 <span class="item-time">17:30</span></span><span class="badge">R. Garrett 120 · 1905년 창업 · 페소아 단골</span></div>
+<div class="item item-activity"><span class="item-icon">📚</span><span class="item-text">Livraria Bertrand Chiado <span class="item-time">17:45</span></span><span class="badge">R. Garrett 73 · A Brasileira 도보 1분 · 무료 입장</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Livraria Bertrand Chiado — 1732년 창업 · 세계에서 가장 오래된 영업 서점 (기네스 등재)</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Pastelaria Alcôa 파스텔 드 나타 <span class="item-time">18:00</span></span><span class="badge">R. Garrett 37 · Bertrand 도보 1분</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Pastelaria Alcôa — 알코바사 수도원 레시피 · 2019 리스본 최고 파스텔 드 나타 수상</span></div>
+<div class="item item-activity"><span class="item-icon">🏛️</span><span class="item-text">산타주스타 엘리베이터 외관 + 카르무 수도원 광장 <span class="item-time">18:15</span></span><span class="badge">외관 사진만·카르무 광장 경유</span></div>
+<div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">호텔 복귀 휴식 <span class="item-time">18:30</span></span></div>
+<div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Cervejaria Ramiro 해산물 <span class="item-time">20:30</span></span><span class="badge">Av. Almirante Reis 1 · 예약 필수 (웨이팅 심함)</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Cervejaria Ramiro — 1956년 창업 · 새우·거위목따개비(percebes)·랍스터 · 안소니 부르댕 극찬</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">오늘 평지 도보: 약 2.5시간 (벨렘 + 알파마 내리막 + 시아두 + 바이샤)</span></div>
 <div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">5/1 포르투갈 노동절 · 일부 상점·박물관 단축 영업 가능 (수도원은 정상 운영)</span></div></div>
       </div>
     </div>
@@ -895,24 +960,26 @@
 <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">상 벤투 역 이동 <span class="item-time">10:00</span></span><span class="badge">가이아→포르투 시내 · 택시 10분 · 8~10€</span></div>
 <div class="item item-activity"><span class="item-icon">🚉</span><span class="item-text">상 벤투 역 아줄레주 감상 (10:15~10:45)</span><span class="badge">2만 개 청백 타일 벽화 · 포르투갈 역사</span></div>
 <div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">포르투 대성당(Sé) 광장 + 전망 <span class="item-time">11:00</span></span><span class="badge">상벤투 도보 5분 · 도우루강 조망</span></div>
-<div class="item item-activity"><span class="item-icon">📚</span><span class="item-text">렐루 서점 외관 + 주변 산책 <span class="item-time">11:30</span></span><span class="badge">내부는 대기 길어 외관과 Carmo 성당만</span></div>
-<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Manteigaria Galeria de Paris 파스텔 드 나타 <span class="item-time">11:50</span></span><span class="badge">R. Galeria de Paris 31 · 렐루 도보 2분</span></div>
-<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">클레리구스 탑 광장 <span class="item-time">12:00</span></span><span class="badge">외관 · 75m 바로크 종탑 (계단 225개라 외관만)</span></div>
+<div class="item item-activity"><span class="item-icon">📚</span><span class="item-text">Livraria Lello 내부 관람 (11:30~12:15)</span><span class="badge">네오고딕 붉은 나선계단·스테인드글라스 천장</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Manteigaria Galeria de Paris 파스텔 드 나타 <span class="item-time">12:20</span></span><span class="badge">R. Galeria de Paris 31 · 렐루 도보 2분</span></div>
+<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">클레리구스 탑 광장 <span class="item-time">12:35</span></span><span class="badge">외관 · 75m 바로크 종탑 (계단 225개라 외관만)</span></div>
 <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Cafeína <span class="item-time">13:30</span></span><span class="badge">R. do Padrão 100 · 현지인 추천 브런치+비스트로</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">볼사 궁전 외관 + 엔히크 왕자 광장 <span class="item-time">15:00</span></span><span class="badge">19세기 상공회의소 · 화려한 외관</span></div>
 <div class="item item-activity"><span class="item-icon">⛵</span><span class="item-text">도우루 강 6개 다리 크루즈 (16:00~17:00)</span><span class="badge">50분 유람선 · 15~20€ · 평지 대체 휴식</span></div>
 <div class="item item-food"><span class="item-icon">🍷</span><span class="item-text">가이아 와이너리 거리 산책 <span class="item-time">17:30</span></span><span class="badge">칼렘·샌드만·테일러 간판 감상 · 호텔 복귀</span></div>
 <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">저녁 — Flor dos Congregados 프란세지냐 <span class="item-time">20:00</span></span><span class="badge">Travessa dos Congregados 11</span></div>
-        <div class="day-more">🍴 맛집 4곳  ·  💡 팁 3개</div>
+        <div class="day-more">🍴 맛집 4곳  ·  💡 팁 5개</div>
         <div class="day-full" hidden><div class="item item-activity"><span class="item-icon">☕</span><span class="item-text">호텔 조식 <span class="item-time">08:30</span></span><span class="badge">레벨로 호텔 포함</span></div>
 <div class="item item-transport"><span class="item-icon">🚕</span><span class="item-text">상 벤투 역 이동 <span class="item-time">10:00</span></span><span class="badge">가이아→포르투 시내 · 택시 10분 · 8~10€</span></div>
 <div class="item item-activity"><span class="item-icon">🚉</span><span class="item-text">상 벤투 역 아줄레주 감상 (10:15~10:45)</span><span class="badge">2만 개 청백 타일 벽화 · 포르투갈 역사</span></div>
 <div class="item item-activity"><span class="item-icon">⛪</span><span class="item-text">포르투 대성당(Sé) 광장 + 전망 <span class="item-time">11:00</span></span><span class="badge">상벤투 도보 5분 · 도우루강 조망</span></div>
-<div class="item item-activity"><span class="item-icon">📚</span><span class="item-text">렐루 서점 외관 + 주변 산책 <span class="item-time">11:30</span></span><span class="badge">내부는 대기 길어 외관과 Carmo 성당만</span></div>
-<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Livraria Lello — 해리포터 영감 서점 · 내부 예약 시 €5·대기 1시간+ · 외관만 추천</span></div>
-<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Manteigaria Galeria de Paris 파스텔 드 나타 <span class="item-time">11:50</span></span><span class="badge">R. Galeria de Paris 31 · 렐루 도보 2분</span></div>
+<div class="item item-activity"><span class="item-icon">📚</span><span class="item-text">Livraria Lello 내부 관람 (11:30~12:15)</span><span class="badge">네오고딕 붉은 나선계단·스테인드글라스 천장</span></div>
+<div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Livraria Lello — 1906년 창업 · 해리포터 영감 · 세계에서 가장 아름다운 서점 중 하나</span></div>
+<div class="item item-tip"><span class="item-icon">🎫</span><span class="item-text">공식 홈페이지(livrarialello.pt) 사전 예매 필수 · 입장 €8 (책 구매 시 €5 차감)</span></div>
+<div class="item item-tip"><span class="item-icon">💡</span><span class="item-text">시간대 지정 예매로 대기 최소화 · 내부 사진 촬영 허용 · 혼잡 대비 여유 있게</span></div>
+<div class="item item-food"><span class="item-icon">🍪</span><span class="item-text">Manteigaria Galeria de Paris 파스텔 드 나타 <span class="item-time">12:20</span></span><span class="badge">R. Galeria de Paris 31 · 렐루 도보 2분</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Manteigaria Galeria de Paris — 렐루/클레리구스 사이 · 테이크아웃 편한 바 형태</span></div>
-<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">클레리구스 탑 광장 <span class="item-time">12:00</span></span><span class="badge">외관 · 75m 바로크 종탑 (계단 225개라 외관만)</span></div>
+<div class="item item-activity"><span class="item-icon">🗼</span><span class="item-text">클레리구스 탑 광장 <span class="item-time">12:35</span></span><span class="badge">외관 · 75m 바로크 종탑 (계단 225개라 외관만)</span></div>
 <div class="item item-food"><span class="item-icon">🍽️</span><span class="item-text">점심 — Cafeína <span class="item-time">13:30</span></span><span class="badge">R. do Padrão 100 · 현지인 추천 브런치+비스트로</span></div>
 <div class="item item-restaurant"><span class="item-icon">🌟</span><span class="item-text">Cafeína — 포르투 모던 포르투갈 요리 · 바칼라우·스테이크 · 평점 4.6</span></div>
 <div class="item item-activity"><span class="item-icon">🚶</span><span class="item-text">볼사 궁전 외관 + 엔히크 왕자 광장 <span class="item-time">15:00</span></span><span class="badge">19세기 상공회의소 · 화려한 외관</span></div>
@@ -1432,6 +1499,26 @@
     </div>
   </div>
   
+  <div id="bk-modal" class="modal-overlay" onclick="if(event.target===this)closeBKModal()">
+    <div class="modal-box">
+      <div class="modal-head" style="background:#FEF3C7;border-bottom-color:#FCD34D;">
+        <div class="modal-date-block">
+          <div class="modal-date-row">
+            <span class="modal-date-main">🎫 예매 체크리스트</span>
+          </div>
+          <div class="modal-meta-row" style="color:#B45309;font-size:.8rem;margin-top:4px;">
+            예매·예약 완료한 항목은 체크하세요 (자동 저장)
+            <button onclick="resetBK()" style="margin-left:10px;font-size:.72rem;padding:1px 8px;border-radius:12px;border:1px solid #FCD34D;background:transparent;color:#B45309;cursor:pointer;">초기화</button>
+          </div>
+        </div>
+        <button class="modal-close" onclick="closeBKModal()">×</button>
+      </div>
+      <div class="modal-body bk-modal-body">
+        <div class="bk-cat-label">🎫 필수 사전 예매</div><label class="bk-item"><input type="checkbox" data-key="Livraria Lello 입장권" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Livraria Lello 입장권</div><div class="bk-item-detail">5/4 11:30 슬롯 · livrarialello.pt · €8 (책 구매시 €5 차감)</div></div></label><label class="bk-item"><input type="checkbox" data-key="제로니무스 수도원 입장권" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">제로니무스 수도원 입장권</div><div class="bk-item-detail">5/1 09:30 슬롯 · 일반 €12 · 현장 대기 40~60분</div></div></label><label class="bk-item"><input type="checkbox" data-key="대성당 해변(Praia das Catedrais)" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">대성당 해변(Praia das Catedrais)</div><div class="bk-item-detail">5/10 방문 · xuntadegalicia.gal 환경 보호 인원 제한</div></div></label><label class="bk-item"><input type="checkbox" data-key="렌터카" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">렌터카</div><div class="bk-item-detail">5/6 마드리드 공항 픽업 · 본인 명의 신용카드 필수</div></div></label><div class="bk-cat-label">🥘 식당 예약</div><label class="bk-item"><input type="checkbox" data-key="Solar dos Presuntos" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Solar dos Presuntos</div><div class="bk-item-detail">4/29 20:30 리스본 · R. das Portas de Santo Antão 150 · 예약 권장</div></div></label><label class="bk-item"><input type="checkbox" data-key="Clube de Fado (파두 디너)" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Clube de Fado (파두 디너)</div><div class="bk-item-detail">4/30 20:30 알파마 · R. São João da Praça 94 · 예약 필수</div></div></label><label class="bk-item"><input type="checkbox" data-key="Cervejaria Ramiro" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Cervejaria Ramiro</div><div class="bk-item-detail">5/1 20:30 리스본 · Av. Almirante Reis 1 · 웨이팅 심함 예약 필수</div></div></label><label class="bk-item"><input type="checkbox" data-key="Casa de Fado 포르투" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Casa de Fado 포르투</div><div class="bk-item-detail">5/3 20:30 · R. de São João Novo 11 · 예약 필수</div></div></label><label class="bk-item"><input type="checkbox" data-key="Ganbara (산세바스티안)" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Ganbara (산세바스티안)</div><div class="bk-item-detail">5/7 저녁 · 핀초 명가 · 예약 필수</div></div></label><label class="bk-item"><input type="checkbox" data-key="Kaia Kaipe (게타리아)" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Kaia Kaipe (게타리아)</div><div class="bk-item-detail">5/8 12:30 · 숯불 통생선구이 · 예약 필수</div></div></label><label class="bk-item"><input type="checkbox" data-key="La Cabaña Argentina (승주)" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">La Cabaña Argentina (승주)</div><div class="bk-item-detail">5/6 21:00 마드리드 · C. Ventura de la Vega 10 · 예약 권장</div></div></label><div class="bk-cat-label">🚐 투어·체험 예약</div><label class="bk-item"><input type="checkbox" data-key="신트라 한국어 투어" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">신트라 한국어 투어</div><div class="bk-item-detail">4/30 09:30 Mango(Praça dos Restauradores) 집결 · 마이리얼트립</div></div></label><label class="bk-item"><input type="checkbox" data-key="Grahams 와이너리 한국어 투어" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Graham's 와이너리 한국어 투어</div><div class="bk-item-detail">5/3 09:50 · Rua do Agro 175 · 현금 결제 필수</div></div></label><label class="bk-item"><input type="checkbox" data-key="도우루강 6개 다리 크루즈" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">도우루강 6개 다리 크루즈</div><div class="bk-item-detail">5/4 16:00 히베이라 선착장 · Douro Azul/Tomaz do Douro · 50분</div></div></label><div class="bk-cat-label">💵 당일 현금 준비</div><label class="bk-item"><input type="checkbox" data-key="신트라 투어 티켓비" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">신트라 투어 티켓비</div><div class="bk-item-detail">1인 30€ (페나 궁전) 또는 33€ (신트라 궁전) · 현금만</div></div></label><label class="bk-item"><input type="checkbox" data-key="신트라 투어 점심값" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">신트라 투어 점심값</div><div class="bk-item-detail">1인 25~35€ · 카드 결제 가능</div></div></label><label class="bk-item"><input type="checkbox" data-key="Grahams 와이너리 시음비" onchange="saveBK(this)"/><div class="bk-item-body"><div class="bk-item-title">Graham's 와이너리 시음비</div><div class="bk-item-detail">1인 55€ (베이쥬포르투) 또는 70€ (제나's 초이스) · 현금만</div></div></label>
+      </div>
+    </div>
+  </div>
+  
   <div id="phrases-modal" class="modal-overlay" onclick="if(event.target===this)closePhrasesModal()">
     <div class="modal-box">
       <div class="modal-head phrases-modal-head" style="background:#FAF5FF;border-bottom-color:#C4B5FD;">
@@ -1742,6 +1829,43 @@
           });
         });
       });
+    }
+
+    // ── 예매 체크리스트 모달 ──
+    const BK_KEY = 'travel-bookings-2026';
+
+    function loadBK() {
+      try { return JSON.parse(localStorage.getItem(BK_KEY) || '{}'); } catch { return {}; }
+    }
+    function saveBK(input) {
+      const saved = loadBK();
+      saved[input.dataset.key] = input.checked;
+      localStorage.setItem(BK_KEY, JSON.stringify(saved));
+      input.closest('.bk-item').classList.toggle('checked', input.checked);
+    }
+    function resetBK() {
+      if (!confirm('예매 체크리스트를 초기화할까요?')) return;
+      localStorage.removeItem(BK_KEY);
+      document.querySelectorAll('#bk-modal input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+        cb.closest('.bk-item').classList.remove('checked');
+      });
+    }
+    function openBKModal() {
+      const m = document.getElementById('bk-modal');
+      if (!m) return;
+      const saved = loadBK();
+      m.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        const checked = !!saved[cb.dataset.key];
+        cb.checked = checked;
+        cb.closest('.bk-item').classList.toggle('checked', checked);
+      });
+      m.className = 'modal-overlay open';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBKModal() {
+      const m = document.getElementById('bk-modal');
+      if (m) { m.className = 'modal-overlay'; document.body.style.overflow = ''; }
     }
 
     // ── 준비물 체크리스트 모달 ──
