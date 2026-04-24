@@ -66,10 +66,16 @@
         --section-how: #e8f4ef;
         --section-faq: #e4eae7;
         --section-footer: #dbe3e0;
+        --nav-h: 64px;
+        --section-y: 48px;
       }
 
       * { box-sizing: border-box; }
       html, body { margin: 0; padding: 0; }
+      /* sticky 네비와 맞춤: #top·#sources 등 앵커 시 제목이 헤더에 가리지 않음 */
+      html {
+        scroll-padding-top: var(--nav-h);
+      }
 
       body {
         font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -108,7 +114,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 64px;
+        height: var(--nav-h);
       }
       .brand {
         display: flex;
@@ -168,7 +174,7 @@
 
       /* ───── Hero ───── */
       .hero {
-        padding: 96px 0 72px;
+        padding: 72px 0 var(--section-y);
         position: relative;
       }
       .pill {
@@ -185,7 +191,8 @@
       }
       .hero h1 {
         font-family: "Manrope", sans-serif;
-        font-size: clamp(40px, 6vw, 64px);
+        /* 좁은 폭에서 두 번째 줄이 한 줄에 들어가게 하되, 모바일은 한 단계만 키움 */
+        font-size: clamp(20px, 5.2vw + 12px, 62px);
         line-height: 1.05;
         font-weight: 800;
         margin: 18px 0 20px;
@@ -221,7 +228,7 @@
 
       /* ───── Stats / Marquee ───── */
       .stats {
-        margin-top: 64px;
+        margin-top: 48px;
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
@@ -245,7 +252,7 @@
 
       /* ───── Newsroom Animation ───── */
       .newsroom-section {
-        padding: 72px 0;
+        padding: var(--section-y) 0;
         background: var(--section-newsroom);
       }
 
@@ -446,7 +453,7 @@
       }
 
       /* ───── Section ───── */
-      section { padding: 72px 0; }
+      section { padding: var(--section-y) 0; }
       .section-bg-sources {
         background: var(--section-sources);
         box-shadow:
@@ -459,6 +466,16 @@
       .section-bg-preview {
         background: var(--section-preview);
         border-block: 1px solid rgba(226, 236, 232, 0.9);
+      }
+      /* 톤온톤 배경 위 고스트 버튼이 묻히지 않도록 */
+      .section-bg-preview .btn-ghost {
+        background: var(--surface-raised);
+        border-color: rgba(47, 107, 94, 0.28);
+        box-shadow: var(--shadow-sm);
+      }
+      .section-bg-preview .btn-ghost:hover {
+        background: #fff;
+        border-color: var(--primary);
       }
       .section-bg-how {
         background: var(--section-how);
