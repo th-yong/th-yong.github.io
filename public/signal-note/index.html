@@ -705,6 +705,7 @@
         width: 320px;
         height: 320px;
         background: radial-gradient(closest-side, rgba(255, 255, 255, 0.25), transparent);
+        pointer-events: none;
       }
       .cta-block h2 {
         font-family: "Manrope", sans-serif;
@@ -833,8 +834,8 @@
       }
       .sub-input-row button[type="submit"]:hover { background: #245a4e; }
       .sub-input-row button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
-      .sub-feedback { font-size: 13px; min-height: 20px; margin: 4px 0 0; color: #2f6b5e; }
-      .sub-feedback.error { color: #dc2626; }
+      .sub-feedback { font-size: 13px; min-height: 20px; margin: 4px 0 0; color: rgba(255,255,255,0.9); }
+      .sub-feedback.error { color: #fca5a5; }
     </style>
   </head>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
