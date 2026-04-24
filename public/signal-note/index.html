@@ -689,7 +689,7 @@
       .cta-block {
         margin: 32px auto 0;
         max-width: 720px;
-        padding: 40px 32px;
+        padding: 40px 32px 20px;
         text-align: center;
         background: linear-gradient(135deg, rgba(47, 107, 94, 0.96), rgba(99, 227, 185, 0.9));
         color: #fff;
@@ -784,8 +784,60 @@
         direction: ltr;
         -webkit-font-smoothing: antialiased;
       }
+      .sub-toggle {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .sub-toggle-btn {
+        flex: 1;
+        padding: 10px 0;
+        border: 2px solid rgba(255,255,255,0.35);
+        border-radius: 8px;
+        background: rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.65);
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
+      }
+      .sub-toggle-btn.active {
+        background: #fff;
+        color: #2f6b5e;
+        border-color: #fff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      }
+      .sub-form { display: flex; flex-direction: column; gap: 10px; }
+      .sub-input-row { display: flex; gap: 8px; }
+      .sub-input-row input[type="email"] {
+        flex: 1;
+        padding: 11px 14px;
+        border: 1.5px solid #cfe4dd;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      .sub-input-row input[type="email"]:focus { border-color: #2f6b5e; }
+      .sub-input-row button[type="submit"] {
+        padding: 11px 20px;
+        background: #2f6b5e;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.15s;
+      }
+      .sub-input-row button[type="submit"]:hover { background: #245a4e; }
+      .sub-input-row button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+      .sub-feedback { font-size: 13px; min-height: 20px; margin: 4px 0 0; color: #2f6b5e; }
+      .sub-feedback.error { color: #dc2626; }
     </style>
   </head>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <body>
     <!-- Nav -->
     <nav class="nav">
@@ -803,8 +855,7 @@
         </div>
         <a
           class="btn btn-primary"
-          href="https://docs.google.com/forms/d/e/1FAIpQLScfnXOVm6pOCE8rFY6ZQr0iDrN_hun8jYwmUXCFC34ogSZ3KA/viewform"
-         target="_blank" rel="noopener">
+          href="#subscribe">
           <span class="material-symbols-outlined">mail</span>
           구독 신청
         </a>
@@ -829,8 +880,7 @@
         <div class="hero-cta">
           <a
             class="btn btn-primary"
-            href="https://docs.google.com/forms/d/e/1FAIpQLScfnXOVm6pOCE8rFY6ZQr0iDrN_hun8jYwmUXCFC34ogSZ3KA/viewform"
-           target="_blank" rel="noopener">
+            href="#subscribe">
             <span class="material-symbols-outlined">send</span> 구독 신청
           </a>
           <a class="btn btn-ghost" href="#preview">
@@ -1127,9 +1177,9 @@
         <p class="section-sub">계정 가입, 신용카드, 추적 — 전부 없습니다. 메일 한 통이면 끝.</p>
         <div class="steps">
           <div class="step">
-            <h4>1. Google 폼 제출</h4>
+            <h4>1. 이메일 입력</h4>
             <p>
-              아래 버튼을 눌러 Google 폼에 본인 이메일 주소만 적어 제출해 주세요.
+              아래 폼에 이메일 주소만 적고 구독하기를 눌러 주세요.
               이름·회사는 묻지 않습니다.
             </p>
             <code>email: you@example.com</code>
@@ -1148,15 +1198,19 @@
         </div>
 
         <div class="cta-block" id="subscribe">
-          <h2>지금 구독 신청</h2>
-          <p>이름·회사 안 물어봐요. 이메일 주소면 충분합니다.</p>
-          <p style="color:#64748b;font-size:13px;margin-top:-6px;">신청 후 확인 메일이 안 보이면 <strong>스팸함/프로모션 탭</strong>을 확인해 주세요.</p>
-          <a
-            class="btn btn-primary"
-            href="https://docs.google.com/forms/d/e/1FAIpQLScfnXOVm6pOCE8rFY6ZQr0iDrN_hun8jYwmUXCFC34ogSZ3KA/viewform"
-           target="_blank" rel="noopener">
-            <span class="material-symbols-outlined">send</span> Google 폼으로 구독 신청
-          </a>
+          <div class="sub-toggle" id="subToggle">
+            <button type="button" class="sub-toggle-btn active" data-mode="subscribe">구독하기</button>
+            <button type="button" class="sub-toggle-btn" data-mode="unsubscribe">해지하기</button>
+          </div>
+          <form id="subForm" class="sub-form">
+            <div class="sub-input-row">
+              <input type="email" id="subEmail" name="email" placeholder="you@example.com" autocomplete="email" required />
+              <button type="submit" id="subSubmit">구독하기</button>
+            </div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADCij7Euwj7w49Ld" data-theme="light" data-size="flexible"></div>
+          </form>
+          <p id="subFeedback" class="sub-feedback" aria-live="polite"></p>
+          <p style="color:rgba(255,255,255,0.75);font-size:12px;margin-top:8px;">구독 후 스팸함/프로모션 탭을 확인해 주세요.</p>
         </div>
       </div>
     </section>
@@ -1179,7 +1233,7 @@
         </details>
         <details>
           <summary>해지는 어떻게 하나요?</summary>
-          <p>메일 푸터의 "unsubscribe" 링크 또는 <a href="https://docs.google.com/forms/d/e/1FAIpQLScCXS6q0kZ1LATicTmUqHuSrnywUJ4KGAE9GCz7Lh29hUPjmw/viewform" target="_blank" rel="noopener">해지 Google 폼</a>으로 이메일을 제출하시면, 확인 메일의 버튼 클릭과 함께 즉시 목록에서 제거됩니다.</p>
+          <p>이 페이지 상단의 <a href="#subscribe" style="color:#2f6b5e;">해지 폼</a>에 이메일을 입력하거나, 메일 푸터의 "Unsubscribe" 링크를 클릭하면 즉시 수신자 목록에서 제거됩니다.</p>
         </details>
         <details>
           <summary>키워드를 개인별로 바꿀 수 있나요?</summary>
@@ -1214,9 +1268,67 @@
           <a href="./archive/index.html">아카이브</a>
           <a href="https://github.com/th-yong/ai-tech-daily" target="_blank" rel="noopener">GitHub</a>
           <a href="mailto:yongtaehoon@gmail.com">Contact</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScCXS6q0kZ1LATicTmUqHuSrnywUJ4KGAE9GCz7Lh29hUPjmw/viewform" target="_blank" rel="noopener">Unsubscribe</a>
+          <a href="#subscribe">Unsubscribe</a>
         </div>
       </div>
     </footer>
+  <script>
+  (function () {
+    var API_BASE = 'https://subscribe.newsletter.th-yong.com';
+    var mode = 'subscribe';
+    var toggle = document.getElementById('subToggle');
+    var form = document.getElementById('subForm');
+    var submitBtn = document.getElementById('subSubmit');
+    var feedback = document.getElementById('subFeedback');
+
+    toggle.addEventListener('click', function (e) {
+      var btn = e.target.closest('.sub-toggle-btn');
+      if (!btn) return;
+      mode = btn.dataset.mode;
+      toggle.querySelectorAll('.sub-toggle-btn').forEach(function (b) {
+        b.classList.toggle('active', b === btn);
+      });
+      submitBtn.textContent = mode === 'subscribe' ? '구독하기' : '해지하기';
+      feedback.textContent = '';
+      feedback.className = 'sub-feedback';
+    });
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var email = document.getElementById('subEmail').value.trim();
+      var turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
+      var turnstileToken = turnstileInput ? turnstileInput.value : '';
+
+      if (!turnstileToken) {
+        setFeedback('보안 검증을 완료해 주세요.', true);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      feedback.textContent = '';
+
+      try {
+        var endpoint = mode === 'subscribe' ? '/subscribe' : '/unsubscribe';
+        var res = await fetch(API_BASE + endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, turnstileToken: turnstileToken }),
+        });
+        var data = await res.json();
+        setFeedback(data.message || data.error, !res.ok);
+      } catch (_) {
+        setFeedback('오류가 발생했습니다. 잠시 후 다시 시도해 주세요.', true);
+      } finally {
+        submitBtn.disabled = false;
+        if (window.turnstile) window.turnstile.reset();
+      }
+    });
+
+    function setFeedback(msg, isError) {
+      feedback.textContent = msg;
+      feedback.className = 'sub-feedback' + (isError ? ' error' : '');
+    }
+  })();
+  </script>
   </body>
 </html>
