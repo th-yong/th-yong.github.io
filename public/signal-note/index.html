@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script>if(location.hostname!=='newsletter.th-yong.com'){var p=location.pathname.replace(/^\/signal-note/,'')||'/';location.replace('https://newsletter.th-yong.com'+p+location.search+location.hash);}</script>
+    <script>(function(){var h=location.hostname;if(h==='newsletter.th-yong.com'||h==='localhost'||h==='127.0.0.1'||h.endsWith('.pages.dev'))return;var p=location.pathname.replace(/^\/signal-note/,'')||'/';location.replace('https://newsletter.th-yong.com'+p+location.search+location.hash);})();</script>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%232f6b5e%22%2F%3E%3Cpath%20d%3D%22M34%2010%20L18%2036%20H30%20L26%2054%20L46%2026%20H34%20Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" />
         <title>Signal Note — AI Tech Daily</title>
     <meta
@@ -58,6 +58,14 @@
         --shadow-lg: 0 18px 60px rgba(24, 28, 28, 0.12);
         --radius-lg: 1rem;
         --radius-xl: 1.5rem;
+        /* Section bands — flat fills only */
+        --section-newsroom: #eaf5f1;
+        --section-sources: #fafcfb;
+        --section-features: #eef5f2;
+        --section-preview: #e6ece9;
+        --section-how: #e8f4ef;
+        --section-faq: #e4eae7;
+        --section-footer: #dbe3e0;
       }
 
       * { box-sizing: border-box; }
@@ -192,7 +200,7 @@
       .hero p.lead {
         font-size: 18px;
         color: var(--on-surface-muted);
-        max-width: 640px;
+        max-width:  800px;
         margin: 0 0 32px;
       }
       .hero-cta {
@@ -235,8 +243,229 @@
         .stats { grid-template-columns: repeat(2, 1fr); }
       }
 
+      /* ───── Newsroom Animation ───── */
+      .newsroom-section {
+        padding: 72px 0;
+        background: var(--section-newsroom);
+      }
+
+      .newsroom {
+        display: grid;
+        grid-template-columns: minmax(140px,1fr) 56px minmax(200px,1.3fr) 56px minmax(120px,1fr);
+        align-items: stretch;
+        gap: 0;
+        margin-top: 48px;
+      }
+
+      /* Column header */
+      .nr-col-hd {
+        display: flex; align-items: center; gap: 6px;
+        font-size: 10px; font-weight: 700;
+        color: var(--on-surface-faint);
+        text-transform: uppercase; letter-spacing: .08em;
+        margin-bottom: 12px;
+      }
+      .nr-num {
+        width: 17px; height: 17px; border-radius: 50%;
+        background: var(--primary); color: #fff;
+        font-size: 10px; display: inline-flex;
+        align-items: center; justify-content: center; flex-shrink: 0;
+      }
+      .nr-num-accent { background: var(--accent); color: #1a2e2a; }
+      .nr-badge {
+        background: var(--surface-tint); color: var(--primary);
+        padding: 2px 7px; border-radius: 999px;
+        font-size: 10px; font-weight: 600;
+        text-transform: none; letter-spacing: 0;
+      }
+      .nr-badge-thinking {
+        background: #fef3c7; color: #92400e;
+        animation: nr-blink 1.4s ease-in-out infinite;
+      }
+      @keyframes nr-blink { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+      /* ── Reporter column ── */
+      .nr-reporters {
+        background: var(--surface-raised);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-lg);
+        padding: 18px 14px;
+        display: flex; flex-direction: column; gap: 6px;
+      }
+      .nr-reporter {
+        display: flex; align-items: center; gap: 6px;
+        padding: 5px 10px;
+        background: var(--surface-tint);
+        border-radius: 8px;
+        font-size: 11px; font-weight: 600;
+        color: var(--on-surface-muted);
+        animation: nr-rep-pulse 2.6s ease-in-out infinite;
+        animation-delay: calc(var(--i, 0) * 0.28s);
+      }
+      @keyframes nr-rep-pulse {
+        0%,80%,100%{ background: var(--surface-tint); }
+        88%{ background: var(--primary-tint); color: var(--primary); }
+      }
+      .nr-dot {
+        width: 5px; height: 5px; border-radius: 50%;
+        background: #22c55e; margin-left: auto;
+        animation: nr-dot-blink 2.6s ease-in-out infinite;
+        animation-delay: calc(var(--i, 0) * 0.28s);
+      }
+      @keyframes nr-dot-blink {
+        0%,75%,100%{ opacity:.3; transform:scale(.8) }
+        85%{ opacity:1; transform:scale(1.4) }
+      }
+
+      /* ── Flow channel (horizontal) ── */
+      .nr-flow {
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 5px; padding: 0 2px;
+        position: relative;
+      }
+      .nr-flow-label {
+        font-size: 10px; font-weight: 700;
+        color: var(--primary); background: var(--primary-tint);
+        padding: 2px 7px; border-radius: 999px; white-space: nowrap;
+      }
+      .nr-flow-line {
+        width: 100%; height: 2px;
+        background: linear-gradient(to right, var(--primary-tint), var(--accent), var(--primary-tint));
+        border-radius: 1px;
+      }
+      .nr-flow-stream {
+        width: 100%; height: 22px;
+        position: relative; overflow: hidden;
+      }
+      .nr-msg {
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        font-size: 13px; line-height: 1;
+        opacity: 0;
+        animation: nr-msg-fly 2.6s ease-in-out infinite;
+        animation-delay: var(--pd, 0s);
+        filter: drop-shadow(0 0 4px rgba(99,227,185,.7));
+      }
+      .nr-msg-ok { filter: drop-shadow(0 0 4px rgba(99,227,185,.9)); }
+      @keyframes nr-msg-fly {
+        0%  { left: -10%; opacity: 0; }
+        12% { opacity: 1; }
+        88% { opacity: 1; }
+        100%{ left: 110%; opacity: 0; }
+      }
+
+      /* ── Editor column (dark) ── */
+      .nr-editor {
+        background: #1a2e2a;
+        border: 1.5px solid var(--primary);
+        border-radius: var(--radius-lg);
+        padding: 18px 16px;
+        display: flex; flex-direction: column; gap: 0;
+      }
+      .nr-editor .nr-col-hd { color: rgba(255,255,255,.45); margin-bottom: 14px; }
+
+      .nr-tools-list { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+      .nr-tool-row {
+        display: flex; align-items: center; gap: 7px;
+        padding: 6px 9px;
+        background: rgba(255,255,255,.06);
+        border-radius: 7px;
+        border-left: 2px solid rgba(255,255,255,.1);
+        opacity: 0;
+        animation: nr-tool-appear 9s ease-in-out infinite;
+        animation-delay: calc(var(--step,0) * 1.4s + .3s);
+      }
+      .nr-ti { font-size: 13px; flex-shrink: 0; }
+      .nr-tn { font-size: 11px; font-weight: 600; color: rgba(255,255,255,.8); flex-shrink: 0; min-width: 70px; }
+      .nr-tb { flex: 1; height: 3px; background: rgba(255,255,255,.12); border-radius: 2px; overflow: hidden; }
+      .nr-tf { display: block; height: 100%; width: var(--w,0%); background: var(--accent); border-radius: 2px; }
+      .nr-tv { font-size: 11px; font-weight: 700; color: var(--accent); flex-shrink: 0; min-width: 20px; text-align: right; }
+
+      @keyframes nr-tool-appear {
+        0%,7%{ opacity:0; transform:translateX(-5px); border-left-color:rgba(255,255,255,.1) }
+        17%,55%{ opacity:1; transform:translateX(0); border-left-color:var(--accent) }
+        68%,100%{ opacity:.28; border-left-color:rgba(255,255,255,.1) }
+      }
+
+      .nr-result { display:flex; justify-content:flex-end; }
+      .nr-result-badge {
+        background: rgba(99,227,185,.14); color: var(--accent);
+        border: 1px solid rgba(99,227,185,.35);
+        padding: 4px 12px; border-radius: 6px;
+        font-size: 11px; font-weight: 700;
+        opacity: 0;
+        animation: nr-pop 9s ease-in-out infinite;
+        animation-delay: 7.6s;
+      }
+      @keyframes nr-pop {
+        0%,83%{ opacity:0; transform:scale(.88) }
+        92%,100%{ opacity:1; transform:scale(1) }
+      }
+
+      /* ── Delivery column ── */
+      .nr-delivery {
+        background: var(--surface-raised);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-lg);
+        padding: 18px 14px;
+        display: flex; flex-direction: column; gap: 6px;
+      }
+      .nr-reader {
+        padding: 6px 10px;
+        background: var(--surface-tint);
+        border-radius: 8px;
+        font-size: 11px; font-weight: 600;
+        color: var(--on-surface-muted);
+        animation: nr-deliver 3.5s ease-in-out infinite;
+        animation-delay: calc(var(--i,0) * 0.7s);
+      }
+      @keyframes nr-deliver {
+        0%,55%,100%{ background:var(--surface-tint); color:var(--on-surface-muted); transform:translateX(0) }
+        68%,82%{ background:#dcfce7; color:#16a34a; transform:translateX(5px) }
+      }
+      .nr-privacy { font-size: 10px; color: var(--on-surface-faint); margin-top: 4px; }
+
+      /* prefers-reduced-motion */
+      @media (prefers-reduced-motion: reduce) {
+        .nr-reporter, .nr-dot, .nr-badge-thinking,
+        .nr-flow-particle, .nr-tool-row, .nr-result-badge, .nr-reader {
+          animation: none !important; opacity: 1 !important; transform: none !important;
+        }
+        .nr-tool-row { border-left-color: var(--accent); }
+        .nr-result-badge { opacity: 1; }
+      }
+
+      /* Mobile: stack vertically */
+      @media (max-width: 760px) {
+        .newsroom { grid-template-columns: 1fr; gap: 8px; }
+        .nr-flow { gap: 4px; padding: 2px 0; min-height: 56px; }
+        .nr-flow-stream { height: 30px; }
+        .nr-msg { font-size: 18px; }
+        .nr-flow-label { font-size: 11px; padding: 3px 9px; }
+      }
+
       /* ───── Section ───── */
       section { padding: 72px 0; }
+      .section-bg-sources {
+        background: var(--section-sources);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          inset 0 -1px 0 rgba(226, 236, 232, 0.7);
+      }
+      .section-bg-features {
+        background: var(--section-features);
+      }
+      .section-bg-preview {
+        background: var(--section-preview);
+        border-block: 1px solid rgba(226, 236, 232, 0.9);
+      }
+      .section-bg-how {
+        background: var(--section-how);
+      }
+      .section-bg-faq {
+        background: var(--section-faq);
+      }
       .section-title {
         font-family: "Manrope", sans-serif;
         font-size: clamp(26px, 3.2vw, 34px);
@@ -248,7 +477,7 @@
         color: var(--on-surface-muted);
         margin: 0 0 36px;
         font-size: 15px;
-        max-width: 620px;
+        max-width: 800px;
       }
 
       /* ───── Sources ───── */
@@ -510,7 +739,8 @@
       /* ───── Footer ───── */
       footer {
         padding: 48px 0 60px;
-        border-top: 1px solid var(--border-soft);
+        border-top: 1px solid rgba(226, 236, 232, 0.95);
+        background: var(--section-footer);
         color: var(--on-surface-faint);
         font-size: 13px;
       }
@@ -594,7 +824,7 @@
           <span class="dot"></span>
           <span>무료 · 언제든 해지 · 광고 없음</span>
         </div>
-        <p class="hero-note" style="margin-top:10px;color:#64748b;font-size:12px;">※ 신청 후 확인 메일이 안 보이면 <strong>스팸함/프로모션 탭</strong>을 확인해 주세요. (발신: <code>DoNotReply@…azurecomm.net</code>)</p>
+        <p class="hero-note" style="margin-top:10px;color:#64748b;font-size:12px;">※ 신청 후 확인 메일이 안 보이면 <strong>스팸함/프로모션 탭</strong>을 확인해 주세요. (발신: <code>noreply@newsletter.th-yong.com</code>)</p>
 
         <div class="stats">
           <div class="stat">
@@ -610,15 +840,87 @@
             <div class="label">매칭 키워드 그룹</div>
           </div>
           <div class="stat">
-            <div class="num">~1m</div>
+            <div class="num">~5m</div>
             <div class="label">읽는 데 걸리는 시간</div>
           </div>
         </div>
       </div>
     </header>
 
+    <!-- Newsroom animation -->
+    <section class="newsroom-section" aria-label="AI 뉴스룸 큐레이션 파이프라인" id="how-it-works">
+      <div class="container">
+        <h2 class="section-title">AI 뉴스룸이 매일 아침 일합니다</h2>
+        <p class="section-sub">Reporter 에이전트가 동시 취재하고, Editor 에이전트가 오늘의 Top 10을 선정해 독자 개인에게 전달합니다.</p>
+        <div class="newsroom" role="img" aria-label="Reporter 에이전트 9개가 병렬로 기사를 수집해 Editor 에이전트에 전달, Editor가 도구를 호출해 Top 10 선정 후 독자별 개별 발송">
+
+          <!-- Col 1: Reporter Agents -->
+          <div class="nr-reporters">
+            <div class="nr-col-hd"><span class="nr-num">1</span> Reporter Agents <span class="nr-badge">×9 병렬</span></div>
+            <div class="nr-reporter" style="--i:0"><span>⭐</span><span>GitHub Trending</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:1"><span>🔶</span><span>Hacker News</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:2"><span>🤗</span><span>HF Papers</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:3"><span>💬</span><span>r/LocalLLaMA</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:4"><span>🔥</span><span>PyTorch KR</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:5"><span>📰</span><span>GeekNews</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:6"><span>✒️</span><span>Simon Willison</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:7"><span>🏛️</span><span>AI Lab Blogs</span><span class="nr-dot"></span></div>
+            <div class="nr-reporter" style="--i:8"><span>💡</span><span>GeekNews Show</span><span class="nr-dot"></span></div>
+          </div>
+
+          <!-- Flow: Reporters → Editor -->
+          <div class="nr-flow" aria-hidden="true">
+            <div class="nr-flow-stream">
+              <div class="nr-msg" style="--pd:0s">📄</div>
+              <div class="nr-msg" style="--pd:0.55s">📄</div>
+              <div class="nr-msg" style="--pd:1.1s">📄</div>
+              <div class="nr-msg" style="--pd:1.65s">📄</div>
+              <div class="nr-msg" style="--pd:2.2s">📄</div>
+            </div>
+            <div class="nr-flow-line"></div>
+            <div class="nr-flow-label">118개 →</div>
+          </div>
+
+          <!-- Col 2: Editor Agent -->
+          <div class="nr-editor">
+            <div class="nr-col-hd"><span class="nr-num nr-num-accent">2</span> Editor Agent <span class="nr-badge nr-badge-thinking">● 분석 중</span></div>
+            <div class="nr-tools-list">
+              <div class="nr-tool-row" style="--step:0"><span class="nr-ti">🎯</span><span class="nr-tn">관련도 필터</span><span class="nr-tb"><span class="nr-tf" style="--w:40%"></span></span><span class="nr-tv">47</span></div>
+              <div class="nr-tool-row" style="--step:1"><span class="nr-ti">⚖️</span><span class="nr-tn">균형 조정</span><span class="nr-tb"><span class="nr-tf" style="--w:64%"></span></span><span class="nr-tv">30</span></div>
+              <div class="nr-tool-row" style="--step:2"><span class="nr-ti">📖</span><span class="nr-tn">본문 추출</span><span class="nr-tb"><span class="nr-tf" style="--w:100%"></span></span><span class="nr-tv">✓</span></div>
+              <div class="nr-tool-row" style="--step:3"><span class="nr-ti">✍️</span><span class="nr-tn">AI 요약</span><span class="nr-tb"><span class="nr-tf" style="--w:100%"></span></span><span class="nr-tv">✓</span></div>
+              <div class="nr-tool-row" style="--step:4"><span class="nr-ti">🧐</span><span class="nr-tn">최종 검증</span><span class="nr-tb"><span class="nr-tf" style="--w:100%"></span></span><span class="nr-tv">✓</span></div>
+            </div>
+            <div class="nr-result"><span class="nr-result-badge">✅ Top 10 선정</span></div>
+          </div>
+
+          <!-- Flow: Editor → Delivery -->
+          <div class="nr-flow" aria-hidden="true">
+            <div class="nr-flow-stream">
+              <div class="nr-msg nr-msg-ok" style="--pd:0.3s">✉️</div>
+              <div class="nr-msg nr-msg-ok" style="--pd:1.1s">✉️</div>
+              <div class="nr-msg nr-msg-ok" style="--pd:1.9s">✉️</div>
+            </div>
+            <div class="nr-flow-line"></div>
+            <div class="nr-flow-label">10개 →</div>
+          </div>
+
+          <!-- Col 3: Delivery -->
+          <div class="nr-delivery">
+            <div class="nr-col-hd"><span class="nr-num">3</span> Delivery <span class="nr-badge">개별 발송</span></div>
+            <div class="nr-reader" style="--i:0">✉️ 독자 A</div>
+            <div class="nr-reader" style="--i:1">✉️ 독자 B</div>
+            <div class="nr-reader" style="--i:2">✉️ 독자 C</div>
+            <div class="nr-reader" style="--i:3">✉️ 독자 D</div>
+            <div class="nr-privacy">수신자 주소 비공개</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
     <!-- Sources -->
-    <section id="sources">
+    <section id="sources" class="section-bg-sources">
       <div class="container">
         <h2 class="section-title">9곳을 매일 대신 읽어 드립니다</h2>
         <p class="section-sub">
@@ -682,7 +984,7 @@
     </section>
 
     <!-- Features -->
-    <section id="features" style="background: linear-gradient(180deg, transparent, rgba(201, 239, 226, 0.25));">
+    <section id="features" class="section-bg-features">
       <div class="container">
         <h2 class="section-title">왜 Signal Note 인가요?</h2>
         <p class="section-sub">피드 스크롤·탭 100개·늦은 밤 따라잡기 — 이제 그만.</p>
@@ -727,7 +1029,7 @@
     </section>
 
     <!-- Preview -->
-    <section id="preview">
+    <section id="preview" class="section-bg-preview">
       <div class="container">
         <div class="preview-wrap">
           <div>
@@ -802,7 +1104,7 @@
     </section>
 
     <!-- How to subscribe -->
-    <section id="how" style="background: linear-gradient(180deg, transparent, rgba(201, 239, 226, 0.2));">
+    <section id="how" class="section-bg-how">
       <div class="container">
         <h2 class="section-title">구독은 이렇게</h2>
         <p class="section-sub">계정 가입, 신용카드, 추적 — 전부 없습니다. 메일 한 통이면 끝.</p>
@@ -843,7 +1145,7 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="faq">
+    <section id="faq" class="faq section-bg-faq">
       <div class="container" style="max-width: 760px;">
         <h2 class="section-title">자주 묻는 질문</h2>
         <details>
