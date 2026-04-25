@@ -6,11 +6,11 @@
     <meta name="robots" content="noindex, nofollow" />
     <title>AI Tech Daily — 2026-04-24 · Signal Note</title>
     <meta name="description" content="2026-04-24 · 포스트 10개 · 소스 9곳" />
-    <link rel="canonical" href="https://th-yong.github.io/signal-note/archive/2026-04-24.html" />
+    <link rel="canonical" href="https://newsletter.th-yong.com/archive/2026-04-24.html" />
     <meta property="og:title" content="AI Tech Daily — 2026-04-24 · Signal Note" />
     <meta property="og:description" content="2026-04-24 · 포스트 10개 · 소스 9곳" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://th-yong.github.io/signal-note/archive/2026-04-24.html" />
+    <meta property="og:url" content="https://newsletter.th-yong.com/archive/2026-04-24.html" />
     <meta property="og:image" content="https://th-yong.github.io/signal-note/og-image.png?v=f421f90f29" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -107,6 +107,12 @@
   .archive-body {}
   .archive-body a { transition: opacity 0.15s ease; }
   .archive-body a:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
+  .archive-body .overview-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .archive-body .overview-scroll table { min-width: 600px; }
 
   .site-footer {
     padding: 32px 0 48px;
@@ -152,8 +158,10 @@
       </div>
     </div>
     
+    
     <div style="margin-top:12px;padding:16px 16px 4px;background:#ffffff;border-radius:16px;box-shadow:0 1px 2px rgba(24,28,28,.04);">
       <div style="font-size:14px;font-weight:700;padding:4px 4px 10px;">📋 오늘의 한눈에 보기</div>
+      <div class="overview-scroll">
       <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;">
         <thead>
           <tr style="background:#eef5f2;">
@@ -256,6 +264,7 @@
         <td style="padding:6px 8px;border-bottom:1px solid #e2ece8;font-size:13px;color:#2b3b38;vertical-align:top;">iPhone 비전 파이프라인으로 사격 표적 탄흔 자동 채점 시도기</td>
       </tr></tbody>
       </table>
+      </div>
     </div>
     
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -272,6 +281,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">공식 개발팀과 커뮤니티가 만든 에이전트 스킬 1000개 이상을 모은 큐레이션 저장소</li><li style="margin:2px 0;">Claude Code, Codex, Gemini CLI, Cursor 등 여러 에이전트·코딩 도구와의 호환성 강조</li><li style="margin:2px 0;">GitHub 기준 스타 1만7974개, 당일 176개 증가로 높은 관심도 확인</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -288,6 +298,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Google 관련 연구로 소개된 에이전트 추론 메모리 프레임워크 ReasoningBank 중심 내용</li><li style="margin:2px 0;">성공과 실패 경험을 모두 저장·활용해 이후 의사결정과 추론 전략을 개선하는 접근</li><li style="margin:2px 0;">일회성 실행이 아닌 경험 축적 기반의 자기 진화형(agentic) 학습·추론 구조에 초점</li><li style="margin:2px 0;">에이전트 성능 향상을 위해 메모리, 반성(reflection), 경험 재사용을 결합한 방식으로 해석 가능</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -304,6 +315,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">OpenAI의 신모델 GPT-5.5 발표, 더 똑똑하고 직관적인 업무형 지능 지향</li><li style="margin:2px 0;">단순 텍스트 생성 중심을 넘어 에이전트(agent)로서의 작업 수행 능력 강조</li><li style="margin:2px 0;">실제 업무 활용을 전면에 둔 포지셔닝, 생산성·자동화 중심 활용 시사</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -320,6 +332,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">바이브코딩으로 다시 바이브코딩 앱을 구현한 개발 사례 소개</li><li style="margin:2px 0;">터미널 에이전트들을 웹소켓(WS)으로 조작하는 구조</li><li style="margin:2px 0;">별도 API 없이 동작하는 형태이며 API 지원 예정 없음 명시</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -336,6 +349,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">LLaDA2.0-Uni 제안 논문으로 멀티모달 이해와 생성 작업을 단일 diffusion large language model로 통합</li><li style="margin:2px 0;">자기회귀(autoregressive) 계열과 달리 확산 기반 생성 방식을 전면에 둔 멀티모달 통합 아키텍처 방향 제시</li><li style="margin:2px 0;">텍스트 중심 LLM을 넘어 understanding과 generation을 함께 다루는 범용 멀티모달 모델 설계가 핵심</li><li style="margin:2px 0;">논문 메타 기준 arXiv 2604.20796 공개</li>
       </ul>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -348,6 +362,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">오디오 LLM(audio large language models)에서 benign fine-tuning 이후 safety alignment 약화 현상 분석</li><li style="margin:2px 0;">악성 데이터나 명시적 우회 기법 없이도 일반적 후속 파인튜닝만으로 안전성 붕괴 가능성 제시</li><li style="margin:2px 0;">텍스트 중심 안전 정렬 가정이 음성·오디오 입력 환경에서는 그대로 유지되지 않을 수 있음을 시사</li><li style="margin:2px 0;">오디오 멀티모달 모델 배포 시 파인튜닝 단계의 별도 안전성 검증과 재정렬 필요성 부각</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -364,6 +379,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">2026년 3월 Kaggle Playground 대회에서 생성형 AI 보조 코딩으로 1위 달성 사례</li><li style="margin:2px 0;">LLM 에이전트 3대가 60만 줄 이상 코드 생성, 실험 850회 수행으로 탐색 범위 확대</li><li style="margin:2px 0;">인간 주도 워크플로에 에이전트 코딩을 결합해 모델링·실험 자동화 효율 검증</li><li style="margin:2px 0;">NVIDIA Developer가 대회 수준의 AI 보조 개발 활용법과 운영 방식 공유</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -380,6 +396,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">OpenAI Codex용 /backend-api/codex/responses 엔드포인트를 활용해 ChatGPT 구독으로 GPT-5.5 사용 가능성 확인</li><li style="margin:2px 0;">Codex CLI 인증 정보를 재활용하는 LLM 플러그인 llm-openai-via-codex 제작, openai-codex/gpt-5.5 모델로 프롬프트 실행 지원</li><li style="margin:2px 0;">펠리컨 SVG 벤치마크에서 reasoning_effort xhigh 옵션 적용 시 4분 소요, 추론 토큰 9,322개로 기본 39개 대비 큰 차이</li><li style="margin:2px 0;">GPT-5.5 API 가격 공개 예정 수치로 입력 100만 토큰당 5달러, 출력 30달러; GPT-5.4 대비 2배</li><li style="margin:2px 0;">GPT-5.5 Pro는 입력 30달러·출력 180달러로 더 고가, GPT-5.4는 계속 제공 예정</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -396,6 +413,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">미국 백악관 과학기술정책실(OSTP) 메모 언급, 프런티어 모델 역량의 대규모 추출 우려 제기</li><li style="margin:2px 0;">프록시 계정과 탈옥(jailbreak) 기법을 활용한 산업화된 증류(adversarial distillation) 시나리오가 핵심 쟁점</li><li style="margin:2px 0;">직접적 오픈소스 규제보다 폐쇄형 상용 모델 보호 성격이 강하다는 해석 제시</li><li style="margin:2px 0;">모델 가중치와 성능을 전략 자산으로 간주할 경우 오픈 모델 생태계에 미칠 정책 영향 논의</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -412,6 +430,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">황동 플러그로 수동 채점하던 .22 소총 표적 판독을 iOS 앱으로 대체하려는 개인 프로젝트</li><li style="margin:2px 0;">Apple Vision 기본 객체 검출은 탄흔 대신 중앙 점·채점 링 일부를 오검출, 음영 공간(negative space) 인식 한계 노출</li><li style="margin:2px 0;">2012년 Warsaw University of Technology 논문 절차를 재현해 OpenCV의 Prewitt 에지 검출과 Hough transform 적용</li><li style="margin:2px 0;">NSRA 표적의 숫자 표기와 링 경계 문제로 원형 피팅 오탐 발생, 방사형 밝기 프로파일로 링 반경 추정 방식 도입</li><li style="margin:2px 0;">Vision의 윤곽선 검출과 둘레 필터를 결합한 결과 카드당 5발 중 평균 4발 검출, 정확도 약 80%</li>
       </ul>
+      
     </div>
     
   </div>

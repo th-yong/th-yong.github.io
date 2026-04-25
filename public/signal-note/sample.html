@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     
     <title>AI Tech Daily — 2026-04-25 · Signal Note</title>
-    <meta name="description" content="2026-04-25 · 포스트 10개 · 소스 9곳" />
+    <meta name="description" content="2026-04-25 · 포스트 10개 · 소스 8곳" />
     <link rel="canonical" href="https://newsletter.th-yong.com/sample.html" />
     <meta property="og:title" content="AI Tech Daily — 2026-04-25 · Signal Note" />
-    <meta property="og:description" content="2026-04-25 · 포스트 10개 · 소스 9곳" />
+    <meta property="og:description" content="2026-04-25 · 포스트 10개 · 소스 8곳" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://newsletter.th-yong.com/sample.html" />
     <meta property="og:image" content="https://th-yong.github.io/signal-note/og-image.png?v=f421f90f29" />
@@ -19,7 +19,7 @@
     <meta property="og:locale" content="ko_KR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="AI Tech Daily — 2026-04-25 · Signal Note" />
-    <meta name="twitter:description" content="2026-04-25 · 포스트 10개 · 소스 9곳" />
+    <meta name="twitter:description" content="2026-04-25 · 포스트 10개 · 소스 8곳" />
     <meta name="twitter:image" content="https://th-yong.github.io/signal-note/og-image.png?v=f421f90f29" />
     <meta name="twitter:image:alt" content="Signal Note — AI 엔지니어의 하루는 첫 1시간에 정해집니다." />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2232%22%20r%3D%2230%22%20fill%3D%22%232f6b5e%22%2F%3E%3Cpath%20d%3D%22M34%2010%20L18%2036%20H30%20L26%2054%20L46%2026%20H34%20Z%22%20fill%3D%22%23fff%22%2F%3E%3C%2Fsvg%3E" />
@@ -107,6 +107,12 @@
   .archive-body {}
   .archive-body a { transition: opacity 0.15s ease; }
   .archive-body a:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
+  .archive-body .overview-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .archive-body .overview-scroll table { min-width: 600px; }
 
   .site-footer {
     padding: 32px 0 48px;
@@ -138,7 +144,7 @@
     </nav>
 
     <div class="archive-toolbar">
-      <a class="archive-cta" href="https://docs.google.com/forms/d/e/1FAIpQLScfnXOVm6pOCE8rFY6ZQr0iDrN_hun8jYwmUXCFC34ogSZ3KA/viewform" target="_blank" rel="noopener">매일 아침 6:30 받기 →</a>
+      <a class="archive-cta" href="https://newsletter.th-yong.com" target="_blank" rel="noopener">매일 아침 6:30 받기 →</a>
     </div>
 
     <div class="archive-body">
@@ -148,40 +154,14 @@
       <div style="font-size:12px;letter-spacing:.08em;color:#4a6a63;text-transform:uppercase;">AI Tech Daily</div>
       <h1 style="margin:4px 0 0;font-size:22px;font-weight:700;">Morning Digest — 2026-04-25</h1>
       <div style="margin-top:6px;font-size:13px;color:#4a6a63;">
-        10 posts · 9 sources · 제목 클릭 시 원문으로 이동
+        10 posts · 8 sources · 제목 클릭 시 원문으로 이동
       </div>
     </div>
     
-    <div style="margin-top:12px;padding:16px 18px;background:#e8f4ef;border-radius:16px;">
-      <div style="font-size:14px;font-weight:700;color:#1a3830;padding-bottom:8px;">🔥 오늘의 TL;DR</div>
-      <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;">
-        <tbody>
-      <tr>
-        <td style="padding:8px 6px 8px 0;font-size:13px;font-weight:700;color:#2f6b5e;vertical-align:top;white-space:nowrap;">1.</td>
-        <td style="padding:8px 0;">
-          <a href="https://developers.openai.com/api/docs/changelog" style="display:block;font-size:13.5px;font-weight:600;color:#181c1c;text-decoration:none;line-height:1.4;">OpenAI releases GPT-5.5 and GPT-5.5 Pro in the API</a>
-          <div style="margin-top:3px;font-size:12.5px;color:#4a6a63;line-height:1.5;">OpenAI가 GPT-5.5·Pro를 API에 출시, 실서비스 성능·비용 전략에 직접 영향</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding:8px 6px 8px 0;font-size:13px;font-weight:700;color:#2f6b5e;vertical-align:top;white-space:nowrap;">2.</td>
-        <td style="padding:8px 0;">
-          <a href="https://simonwillison.net/2026/Apr/24/deepseek-v4/#atom-everything" style="display:block;font-size:13.5px;font-weight:600;color:#181c1c;text-decoration:none;line-height:1.4;">DeepSeek V4 - almost on the frontier, a fraction of the price</a>
-          <div style="margin-top:3px;font-size:12.5px;color:#4a6a63;line-height:1.5;">DeepSeek V4 공개, 100만 토큰 컨텍스트와 초저가로 프런티어급 경쟁 본격화</div>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding:8px 6px 8px 0;font-size:13px;font-weight:700;color:#2f6b5e;vertical-align:top;white-space:nowrap;">3.</td>
-        <td style="padding:8px 0;">
-          <a href="https://github.com/huggingface/ml-intern" style="display:block;font-size:13.5px;font-weight:600;color:#181c1c;text-decoration:none;line-height:1.4;">huggingface/ml-intern</a>
-          <div style="margin-top:3px;font-size:12.5px;color:#4a6a63;line-height:1.5;">논문 탐색부터 학습·배포까지 잇는 오픈소스 ML 에이전트로 워크플로 자동화 기대</div>
-        </td>
-      </tr></tbody>
-      </table>
-    </div>
     
     <div style="margin-top:12px;padding:16px 16px 4px;background:#ffffff;border-radius:16px;box-shadow:0 1px 2px rgba(24,28,28,.04);">
       <div style="font-size:14px;font-weight:700;padding:4px 4px 10px;">📋 오늘의 한눈에 보기</div>
+      <div class="overview-scroll">
       <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;">
         <thead>
           <tr style="background:#eef5f2;">
@@ -284,6 +264,7 @@
         <td style="padding:6px 8px;border-bottom:1px solid #e2ece8;font-size:13px;color:#2b3b38;vertical-align:top;">OpenAI, GPT-5.5·GPT-5.5 Pro API 출시</td>
       </tr></tbody>
       </table>
+      </div>
     </div>
     
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -300,11 +281,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Hugging Face 생태계 기반 자율형 ML 엔지니어 도구로, 논문·문서·데이터셋·코드 탐색 후 모델 작업 수행</li><li style="margin:2px 0;">CLI 중심 인터페이스 제공, 단일 프롬프트 자동 승인 실행과 대화형 세션 모두 지원</li><li style="margin:2px 0;">litellm 기반 에이전트 루프와 ToolRouter 구성, GitHub 검색·HF 리포지토리·샌드박스·MCP 서버 연동</li><li style="margin:2px 0;">최대 300회 반복 루프, 170k 컨텍스트 자동 압축, 반복 도구 호출 감지용 doom loop detector 포함</li><li style="margin:2px 0;">Anthropic API, Hugging Face 토큰, GitHub 토큰 설정으로 사용 가능하며 Python 프로젝트로 공개</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> ML 실험과 구현, 배포에 필요한 문서 탐색·코드 작성·도구 실행을 하나의 에이전트 루프로 묶은 점이 특징이다. 단순 챗봇이 아니라 승인 제어, 컨텍스트 관리, 외부 도구 연결을 포함해 실제 ML 워크플로 자동화에 가깝다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> 에이전트(agent)는 LLM이 외부 도구를 호출하며 여러 단계를 반복 수행하는 구조다. MCP는 모델이 외부 서버 도구와 표준 방식으로 연결되게 하는 프로토콜이다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> ML 워크플로 자동화, 에이전트형 개발 도구, Hugging Face 기반 실험에 관심 있는 엔지니어</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -321,11 +298,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">DFlash, 블록 확산(Block Diffusion) 기법을 활용한 LLM 추론 가속 오픈소스 라이브러리</li><li style="margin:2px 0;">토큰 단위 순차 생성 대신 블록 단위 생성·정제를 통한 추론 속도 개선 접근</li><li style="margin:2px 0;">Z.ai 관련 맥락과 함께 소개된 구현체로, 실서비스형 저지연 생성 파이프라인에 초점</li><li style="margin:2px 0;">PyTorch 생태계에서 활용 가능한 형태의 오픈소스 공개 사례로 실험·통합 용이성</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 기존 자기회귀 LLM 추론은 토큰을 한 개씩 생성해 지연이 누적되기 쉽습니다. 블록 확산 기반 접근은 생성 단위를 바꿔 병렬성과 속도 개선 여지를 제공한다는 점에서 서빙 최적화 관점의 의미가 있습니다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> 자기회귀(autoregressive) LLM은 이전 토큰을 조건으로 다음 토큰을 순차 생성합니다. 확산 기반 생성은 한 번에 후보를 만들고 반복적으로 정제하는 방식으로 이해할 수 있습니다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> LLM 서빙 지연 최적화와 비자기회귀 생성 방식에 관심 있는 ML 엔지니어</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -342,11 +315,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Google Cloud Next 공개 도구로 Gemini CLI, Claude Code, Codex 등 코딩 에이전트 대상 활용</li><li style="margin:2px 0;">코딩 에이전트를 에이전트 빌더로 전환해 Google Cloud 기반 AI 에이전트 설계·배포 지원</li><li style="margin:2px 0;">개발자가 직접 모든 구성을 작성하기보다 CLI를 통해 에이전트 생성 워크플로 자동화 지향</li><li style="margin:2px 0;">GitHub 저장소 형태로 공개된 도구로 에이전트 개발·운영 파이프라인의 진입장벽 완화 목적</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 에이전트 자체를 만드는 도구를 또 다른 에이전트가 다루게 한다는 점이 핵심이다. 기존의 수동 설정 중심 흐름보다, 코딩 에이전트를 활용한 생성·배포 자동화에 초점을 맞춘 접근으로 볼 수 있다.</div>
-        
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> 에이전트 개발 자동화와 Google Cloud 기반 배포 흐름에 관심 있는 ML 엔지니어·플랫폼 개발자</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -363,11 +332,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">개인화 LLM 에이전트 맥락에서 지식 그래프(KG) 저장 방식과 검색 접근법을 체계적으로 비교한 연구</li><li style="margin:2px 0;">사용자별 정보 관리 관점에서 어떤 KG 표현·조회 방식이 적합한지 성능과 특성을 함께 점검</li><li style="margin:2px 0;">단순 벡터 검색을 넘어 구조화된 관계 정보를 활용하는 personalized agent 메모리 설계 관점 제시</li><li style="margin:2px 0;">개인화 에이전트 구축 시 저장소 선택과 retrieval 전략 결정에 참고할 비교 프레임워크 제공</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 개인화 에이전트는 사용자 정보의 장기 기억과 관계 추론이 중요해 단순 텍스트 저장만으로는 한계가 있다. 이 연구는 지식 그래프 기반 메모리의 저장·검색 선택지를 비교해, personalized LLM agent 설계의 기준점을 제공한다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> 지식 그래프(KG)는 개체와 관계를 구조화해 저장하는 방식이다. personalized LLM agent는 사용자 선호, 이력, 맥락을 장기 메모리로 저장·검색해 응답 품질을 높인다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> 개인화 에이전트 메모리, 장기 기억 저장소, KG 기반 retrieval 설계에 관심 있는 ML 엔지니어</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -384,11 +349,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">이동이 어려운 민감·분산 데이터를 중앙 수집 없이 학습하는 federated learning 실무 적용 관점</li><li style="margin:2px 0;">기존 PyTorch 기반 학습 파이프라인에 대규모 리팩터링 없이 붙이는 NVIDIA FLARE 중심 접근</li><li style="margin:2px 0;">데이터를 각 기관·사이트에 둔 채 모델 업데이트만 교환하는 구조로 프라이버시·거버넌스 요구 대응</li><li style="margin:2px 0;">연구 개념을 넘어 실제 운영 환경에서 FL을 도입할 때의 개발 부담과 통합 난점 완화에 초점</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 연합학습은 데이터 반출이 어려운 의료·금융·기업 환경에서 현실적인 대안이지만, 기존 학습 코드를 크게 뜯어고쳐야 한다는 진입 장벽이 컸다. 이 글은 NVIDIA FLARE로 그 통합 비용을 낮추는 방향을 제시한다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> 연합학습은 데이터를 중앙 서버로 모으지 않고 각 참여 노드에서 로컬 학습 후 모델 가중치나 업데이트만 집계하는 분산 학습 방식이다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> 민감 데이터 환경에서 분산 학습 도입을 검토하는 ML 엔지니어와 플랫폼 개발자</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -405,11 +366,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">DeepSeek-V4-Pro·Flash 프리뷰 공개, 둘 다 100만 토큰 컨텍스트의 MoE 모델</li><li style="margin:2px 0;">Pro는 총 1.6T·활성 49B, Flash는 총 284B·활성 13B 파라미터 구성</li><li style="margin:2px 0;">MIT 라이선스 오픈 웨이트 제공, Pro 865GB·Flash 160GB로 Hugging Face 배포</li><li style="margin:2px 0;">가격은 Flash 입력·출력 $0.14·$0.28/M, Pro $1.74·$3.48/M로 동급 대비 저렴</li><li style="margin:2px 0;">1M 컨텍스트에서 V3.2 대비 Pro는 FLOPs 27%·KV 캐시 10%, Flash는 10%·7% 수준</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 오픈 웨이트 기반 대형 LLM이 프런티어급 성능에 근접하면서도 가격을 크게 낮춘 사례다. 특히 100만 토큰 장문 컨텍스트에서 FLOPs와 KV 캐시를 줄여 비용 경쟁력을 확보한 점이 실사용 관점에서 의미가 크다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> MoE(Mixture of Experts)는 전체 파라미터 중 일부 전문가만 활성화해 추론 비용을 낮추는 구조다. KV 캐시는 긴 컨텍스트 추론에서 메모리와 비용을 좌우하는 핵심 요소다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> 장문 컨텍스트 LLM 비용 최적화와 오픈 웨이트 모델 운용에 관심 있는 ML 엔지니어</div>
-      </div>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -422,11 +379,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">LlamaIndex의 LiteParse를 Node.js CLI에서 브라우저 앱으로 이식, PDF.js와 Tesseract.js 기반 구성</li><li style="margin:2px 0;">AI 모델 없이 PDF 레이아웃을 공간 기반(spatial) 휴리스틱으로 해석, 다단 레이아웃도 선형 텍스트로 정렬</li><li style="margin:2px 0;">OCR 사용 여부 선택 가능, 페이지 이미지 표시와 JSON 출력 제공, 모든 처리를 브라우저 내부에서 수행</li><li style="margin:2px 0;">Claude Code와 Opus 4.7로 약 59분 만에 구현, Playwright 기반 TDD와 Safari 호환 이슈 수정 포함</li><li style="margin:2px 0;">GitHub Pages에 정적 웹앱으로 배포, 네트워크 추가 요청 없이 로컬 PDF 파싱 테스트 가능</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> PDF 텍스트 추출은 단순 OCR보다 읽기 순서 복원이 더 어려운 문제인데, 이 프로젝트는 LiteParse의 레이아웃 해석 능력을 브라우저로 가져왔다. 서버 업로드 없이 로컬에서 실행돼 문서 처리·RAG 전처리 도구로 활용 범위가 넓다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> LiteParse는 PDF 내 텍스트 좌표를 이용해 읽기 순서를 복원하는 도구이며, 스캔 PDF는 OCR로 보완한다. PDF.js는 브라우저 PDF 렌더링 라이브러리, Tesseract.js는 브라우저 OCR 엔진이다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> PDF 파싱, 문서형 RAG, 브라우저 기반 로컬 처리 도구에 관심 있는 개발자/AI 엔지니어</div>
-      </div>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -439,11 +392,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">최근 두 달간 제기된 Claude Code 품질 저하 불만, 실제 문제에 기반한 현상으로 확인</li><li style="margin:2px 0;">원인은 모델 성능이 아니라 Claude Code 하네스(harness)의 서로 다른 세 가지 이슈</li><li style="margin:2px 0;">3월 26일 배포된 유휴 세션 처리 변경에서 버그 발생, 한 번만 지워야 할 thinking을 매 턴 초기화</li><li style="margin:2px 0;">1시간 이상 비활성 세션에서 맥락 유지 실패 유발, 응답이 건망증적·반복적으로 보이는 문제 직결</li><li style="margin:2px 0;">에이전트 시스템 품질은 모델 자체뿐 아니라 세션 관리·상태 보존·오케스트레이션 구현 영향 큼</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 모델 품질 문제로 보이던 현상이 실제로는 런타임 하네스 결함에서 비롯됐다는 점이 핵심이다. 에이전트형 코딩 도구에서는 모델 평가만으로는 부족하고, 세션 상태 관리와 추론 컨텍스트 보존까지 함께 검증해야 함을 보여준다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> 하네스(harness)는 LLM 자체가 아니라 세션 상태, 프롬프트 구성, 도구 호출, 컨텍스트 주입을 감싸는 실행 계층이다. 이 계층의 버그는 모델이 나빠진 것처럼 체감되게 만들 수 있다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> 코딩 에이전트·LLM 앱의 세션 관리와 품질 회귀 대응에 관심 있는 ML 엔지니어</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -460,11 +409,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Artificial Analysis의 Agentic Index에서 Qwen 3.6 27B가 Sonnet 4.6과 동급 평가 언급</li><li style="margin:2px 0;">Gemini 3.1 Pro Preview, GPT 5.2·5.3, MiniMax 2.7을 앞서는 성과 공유</li><li style="margin:2px 0;">세 개 지표 전반의 개선 주장과 함께 특히 에이전트 성능 향상 폭 강조</li><li style="margin:2px 0;">코딩 지표가 Terminal Bench Hard·SciCode 중심이라 개선 폭 반영 한계 지적</li><li style="margin:2px 0;">Qwen 3.6 계열 학습이 OpenClaw·Hermes 등 에이전트 활용에 집중됐다는 해석</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 오픈 계열에 가까운 27B급 모델이 상용 최상위 모델과 에이전트 지표에서 비견된다는 점이 핵심이다. 단순 대화 성능보다 도구 사용·장기 과업 수행 같은 agentic 능력이 모델 경쟁력의 새 축임을 보여준다.</div>
-        <div style="margin-top:4px;"><b>배경 지식</b> Artificial Analysis는 상용·오픈 모델을 다양한 벤치마크로 비교하는 평가 기관이다. Agentic Index는 여러 단계의 도구 사용과 작업 수행 능력을 묶어 보는 지표로 이해하면 된다.</div>
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> 로컬 LLM, 에이전트 워크플로, 모델 벤치마크 추적에 관심 있는 ML 엔지니어</div>
-      </div>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -481,11 +426,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">OpenAI 개발자 API 변경 로그를 통해 GPT-5.5와 GPT-5.5 Pro 출시 공개</li><li style="margin:2px 0;">일반형과 Pro 계열을 분리해 성능·비용·용도별 선택지 확장</li><li style="margin:2px 0;">Hacker News 기준 162포인트, 댓글 97개로 개발자 커뮤니티 관심 집중</li>
       </ul>
-      <div style="margin-top:8px;padding:10px 12px;background:#f3faf7;border-left:3px solid #2f6b5e;border-radius:0 8px 8px 0;font-size:12.5px;color:#2b3b38;line-height:1.6;">
-        <div><b>왜 중요한가</b> 주력 LLM 라인업이 API에 추가되면 애플리케이션 개발자는 모델 교체만으로 성능과 비용 조합을 다시 최적화할 수 있다. 특히 Pro 등급 분리는 고성능 추론 수요와 일반 서비스 수요를 분리해 운영하기 쉽게 만든다.</div>
-        
-        <div style="margin-top:4px;color:#4a6a63;"><b>추천 대상</b> OpenAI API 기반 제품을 운영하거나 모델 업그레이드 타이밍을 보는 ML 엔지니어</div>
-      </div>
+      
     </div>
     
   </div>

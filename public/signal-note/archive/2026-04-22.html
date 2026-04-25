@@ -6,11 +6,11 @@
     <meta name="robots" content="noindex, nofollow" />
     <title>AI Tech Daily — 2026-04-22 · Signal Note</title>
     <meta name="description" content="2026-04-22 · 포스트 10개 · 소스 6곳" />
-    <link rel="canonical" href="https://th-yong.github.io/signal-note/archive/2026-04-22.html" />
+    <link rel="canonical" href="https://newsletter.th-yong.com/archive/2026-04-22.html" />
     <meta property="og:title" content="AI Tech Daily — 2026-04-22 · Signal Note" />
     <meta property="og:description" content="2026-04-22 · 포스트 10개 · 소스 6곳" />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://th-yong.github.io/signal-note/archive/2026-04-22.html" />
+    <meta property="og:url" content="https://newsletter.th-yong.com/archive/2026-04-22.html" />
     <meta property="og:image" content="https://th-yong.github.io/signal-note/og-image.png?v=f421f90f29" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -107,6 +107,12 @@
   .archive-body {}
   .archive-body a { transition: opacity 0.15s ease; }
   .archive-body a:hover { opacity: 0.8; text-decoration: underline; text-underline-offset: 3px; }
+  .archive-body .overview-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+  .archive-body .overview-scroll table { min-width: 600px; }
 
   .site-footer {
     padding: 32px 0 48px;
@@ -152,8 +158,10 @@
       </div>
     </div>
     
+    
     <div style="margin-top:12px;padding:16px 16px 4px;background:#ffffff;border-radius:16px;box-shadow:0 1px 2px rgba(24,28,28,.04);">
       <div style="font-size:14px;font-weight:700;padding:4px 4px 10px;">📋 오늘의 한눈에 보기</div>
+      <div class="overview-scroll">
       <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse;">
         <thead>
           <tr style="background:#eef5f2;">
@@ -256,6 +264,7 @@
         <td style="padding:6px 8px;border-bottom:1px solid #e2ece8;font-size:13px;color:#2b3b38;vertical-align:top;">카쿠네 호환 프런트엔드 Kasane, GPU 렌더링과 WASM 플러그인 지원</td>
       </tr></tbody>
       </table>
+      </div>
     </div>
     
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -272,6 +281,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">C++20 네이티브 데스크톱 앱 구조, Qt6 UI·렌더링과 embedded Python 분석 결합, 단일 바이너리 배포</li><li style="margin:2px 0;">DCF·포트폴리오 최적화·VaR·Sharpe·파생상품 가격 산정 지원, QuantLib 기반 18개 정량 분석 모듈 포함</li><li style="margin:2px 0;">트레이더·투자자·거시경제·지정학 영역 37개 AI 에이전트 제공, 로컬 LLM과 OpenAI·Anthropic·Gemini·Ollama 등 멀티 프로바이더 지원</li><li style="margin:2px 0;">DBnomics·Polygon·Kraken·Yahoo Finance·FRED·IMF·World Bank 등 100개 이상 데이터 커넥터와 16개 브로커 연동</li><li style="margin:2px 0;">Windows·Linux·macOS 설치 파일 제공, 수동 빌드는 Qt 6.8.3·Python 3.11.9·CMake 3.27.7 등 버전 고정</li>
       </ul>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -284,6 +294,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Claude Code용 code search MCP 제공, 코드 에이전트의 저장소 탐색·이해 보조</li><li style="margin:2px 0;">전체 코드베이스를 컨텍스트로 활용하는 방식의 개발 지원 도구</li><li style="margin:2px 0;">TypeScript 기반 오픈소스 프로젝트, GitHub 스타 6,544개와 일일 증가 259개</li>
       </ul>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -296,6 +307,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">ESP32-S3 CSI와 WiFi 신호 교란 분석으로 인원 감지, 호흡·심박, 활동 인식, 벽 너머 감지 지원</li><li style="margin:2px 0;">카메라 없이 10개 센서 신호로 학습 가능, 카메라 지도학습 결합 시 자세 추정 92.9% PCK@20 달성</li><li style="margin:2px 0;">엣지 하드웨어 중심 구조로 ESP32 메시는 노드당 최저 9달러, Cognitum Seed 포함 전체 BOM 약 140달러</li><li style="margin:2px 0;">로컬 SNN이 30초 이내 환경 적응, 6개 WiFi 채널 스캔과 Ed25519 witness chain으로 대역 확장·측정 검증 제공</li><li style="margin:2px 0;">신규 3D 포인트클라우드 기능 추가, MiDaS 깊이·WiFi CSI·mmWave 레이더 융합으로 통합 공간 모델 생성</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -312,6 +324,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">AI 에이전트가 MCP 서버를 통해 NotebookLM 문서를 직접 검색하고 응답에 활용하는 구조</li><li style="margin:2px 0;">NotebookLM의 인용 근거 기반 답변 특성을 에이전트 워크플로에 연결하는 방식</li><li style="margin:2px 0;">문서 검색과 답변 생성을 분리하지 않고 NotebookLM 연동으로 일관된 질의응답 지원</li><li style="margin:2px 0;">MCP(Model Context Protocol) 기반 도구 서버 형태로 에이전트 통합 활용성 강조</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -328,6 +341,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">수학적 추론(mathematical reasoning)과 검색(retrieval)을 통합 평가하는 멀티모달 벤치마크 MathNet 소개</li><li style="margin:2px 0;">텍스트·이미지 등 다양한 입력 양식을 포괄해 수학 문제 이해와 근거 탐색 능력 동시 측정 지향</li><li style="margin:2px 0;">개별 정답률 중심 평가를 넘어 검색 기반 문제 해결과 지식 활용 성능 비교에 초점</li><li style="margin:2px 0;">글로벌 벤치마크로 설계돼 다양한 모델의 수학 특화 성능과 일반화 수준 분석 용도</li>
       </ul>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -340,6 +354,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">멀티모달 LLM의 곱셈 수행 능력을 텍스트, 이미지, 오디오 입력 조건별로 비교한 연구</li><li style="margin:2px 0;">동일 계산 과제를 서로 다른 입력 모달리티로 제시해 계산 일반화와 표현 의존성 점검</li><li style="margin:2px 0;">언어 이해를 넘어 산술 연산에서 멀티모달 입력이 성능에 미치는 영향 분석</li><li style="margin:2px 0;">멀티모달 모델의 계산 능력 평가를 위한 벤치마크 성격의 문제 설정과 비교 관점 제시</li>
       </ul>
+      
     </div>
 
     <div style="margin-top:8px;padding:12px 16px;background:#ffffff;border-radius:12px;">
@@ -352,6 +367,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">비전-언어 설명(vision-language explanation)을 활용해 잠재 공간에서 추론과 계획을 단일 단계로 수행하는 프레임워크 제안</li><li style="margin:2px 0;">중간 추론 과정을 외부 체인으로 길게 전개하지 않고 one-step latent reasoning 방식으로 의사결정 경로를 압축하는 접근</li><li style="margin:2px 0;">시각 입력과 언어 설명을 함께 다뤄 계획(planning) 성능과 해석 가능성을 동시에 겨냥한 비전-언어 모델 연구</li><li style="margin:2px 0;">arXiv 2604.18486 공개 논문으로, 멀티모달 추론과 계획 문제를 통합적으로 다루는 방법론 중심의 제안</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -368,6 +384,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">‘라쿤이 햄 라디오를 든 Where&#39;s Waldo 스타일’ 프롬프트로 gpt-image-1, gpt-image-2, Gemini 계열 비교 테스트</li><li style="margin:2px 0;">기본 gpt-image-2 결과물에서는 대상 식별 실패했지만, high 품질·3840x2160 설정에서 라쿤 포함 장면 생성 확인</li><li style="margin:2px 0;">최대 해상도 추정 3840x2160 출력에서 13,342 output tokens 사용, 백만 토큰당 30달러 기준 약 0.40달러 비용</li><li style="margin:2px 0;">OpenAI Python 클라이언트가 아직 gpt-image-2를 반영하지 않았지만 모델 ID 검증이 없어 스크립트로 호출 가능</li><li style="margin:2px 0;">이미지 생성 모델이 스스로 퍼즐 해답을 표시하게 하면 오탐 가능성 존재, 자기 검증 용도 한계 제시</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -384,6 +401,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Gemma 4, Variable Image Resolution 지원 모델로 비전 예산 설정에 따라 성능 차이 발생</li><li style="margin:2px 0;">기본 최대 비전 예산 280 토큰, 약 64.5만 픽셀 수준으로 작은 텍스트 OCR에 부족한 설정</li><li style="margin:2px 0;">기본값 기준 세부 정보 인식 실패 사례 지적, 저해상도 입력 상태에 가까운 활용 한계 언급</li><li style="margin:2px 0;">llama.cpp에서 --image-min-tokens, --image-max-tokens 파라미터로 비전 예산 직접 조정 가능</li><li style="margin:2px 0;">차기 Gemma 모델의 비전 개선 요구보다 현행 Gemma 4 설정 최적화 필요성 강조</li>
       </ul>
+      
     </div>
 
   <div style="margin-top:24px;padding:14px 18px;background:#e6f4ef;border-radius:14px;">
@@ -400,6 +418,7 @@
       <ul style="margin:6px 0 0;padding-left:20px;font-size:13px;color:#2b3b38;line-height:1.55;">
         <li style="margin:2px 0;">Kakoune용 드롭인 프런트엔드로 기존 편집 워크플로와의 호환성 지향</li><li style="margin:2px 0;">GPU 렌더링 기반 UI 처리로 터미널 편집기 프런트엔드의 표시 성능 강화</li><li style="margin:2px 0;">WASM 플러그인 지원으로 확장 기능을 웹어셈블리 형태로 추가 가능한 구조</li><li style="margin:2px 0;">오픈소스 GitHub 프로젝트로 공개된 신규 프런트엔드 구현 사례</li>
       </ul>
+      
     </div>
     
   </div>
