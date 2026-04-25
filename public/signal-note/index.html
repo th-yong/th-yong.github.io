@@ -503,6 +503,11 @@
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 14px;
       }
+      @media (max-width: 560px) {
+        .sources-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .source-card { padding: 14px; }
+        .source-icon { width: 30px; height: 30px; margin-bottom: 8px; }
+      }
       .source-card {
         padding: 18px;
         background: var(--surface-raised);
@@ -1103,12 +1108,12 @@
           <div>
             <h2 class="section-title">이런 메일이 도착합니다</h2>
             <p class="section-sub">
-              아래는 실제 포맷의 축약 예시. 상단 "한눈에 보기 표"와 소스별 TL;DR 카드가 핵심입니다.
+              매일 아침 이 한 통으로 오늘 AI 씬에서 무슨 일이 일어났는지 파악할 수 있습니다.
             </p>
             <ul style="list-style: none; padding: 0; margin: 0; color: var(--on-surface-muted); font-size: 14px;">
-              <li style="padding: 6px 0;">✓ 상단 <strong style="color: var(--on-surface)">Top 10 요약 표</strong> — 소스 / 주제 / 제목 / 한줄 요약</li>
-              <li style="padding: 6px 0;">✓ 각 글마다 <strong style="color: var(--on-surface)">TL;DR + Key Points</strong></li>
-              <li style="padding: 6px 0;">✓ 제목 클릭 시 <strong style="color: var(--on-surface)">원문으로 직행</strong></li>
+              <li style="padding: 6px 0;">🔥 <strong style="color: var(--on-surface)">오늘의 TL;DR</strong> — AI 트렌드 핵심 3선 한눈에</li>
+              <li style="padding: 6px 0;">📋 <strong style="color: var(--on-surface)">한눈에 보기 표</strong> — 소스 · 주제 · 제목 · 한줄 요약</li>
+              <li style="padding: 6px 0;">📄 <strong style="color: var(--on-surface)">소스별 카드</strong> — TL;DR · Key Points · 배경 지식 · 원문 링크</li>
             </ul>
             <div style="margin-top: 18px;">
               <a class="btn btn-ghost" href="./sample.html">
@@ -1120,49 +1125,42 @@
           <div class="preview-card">
             <div class="preview-header">
               <div>
-                <div class="subject">[AI Tech Daily] 2026-04-20 · 10 posts</div>
-                <div>To: you@example.com</div>
+                <div class="subject">[AI Tech Daily] 2026-04-25 · 10 posts</div>
+                <div>To: you@example.com · 9 sources</div>
               </div>
               <span class="material-symbols-outlined" style="color: var(--primary)">mail</span>
             </div>
             <div class="preview-body">
-              <div class="preview-row">
-                <div class="src">HF Papers</div>
-                <div>
-                  <span class="topic-chip">LLM</span><span class="topic-chip">Reasoning</span>
-                  <div class="title">Thinking Machines: Test-Time RL with Minimal Reward</div>
-                  <div class="sum">보상 신호를 최소화한 테스트 타임 강화학습으로 수학 벤치마크 SOTA 근접.</div>
-                </div>
+              <!-- TL;DR block -->
+              <div style="background:#e8f4ef;border-radius:10px;padding:12px 14px;margin-bottom:14px;">
+                <div style="font-size:12px;font-weight:700;color:#1a3830;margin-bottom:8px;">🔥 오늘의 TL;DR</div>
+                <div style="font-size:12px;color:#2b3b38;line-height:1.5;">1. <strong>OpenAI, GPT-5.5 · Pro API 출시</strong> — 실서비스 성능·비용 전략에 직접 영향</div>
+                <div style="font-size:12px;color:#2b3b38;line-height:1.5;margin-top:4px;">2. <strong>DeepSeek V4 공개</strong> — 100만 토큰 컨텍스트, 초저가로 프런티어급 경쟁 본격화</div>
+                <div style="font-size:12px;color:#2b3b38;line-height:1.5;margin-top:4px;">3. <strong>huggingface/ml-intern</strong> — 논문 탐색·학습·배포 잇는 오픈소스 ML 에이전트</div>
               </div>
-              <div class="preview-row">
-                <div class="src">PyTorch KR</div>
-                <div>
-                  <span class="topic-chip">RAG</span><span class="topic-chip">Agent</span>
-                  <div class="title">에이전트 기반 RAG를 위한 워크플로 설계 가이드</div>
-                  <div class="sum">검색·도구·메모리를 조합한 멀티 홉 워크플로 실전 템플릿 공유.</div>
-                </div>
-              </div>
+              <!-- overview table rows -->
+              <div style="font-size:11px;font-weight:700;color:#4a6a63;padding:2px 0 8px;letter-spacing:.04em;">📋 한눈에 보기</div>
               <div class="preview-row">
                 <div class="src">GH Trending</div>
                 <div>
-                  <span class="topic-chip">Serving</span><span class="topic-chip">vLLM</span>
-                  <div class="title">fast-batch-vllm · Python · ★2,134</div>
-                  <div class="sum">연속 배칭 최적화로 vLLM 대비 처리량 1.8× 개선한 실험 레포.</div>
+                  <span class="topic-chip">Agent</span><span class="topic-chip">LLM</span>
+                  <div class="title">huggingface/ml-intern · Python · ★5k</div>
+                  <div class="sum">논문 탐색부터 학습·배포까지 수행하는 오픈소스 ML 에이전트.</div>
                 </div>
               </div>
               <div class="preview-row">
-                <div class="src">GeekNews</div>
+                <div class="src">HF Papers</div>
                 <div>
-                  <span class="topic-chip">MCP</span>
-                  <div class="title">MCP 서버 100개 돌려보고 정리한 것들</div>
-                  <div class="sum">Claude·Cursor 연동에서 안정적이었던 서버 셋업과 함정.</div>
+                  <span class="topic-chip">LLM</span><span class="topic-chip">Agent</span>
+                  <div class="title">PersonalAI: Knowledge Graph 저장·검색 비교</div>
+                  <div class="sum">개인화 LLM 에이전트를 위한 지식 그래프 방식 체계적 비교 연구.</div>
                 </div>
               </div>
               <div class="preview-row" style="opacity: 0.55;">
                 <div class="src">…</div>
                 <div>
-                  <div class="title">+ 6 more posts</div>
-                  <div class="sum">오늘의 Top 10 나머지도 이어서 확인</div>
+                  <div class="title">+ 8 more posts</div>
+                  <div class="sum">소스별 TL;DR · Key Points · 배경 지식 포함</div>
                 </div>
               </div>
             </div>
@@ -1264,12 +1262,19 @@
             Signal Note
           </div>
           <div style="margin-top: 6px;">© 2026 Signal Note · Curated by th-yong</div>
+          <div style="margin-top: 6px; font-size: 12px; color: var(--on-surface-faint); line-height: 1.7; max-width: 420px;">
+            각 게시물의 저작권은 원 출처에 있습니다. Signal Note의 요약·큐레이션 텍스트는
+            <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>으로
+            제공됩니다. 무단 상업적 재배포를 금합니다.
+          </div>
         </div>
-        <div style="display: flex; gap: 16px;">
-          <a href="./archive/index.html">아카이브</a>
-          <a href="https://github.com/th-yong/ai-tech-daily" target="_blank" rel="noopener">GitHub</a>
-          <a href="mailto:yongtaehoon@gmail.com">Contact</a>
-          <a href="#subscribe">Unsubscribe</a>
+        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 10px;">
+          <div style="display: flex; gap: 16px;">
+            <a href="./archive/index.html">아카이브</a>
+            <a href="https://github.com/th-yong/ai-tech-daily" target="_blank" rel="noopener">GitHub</a>
+            <a href="mailto:yongtaehoon@gmail.com">Contact</a>
+          </div>
+          <a href="#subscribe" style="font-size: 12px;">구독 해지 (Unsubscribe)</a>
         </div>
       </div>
     </footer>
